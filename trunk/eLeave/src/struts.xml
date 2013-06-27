@@ -3,5 +3,38 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-
+	<package name="account" extends="struts-default">
+		<action name="login" class="sg.edu.nus.iss.eleave.controller.LoginAction" method="login">
+			<result name="success">/home.jsp</result>
+			<result name="fail">/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="leave" namespace="/leave" extends="struts-default">
+		<action name="insert" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="insert">
+			<result name="success" type="redirectAction">
+				<param name="actionName">findAll</param>
+			</result>
+			<result name="input">/leave/createLeave.jsp</result>
+		</action>
+		<action name="edit" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="findById">
+			<result name="success">/leave/editLeave.jsp</result>
+		</action>
+		<action name="update" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">findAll</param>
+			</result>
+		</action>
+		<action name="delete" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="delete">
+			<result name="success" type="redirectAction">
+				<param name="actionName">findAll</param>
+			</result>
+		</action>
+		<action name="findById" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="findById">
+			<result name="success">/leave/leaveDetails.jsp</result>
+		</action>
+		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="findAll">
+			<result name="success">/leave/listAllLeaves.jsp</result>
+		</action>
+	</package>
 </struts>
