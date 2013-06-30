@@ -1,0 +1,92 @@
+package sg.edu.nus.iss.eleave.service.impl;
+
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import sg.edu.nus.iss.eleave.dao.EmployeeDAO;
+import sg.edu.nus.iss.eleave.dto.Employee;
+import sg.edu.nus.iss.eleave.exception.DAOException;
+import sg.edu.nus.iss.eleave.exception.ServiceException;
+import sg.edu.nus.iss.eleave.service.EmployeeService;
+
+public class EmployeeServiceImpl implements EmployeeService {
+	
+	private static Logger log = Logger.getLogger(EmployeeService.class.getCanonicalName());
+	
+	private EmployeeDAO employeeDao;
+
+	@Override
+	public Employee findEmployee(String employeeId) throws ServiceException {
+		
+		try {
+			return employeeDao.findEmployee(employeeId);
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+	}
+
+	@Override
+	public List<Employee> findAllEmployees() throws ServiceException {
+		
+		try {
+			return employeeDao.findAllEmployees();
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+	}
+
+	@Override
+	public List<Employee> findAllEmployees(int offset) throws ServiceException {
+		try {
+			return employeeDao.findAllEmployees(offset);
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+	}
+
+	@Override
+	public void insertEmployee(Employee employee) throws ServiceException {
+		try {
+			employeeDao.insertEmployee(employee);
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+
+	}
+
+	@Override
+	public void updateEmployee(Employee employee) throws ServiceException {
+		try {
+			employeeDao.updateEmployee(employee);
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+
+	}
+
+	@Override
+	public void deleteEmployee(Employee employee) throws ServiceException {
+		try {
+			employeeDao.deleteEmployee(employee);
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+
+	}
+
+	public EmployeeDAO getEmployeeDao() {
+		return employeeDao;
+	}
+
+	public void setEmployeeDao(EmployeeDAO employeeDao) throws ServiceException{
+		this.employeeDao = employeeDao;
+	}
+
+}
