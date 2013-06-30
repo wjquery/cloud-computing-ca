@@ -15,6 +15,7 @@ public class LeaveApplication {
 	private Date applyDate;
 	private Date modifyDate;
 	private Date processDate;
+	private Employee applicant;
 	private Employee approvedBy;
 	private String processComment;
 	
@@ -119,6 +120,12 @@ public class LeaveApplication {
 		this.processDate = processDate;
 		this.approvedBy = approvedBy;
 		this.processComment = processComment;
+	}
+	public Employee getApplicant() {
+		return applicant;
+	}
+	public void setApplicant(Employee applicant) {
+		this.applicant = applicant;
 	}
 	
 }
