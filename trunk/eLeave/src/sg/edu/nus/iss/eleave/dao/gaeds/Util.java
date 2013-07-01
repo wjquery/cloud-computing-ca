@@ -24,9 +24,12 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Transaction;
 
@@ -41,6 +44,8 @@ public class Util {
 
   private static final Logger logger = Logger.getLogger(Util.class.getCanonicalName());
   private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  //TODO read from config file
+  private static final int PAGE_LIST_SIZE = 20;
 
 /**
  * 
@@ -83,16 +88,33 @@ public class Util {
 	 * @return List all entities of a kind from the cache or datastore (if not
 	 *         in cache) with the specified properties
 	 */
-  public static Iterable<Entity> listEntities(String kind, String searchBy,	String searchFor) {
+  public static Iterable<Entity> listEntities(String kind, String searchBy,	Object searchFor) {
 	logger.log(Level.INFO, "Search entities based on search criteria");
 	Query q = new Query(kind);
 	if (searchFor != null && !"".equals(searchFor)) {
-	  q.addFilter(searchBy, FilterOperator.EQUAL, searchFor);
+		Filter filter = new FilterPredicate(searchBy, FilterOperator.EQUAL, searchFor);
+		q.setFilter(filter);
+		//q.addFilter(searchBy, FilterOperator.EQUAL, searchFor);
 	}
 	PreparedQuery pq = datastore.prepare(q);
 	logger.log(Level.WARNING, pq.toString());
 	return pq.asIterable();
   }
+  
+  public static Iterable<Entity> listEntities(String kind, String searchBy,	Object searchFor, int offset) {
+		logger.log(Level.INFO, "Search entities based on search criteria");
+		Query q = new Query(kind);
+		if (searchFor != null && !"".equals(searchFor)) {
+			Filter filter = new FilterPredicate(searchBy, FilterOperator.EQUAL, searchFor);
+			q.setFilter(filter);
+		}
+		PreparedQuery pq = datastore.prepare(q);
+		logger.log(Level.WARNING, pq.toString());
+		if(offset > 0) {
+			return pq.asIterable(FetchOptions.Builder.withOffset(offset).limit(PAGE_LIST_SIZE));
+		}else
+			return pq.asIterable();
+	  }
 
 	/**
 	 * List the entities in JSON format
