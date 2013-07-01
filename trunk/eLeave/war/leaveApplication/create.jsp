@@ -47,39 +47,50 @@ div.ui-datepicker, .ui-datepicker td
 </style>
 </head>
 <body>
-<%@include file="/shared/header.html" %>
-<form action="/shared/test.html" method="post">
-	<table>
-		<tr>
-			<td>Leave Type:</td>
-			<td>
-				<select>
-					<option>Annual</option>
-					<option>Medical</option>
-					<option>No-pay</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>From:</td>
-			<td><input id="fromDate" name="fromDate" type="text" /></td>
-		</tr>
-		<tr>
-			<td>To:</td>
-			<td><input id="toDate" name="toDate" type="text" /></td>
-		</tr>
-		<tr>
-			<td>Approving Officer:</td>
-			<td><input type="text" /></td>
-		</tr>
-		<tr>
-			<td>Reason:</td>
-			<td><textarea rows="3" cols="30"></textarea></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="Submit Application" /></td>
-		</tr>
-	</table>
-</form>
+
+<table>
+	<tr>
+		<td colspan="2"><%@include file="/shared/header.html" %></td>
+	</tr>
+	<tr>
+	<td></td>
+	<td>
+		<form action="/shared/test.html" method="post">
+			<table>
+				<tr>
+					<td>Leave Type:</td>
+					<td>
+						<select>
+							<option>Annual</option>
+							<option>Medical</option>
+							<option>No-pay</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>From:</td>
+					<td><input id="fromDate" name="fromDate" type="text" /></td>
+				</tr>
+				<tr>
+					<td>To:</td>
+					<td><input id="toDate" name="toDate" type="text" /></td>
+				</tr>
+				<tr>
+					<td>Approving Officer:</td>
+					<td><input type="text" /></td>
+				</tr>
+				<tr>
+					<td>Reason:</td>
+					<td><textarea rows="3" cols="30"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Submit Application" /></td>
+				</tr>
+			</table>
+		</form>
+	</td>
+	</tr>
+	<tr></tr>
+</table>
 </body>
 </html>

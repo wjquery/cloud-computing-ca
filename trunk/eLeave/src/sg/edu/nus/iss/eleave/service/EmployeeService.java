@@ -8,6 +8,7 @@ import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.exception.ServiceException;
 
 public interface EmployeeService {
+	public boolean validateUser(String companyId, String username, String password);
 	public Employee findEmployee(String companyId, String employeeId) throws ServiceException;
     public List<Employee> findAllEmployeesByCompany(Company company) throws ServiceException;
     public List<Employee> findAllEmployeesByCompany(Company company,int offset) throws ServiceException;

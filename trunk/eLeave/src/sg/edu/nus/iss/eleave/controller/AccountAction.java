@@ -1,20 +1,30 @@
 package sg.edu.nus.iss.eleave.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import sg.edu.nus.iss.eleave.service.EmployeeService;
+import sg.edu.nus.iss.eleave.service.impl.EmployeeServiceImpl;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 @Controller
 public class AccountAction extends ActionSupport {
 
+	private String companyId;
 	private String username;
 	private String password;
-	private EmployeeService employeeService;
+	private EmployeeService employeeService = new EmployeeServiceImpl();
 	
+	public String getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -36,13 +46,18 @@ public class AccountAction extends ActionSupport {
 	}
 
 	public String login() throws Exception {
-		if ("user".equals(username) && "password".equals(password))
+		if (employeeService.validateUser(companyId, username, password)) {
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute("companyId", companyId);
+			session.setAttribute("employeeName", "Jon Doe");
 			return SUCCESS;
-		else
-			return INPUT;
+		}
+		return INPUT;
 	}
 	
 	public String logout() throws Exception {
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		session.invalidate();
 		return SUCCESS;
 	}
 	

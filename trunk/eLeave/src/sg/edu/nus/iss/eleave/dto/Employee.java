@@ -15,7 +15,7 @@ public class Employee {
 	private String email;
 	private String username;
 	private String password;
-	private boolean isActive;
+	private boolean isCurrent;
 	private List<LeaveApplication> leave;
 	public String getEmployeeId() {
 		return employeeId;
@@ -77,11 +77,11 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isActive() {
-		return isActive;
+	public boolean isCurrent() {
+		return isCurrent;
 	}
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setCurrent(boolean isCurrent) {
+		this.isCurrent = isCurrent;
 	}
 	public List<LeaveApplication> getLeave() {
 		return leave;
