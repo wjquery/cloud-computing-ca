@@ -18,6 +18,7 @@ public class LeaveApplication {
 	private Employee applicant;
 	private Employee approvedBy;
 	private String processComment;
+	private Company company;
 	
 	public String getApplicationId() {
 		return applicationId;
@@ -126,6 +127,12 @@ public class LeaveApplication {
 	}
 	public void setApplicant(Employee applicant) {
 		this.applicant = applicant;
+	}
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 	
 }

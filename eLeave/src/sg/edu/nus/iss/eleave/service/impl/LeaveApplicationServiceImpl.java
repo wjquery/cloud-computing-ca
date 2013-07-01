@@ -10,10 +10,10 @@ import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.taskqueue.TaskOptions.Method;
 
 import sg.edu.nus.iss.eleave.dao.LeaveApplicationDao;
+import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.dto.LeaveApplication;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 import sg.edu.nus.iss.eleave.exception.ServiceException;
-import sg.edu.nus.iss.eleave.service.EmployeeService;
 import sg.edu.nus.iss.eleave.service.LeaveApplicationService;
 
 public class LeaveApplicationServiceImpl implements LeaveApplicationService {
@@ -24,9 +24,9 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	private LeaveApplicationDao leaveApplicationDao;
 
 	@Override
-	public LeaveApplication findLeaveApplication(String leaveApplicationId)  throws ServiceException {
+	public LeaveApplication findLeaveApplication(String companyId, String leaveApplicationId)  throws ServiceException {
 		try{
-			return leaveApplicationDao.findLeaveApplication(leaveApplicationId);
+			return leaveApplicationDao.findLeaveApplication(companyId, leaveApplicationId);
 		}catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
@@ -96,10 +96,9 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	}
 
 	@Override
-	public List<LeaveApplication> findAllLeaveApplicationByEmployee  (
-			String employeeId) throws ServiceException {
+	public List<LeaveApplication> findAllLeaveApplicationByEmployee(Employee employee) throws ServiceException {
 		try {
-			return leaveApplicationDao.findAllLeaveApplications(employeeId);
+			return leaveApplicationDao.findAllLeaveApplicationsByEmployee(employee);
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
@@ -110,6 +109,7 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 
 		 Queue queue = QueueFactory.getQueue("EmailQueue");
 		 TaskOptions taskOptions = TaskOptions.Builder.withUrl("/email")
+				 				  .param("companyId", leaveApplication.getCompany().getCompanyId())
 		                          .param("leaveApplicationId", leaveApplication.getApplicationId())
 		                          .param("notificationType", type)
 		                          .method(Method.POST);
