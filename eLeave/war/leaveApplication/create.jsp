@@ -48,7 +48,7 @@ div.ui-datepicker, .ui-datepicker td
 </head>
 <body>
 <%@include file="/shared/header.html" %>
-<form action="" method="post">
+<form action="/shared/test.html" method="post">
 	<table>
 		<tr>
 			<td>Leave Type:</td>
@@ -71,6 +71,13 @@ div.ui-datepicker, .ui-datepicker td
 		<tr>
 			<td>Approving Officer:</td>
 			<td><input type="text" /></td>
+		</tr>
+		<tr>
+			<td>Reason:</td>
+			<td><textarea rows="3" cols="30"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Submit Application" /></td>
 		</tr>
 	</table>
 </form>
