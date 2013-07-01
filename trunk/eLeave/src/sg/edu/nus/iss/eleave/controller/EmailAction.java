@@ -30,10 +30,11 @@ public class EmailAction extends ActionSupport implements ServletRequestAware  {
 	@Override
 	public String execute() throws Exception {
 		//READ the task from EmailTaskQueue, then calling email Service to send out email
+		String companyId = request.getParameter("companyId");
 		String leaveApplicationId = request.getParameter("leaveApplicationId");
 		String type = request.getParameter("notificationType");
 		//find the LeaveAppliation
-		LeaveApplication leaveApplication = leaveApplicationService.findLeaveApplication(leaveApplicationId);
+		LeaveApplication leaveApplication = leaveApplicationService.findLeaveApplication(companyId, leaveApplicationId);
 		if(leaveApplication != null){
 			Employee applicant = leaveApplication.getApplicant();
 			String subject = leaveApplicationService.formEmailSubjectToApplicant(leaveApplication, type);
