@@ -8,6 +8,9 @@
 			<result name="success">/leaveApplication/create.jsp</result>
 			<result name="input">/index.html</result>
 		</action>
+		<action name="logout" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="logout">
+			<result name="success">/index.html</result>		    
+		</action>
 	</package>
 	
 	<package name="leave" namespace="/leave" extends="struts-default">

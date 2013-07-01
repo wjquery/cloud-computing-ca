@@ -19,6 +19,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeDAO employeeDao;
 
 	@Override
+	public boolean validateUser(String companyId, String username, String password)
+	{
+		// TODO
+		return true;
+	}
+	
+	@Override
 	public Employee findEmployee(String companyId, String employeeId) throws ServiceException {
 		
 		try {
