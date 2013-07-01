@@ -48,7 +48,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 		p.setProperty("name",company.getName());
 		p.setProperty("address",company.getAddress());
 		p.setProperty("contactNo",company.getContactNo());
-		p.setProperty("country",company.getCountryCode());
+		p.setProperty("countryCode",company.getCountryCode());
 		Util.persistEntity(p);
 		
 	}
@@ -59,7 +59,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 		p.setProperty("name",company.getName());
 		p.setProperty("address",company.getAddress());
 		p.setProperty("contactNo",company.getContactNo());
-		p.setProperty("country",company.getCountryCode());
+		p.setProperty("countryCode",company.getCountryCode());
 		Util.persistEntity(p);
 		
 	}
@@ -86,7 +86,10 @@ public class CompanyDAOImpl implements CompanyDAO {
 	
 	private Company buildCompanyDTO(Entity entity){
 		Company p = new Company();
-		
+		p.setCompanyId(entity.getKey().getName());
+		p.setAddress(entity.getProperty("address").toString());
+		p.setContactNo(entity.getProperty("contactNo").toString());
+		p.setCountryCode(entity.getProperty("countryCode").toString());
 		return p;
 	}
 
