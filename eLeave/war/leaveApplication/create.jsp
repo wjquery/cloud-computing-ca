@@ -53,7 +53,9 @@ div.ui-datepicker, .ui-datepicker td
 		<td colspan="2"><%@include file="/shared/header.html" %></td>
 	</tr>
 	<tr>
-	<td></td>
+	<td>
+		<%@include file="/shared/sidemenu.jsp" %>
+	</td>
 	<td align="center">
 		<div style="text-align: right;">
 			Welcome, ${employeeName}!
