@@ -48,13 +48,16 @@ div.ui-datepicker, .ui-datepicker td
 </head>
 <body>
 
-<table>
+<table align="center" style="width: 940px;">
 	<tr>
 		<td colspan="2"><%@include file="/shared/header.html" %></td>
 	</tr>
 	<tr>
 	<td></td>
-	<td>
+	<td align="center">
+		<div style="text-align: right;">
+			Welcome, ${employeeName}!
+		</div>
 		<form action="/shared/test.html" method="post">
 			<table>
 				<tr>

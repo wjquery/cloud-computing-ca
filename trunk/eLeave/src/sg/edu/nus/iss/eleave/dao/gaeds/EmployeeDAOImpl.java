@@ -97,7 +97,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@SuppressWarnings("unchecked")
 	private Employee buildEmployeeDTO(Entity entity){
 		Employee p = new Employee();
-		p.setActive((Boolean) entity.getProperty("isActive"));
+		p.setCurrent((Boolean) entity.getProperty("isActive"));
 		p.setDeparment((Department) entity.getProperty("department"));
 		p.setDesignation((String) entity.getProperty("designation"));
 		p.setEmail((String) entity.getProperty("email"));
