@@ -10,7 +10,7 @@ public interface CompanyDAO {
 	public Company findCompany(String companyId) throws DAOException;
     public List<Company> findAllCompanies() throws DAOException;
     public List<Company> findAllCompanies(int offset) throws DAOException;
-    public void insertProduct(Company company) throws DAOException;
-    public void updateProduct(Company company) throws DAOException;
-    public void deleteProduct(Company company) throws DAOException;
+    public void insertCompany(Company company) throws DAOException;
+    public void updateCompany(Company company) throws DAOException;
+    public void deleteCompany(Company company) throws DAOException;
 }
