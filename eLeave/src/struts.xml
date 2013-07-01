@@ -4,9 +4,9 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<package name="account" extends="struts-default">
-		<action name="login" class="sg.edu.nus.iss.eleave.controller.LoginAction" method="login">
-			<result name="success">/home.jsp</result>
-			<result name="fail">/login.jsp</result>
+		<action name="login" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="login">
+			<result name="success">/leaveApplication/create.jsp</result>
+			<result name="input">/index.html</result>
 		</action>
 	</package>
 	

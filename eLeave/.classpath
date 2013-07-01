@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/commons-fileupload-1.2.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/commons-io-2.0.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/freemarker-2.3.19.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/javassist-3.11.0.GA.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/ognl-3.0.5.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/struts2-core-2.3.4.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2.3.4.1/xwork-core-2.3.4.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring2.5.6/aspectjrt.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring2.5.6/aspectjweaver.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring2.5.6/cglib-nodep-2.1_3.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring2.5.6/common-annotations.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring2.5.6/commons-logging.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring2.5.6/spring.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/freemarker-2.3.19.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/ognl-3.0.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2-core-2.3.4.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xwork-core-2.3.4.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/common-annotations.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/spring.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

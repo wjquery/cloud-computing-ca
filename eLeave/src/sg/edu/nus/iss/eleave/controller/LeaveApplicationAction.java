@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Controller
-public class EmployeeAction extends ActionSupport {
+public class LeaveApplicationAction extends ActionSupport {
 
+	
 }
