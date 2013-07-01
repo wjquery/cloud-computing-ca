@@ -10,7 +10,7 @@
 		</action>
 	</package>
 	
-	<package name="leave" namespace="/leave" extends="struts-default">
+	<!--package name="leave" namespace="/leave" extends="struts-default">
 		<action name="insert" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="insert">
 			<result name="success" type="redirectAction">
 				<param name="actionName">findAll</param>
@@ -36,5 +36,5 @@
 		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.LeaveAction" method="findAll">
 			<result name="success">/leave/listAllLeaves.jsp</result>
 		</action>
-	</package>
+	</package-->
 </struts>
