@@ -38,7 +38,7 @@
 		$('#toCal').click(function() {
 			$('#toDate').datepicker('show');
 		});
-		
+
 	});
 </script>
 </head>
@@ -48,57 +48,59 @@
 			<td><%@include file="/shared/header.jsp"%></td>
 		</tr>
 		<tr>
-			<td><br /><%@include file="/shared/menu.jsp"%>
+			<td>
+				<div style="margin: 2px; padding: 5px; width: 960px;">
+				<%@include file="/shared/menu.jsp"%>
+					<form action="/shared/template.jsp" method="post">
+						<table class="overview-eleave-items">
+							<tbody>
+								<tr class="overview-item">
+									<td>Leave Type:</td>
+									<td><select>
+											<option>Annual</option>
+											<option>Medical</option>
+											<option>No-pay</option>
+									</select></td>
+								</tr>
+								<tr class="overview-item">
+									<td>From:</td>
+									<td><input id="fromDate" name="fromDate" type="text" />&nbsp;
+										<img id="fromCal" src="/images/cal.png" height="18px;"></td>
+								</tr>
+								<tr class="overview-item">
+									<td>To:</td>
+									<td><input id="toDate" name="toDate" type="text" />&nbsp;
+										<img id="toCal" src="/images/cal.png" height="18px;"></td>
+								</tr>
+								<tr class="overview-item">
+									<td>Leave Days:</td>
+									<td><input name="leaveDays" type="text" /></td>
+								</tr>
+								<tr class="overview-item">
+									<td>Approving Officer:</td>
+									<td><input type="text" /></td>
+								</tr>
+								<tr class="overview-item">
+									<td>Reason for Leave:</td>
+									<td><textarea name="reason" rows="3" cols="30"></textarea></td>
+								</tr>
+								<tr class="overview-item">
+									<td />
+									<td><p>
+											<input type="submit" value="Submit" class="sbutton" />
+											&nbsp; <input type="reset" value="Reset" class="sbutton" />
+										</p></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+
+
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<form action="/shared/template.jsp" method="post">
-					<table class="overview-eleave-items" style="width: 960px;">
-						<tbody>
-							<tr class="overview-item">
-								<td>Leave Type:</td>
-								<td><select>
-										<option>Annual</option>
-										<option>Medical</option>
-										<option>No-pay</option>
-								</select></td>
-							</tr>
-							<tr class="overview-item">
-								<td>From:</td>
-								<td><input id="fromDate" name="fromDate" type="text" />&nbsp;
-									<img id="fromCal" src="/images/cal.png" height="18px;"></td>
-							</tr>
-							<tr class="overview-item">
-								<td>To:</td>
-								<td><input id="toDate" name="toDate" type="text" />&nbsp;
-									<img id="toCal" src="/images/cal.png" height="18px;"></td>
-							</tr>
-							<tr class="overview-item">
-								<td>Leave Days:</td>
-								<td><input name="leaveDays" type="text" /></td>
-							</tr>
-							<tr class="overview-item">
-								<td>Approving Officer:</td>
-								<td><input type="text" /></td>
-							</tr>
-							<tr class="overview-item">
-								<td>Reason for Leave:</td>
-								<td><textarea name="reason" rows="3" cols="30"></textarea></td>
-							</tr>
-							<tr class="overview-item">
-								<td />
-								<td><p>
-										<input type="submit" value="Submit" class="sbutton" /> &nbsp;
-										<input type="reset" value="Reset" class="sbutton" />
-									</p></td>
-							</tr>
-						</tbody>
-					</table>
-				</form></td>
-		</tr>
-		<tr>
-		<td><%@include file="/shared/footer.html"%></td>
+			<td><%@include file="/shared/footer.html"%></td>
 		</tr>
 	</table>
 </body>
