@@ -100,8 +100,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public void insertEmployee(Employee employee) throws DAOException {
 		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
 		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
-		p.setProperty("department", employee.getDeparment());
-		p.setProperty("company", employee.getCompany());
+		if(employee.getDeparment()!=null){
+			//p.setProperty("department", employee.getDeparment());
+			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
+					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
+					.getKey();
+			p.setProperty("department", department);
+		}
+		
+		//p.setProperty("company", employee.getCompany());
+		p.setProperty("company", parent);
 		p.setProperty("designation", employee.getDesignation());
 		p.setProperty("email", employee.getEmail());
 		p.setProperty("employeeId", employee.getEmployeeId());
@@ -117,8 +125,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public void updateEmployee(Employee employee) throws DAOException {
 		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
 		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
-		p.setProperty("department", employee.getDeparment());
-		p.setProperty("company", employee.getCompany());
+		if(employee.getDeparment()!=null){
+			//p.setProperty("department", employee.getDeparment());
+			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
+					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
+					.getKey();
+			p.setProperty("department", department);
+		}
+		//p.setProperty("company", employee.getCompany());
 		p.setProperty("designation", employee.getDesignation());
 		p.setProperty("email", employee.getEmail());
 		p.setProperty("employeeId", employee.getEmployeeId());
