@@ -713,7 +713,7 @@ a {
   width: 100%;
 }
 
-#overview-ambience-div h3 {
+#overview-eleave-div h3 {
   padding: 10px 0 4px 2px;
   height: 19px;
   color: #222222;
@@ -778,11 +778,11 @@ a {
   vertical-align: -2px;
 }
 
-.overview-ambience-items {
+.overview-eleave-items {
   background: #eeeeee;
   width: 100%;
 }
-.overview-ambience-items tr td:first-child {
+.overview-eleave-items tr td:first-child {
   width: 150px;
   font-weight: bold;
 }
@@ -1456,7 +1456,7 @@ tr.row_selected {
 }
 
 .ui-widget-header {
-  background: #5A9ECF;
+  background: #204E70;
 }
 
 .ui-widget-content {
@@ -1671,4 +1671,21 @@ tr.row_selected {
 }
 .access-control-form td {
   background-color: #6eaad5;
+}
+
+/***************************Customized style********************************************/
+div.ui-datepicker,.ui-datepicker td {
+	font-size: 10px;
+}
+td
+{
+	vertical-align: top;
+}
+.ui-datepicker-header, .ui-datepicker td .ui-state-default
+{
+	background: #5A9ECF;
+}
+.ui-datepicker td .ui-state-active, .ui-datepicker td .ui-state-hover
+{
+	background: #2c6a97;
 }
