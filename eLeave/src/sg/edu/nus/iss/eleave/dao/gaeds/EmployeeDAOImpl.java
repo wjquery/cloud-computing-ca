@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.eleave.dao.gaeds;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.appengine.api.datastore.Entity;
@@ -11,7 +12,10 @@ import sg.edu.nus.iss.eleave.dao.EmployeeDAO;
 import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
+import sg.edu.nus.iss.eleave.dto.LeaveApplication;
 import sg.edu.nus.iss.eleave.exception.DAOException;
+
+
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 	
@@ -20,71 +24,155 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public Employee findEmployee(String companyId, String employeeId)
 			throws DAOException {
-		// TODO Auto-generated method stub
+		Entity entity = this.getEmployee(companyId, employeeId);
+		if(entity != null) {
+			return this.buildEmployeeDTO(entity);
+		}
 		return null;
 	}
 
 	@Override
 	public List<Employee> findAllEmployees() throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, null, null);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(this.buildEmployeeDTO(entity));
+		}
+		return employees;
 	}
 
 	@Override
 	public List<Employee> findAllEmployeesByCompany(Company company)
 			throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", company);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(this.buildEmployeeDTO(entity));
+		}
+		return employees;
 	}
 
 	@Override
 	public List<Employee> findAllEmployeesByCompany(Company company, int offset)
 			throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", company, offset);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(this.buildEmployeeDTO(entity));
+		}
+		return employees;
 	}
 
 	@Override
 	public List<Employee> findAllEmployeesByDeparment(Department department)
 			throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", department);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(this.buildEmployeeDTO(entity));
+		}
+		return employees;
 	}
 
 	@Override
 	public List<Employee> findAllEmployeesByDeparment(Department department,
 			int offset) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", department, offset);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(this.buildEmployeeDTO(entity));
+		}
+		return employees;
 	}
 
 	@Override
 	public List<Employee> findAllEmployeeBySupervisor(Employee supervisor)
 			throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "supervisors", supervisor);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(this.buildEmployeeDTO(entity));
+		}
+		return employees;
 	}
 
 	@Override
 	public void insertEmployee(Employee employee) throws DAOException {
-		// TODO Auto-generated method stub
+		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
+		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
+		p.setProperty("department", employee.getDeparment());
+		p.setProperty("company", employee.getCompany());
+		p.setProperty("designation", employee.getDesignation());
+		p.setProperty("email", employee.getEmail());
+		p.setProperty("employeeId", employee.getEmployeeId());
+		p.setProperty("joinDate", employee.getJoinDate());
+		p.setProperty("name", employee.getName());
+		p.setProperty("password", employee.getPassword());
+		p.setProperty("username", employee.getUsername());
+		Util.persistEntity(p);
 
 	}
 
 	@Override
 	public void updateEmployee(Employee employee) throws DAOException {
-		// TODO Auto-generated method stub
+		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
+		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
+		p.setProperty("department", employee.getDeparment());
+		p.setProperty("company", employee.getCompany());
+		p.setProperty("designation", employee.getDesignation());
+		p.setProperty("email", employee.getEmail());
+		p.setProperty("employeeId", employee.getEmployeeId());
+		p.setProperty("joinDate", employee.getJoinDate());
+		p.setProperty("name", employee.getName());
+		p.setProperty("password", employee.getPassword());
+		p.setProperty("username", employee.getUsername());
+		Util.persistEntity(p);
 
 	}
 
 	@Override
 	public void deleteEmployee(Employee employee) throws DAOException {
-		// TODO Auto-generated method stub
+		Entity entity = this.getEmployee(employee.getCompany().getCompanyId(), employee.getEmployeeId());
+		if(entity != null) {
+			Util.deleteEntity(entity.getKey());
+		}
 
 	}
 	
+	@Override
+	public boolean addSupervisor(Employee employee, Employee supervisor)
+			throws DAOException {
+		Entity entity = this.getEmployee(employee.getCompany().getCompanyId(), employee.getEmployeeId());
+		if(entity != null) {
+			List<Key> supervisors = (List<Key>) entity.getProperty("supervisors");
+			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompany().getCompanyId())
+				.addChild(EMPLOYEE_KIND, supervisor.getEmployeeId()).getKey();
+			supervisors.add(sKey);
+			entity.setProperty("supervisors", supervisors);
+			Util.persistEntity(entity);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean removeSupervisor(Employee employee, Employee supervisor)
+			throws DAOException {
+		Entity entity = this.getEmployee(employee.getCompany().getCompanyId(), employee.getEmployeeId());
+		if(entity != null) {
+			List<Key> supervisors = (List<Key>) entity.getProperty("supervisors");
+			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompany().getCompanyId())
+				.addChild(EMPLOYEE_KIND, supervisor.getEmployeeId()).getKey();
+			supervisors.remove(sKey);
+			entity.setProperty("supervisors", supervisors);
+			Util.persistEntity(entity);
+			return true;
+		}
+		return false;
+	}
+
 	private Entity getEmployee(String companyId,String employeeId){
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_ENTITY, companyId);
+		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, companyId);
 		Key key = KeyFactory.createKey(parent, EMPLOYEE_KIND, employeeId);
 		try {
 			return Util.getDatastoreServiceInstance().get(key);

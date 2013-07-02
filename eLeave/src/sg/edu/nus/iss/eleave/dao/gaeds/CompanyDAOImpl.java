@@ -13,7 +13,7 @@ import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 
 public class CompanyDAOImpl implements CompanyDAO {
-	public static final String COMPANY_ENTITY = "Company";
+	public static final String COMPANY_KIND = "Company";
 
 	@Override
 	public Company findCompany(String companyId) throws DAOException {
@@ -27,7 +27,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public List<Company> findAllCompanies() throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(COMPANY_ENTITY, null, null);
+		Iterable<Entity> entities = Util.listEntities(COMPANY_KIND, null, null);
 		List<Company> l = new ArrayList<Company>();
 		for (Entity item : entities){
 			l.add(buildCompanyDTO(item));
@@ -44,7 +44,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public void insertCompany(Company company) throws DAOException {
-		Entity p = new Entity(COMPANY_ENTITY,company.getCompanyId());
+		Entity p = new Entity(COMPANY_KIND,company.getCompanyId());
 		p.setProperty("name",company.getName());
 		p.setProperty("address",company.getAddress());
 		p.setProperty("contactNo",company.getContactNo());
@@ -55,7 +55,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public void updateCompany(Company company) throws DAOException {
-		Entity p = new Entity(COMPANY_ENTITY,company.getCompanyId());
+		Entity p = new Entity(COMPANY_KIND,company.getCompanyId());
 		p.setProperty("name",company.getName());
 		p.setProperty("address",company.getAddress());
 		p.setProperty("contactNo",company.getContactNo());
@@ -75,7 +75,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 	
 	private Entity getCompany(String companyId){
-		Key key = KeyFactory.createKey(COMPANY_ENTITY, companyId);
+		Key key = KeyFactory.createKey(COMPANY_KIND, companyId);
 		try {
 			return Util.getDatastoreServiceInstance().get(key);
 		} catch (EntityNotFoundException e) {

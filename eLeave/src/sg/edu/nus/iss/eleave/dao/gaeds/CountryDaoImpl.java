@@ -15,7 +15,7 @@ import sg.edu.nus.iss.eleave.exception.DAOException;
 
 public class CountryDaoImpl implements CountryDao {
 	
-	public static final String COUNTRY_ENTITY = "Country";
+	public static final String COUNTRY_KIND = "Country";
 
 	@Override
 	public Country findCountry(String countryId) throws DAOException {
@@ -28,7 +28,7 @@ public class CountryDaoImpl implements CountryDao {
 
 	@Override
 	public Country findCountryByISOCode(String isoCode) throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(COUNTRY_ENTITY, "countryCode", isoCode);
+		Iterable<Entity> entities = Util.listEntities(COUNTRY_KIND, "countryCode", isoCode);
 		Iterator<Entity> it = entities.iterator();
 		while(it.hasNext()) {
 			Entity entity = it.next();
@@ -39,7 +39,7 @@ public class CountryDaoImpl implements CountryDao {
 
 	@Override
 	public List<Country> findAllCountries() throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(COUNTRY_ENTITY, null, null);
+		Iterable<Entity> entities = Util.listEntities(COUNTRY_KIND, null, null);
 		List<Country> countries = new ArrayList<Country>();
 		for(Entity entity : entities) {
 			countries.add(this.buildCountryDTO(entity));
@@ -49,7 +49,7 @@ public class CountryDaoImpl implements CountryDao {
 
 	@Override
 	public List<Country> findAllCountries(int offset) throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(COUNTRY_ENTITY, null, null, offset);
+		Iterable<Entity> entities = Util.listEntities(COUNTRY_KIND, null, null, offset);
 		List<Country> countries = new ArrayList<Country>();
 		for(Entity entity : entities) {
 			countries.add(this.buildCountryDTO(entity));
@@ -59,7 +59,7 @@ public class CountryDaoImpl implements CountryDao {
 
 	@Override
 	public void insertCountry(Country country) throws DAOException {
-		Entity p = new Entity(COUNTRY_ENTITY,country.getCountryId());
+		Entity p = new Entity(COUNTRY_KIND,country.getCountryId());
 		p.setProperty("name",country.getCountryName());
 		p.setProperty("countryCode",country.getCountryCode());
 		Util.persistEntity(p);
@@ -68,7 +68,7 @@ public class CountryDaoImpl implements CountryDao {
 
 	@Override
 	public void updateCountry(Country country) throws DAOException {
-		Entity p = new Entity(COUNTRY_ENTITY,country.getCountryId());
+		Entity p = new Entity(COUNTRY_KIND,country.getCountryId());
 		p.setProperty("name",country.getCountryName());
 		p.setProperty("countryCode",country.getCountryCode());
 		Util.persistEntity(p);
@@ -83,7 +83,7 @@ public class CountryDaoImpl implements CountryDao {
 	}
 	
 	private Entity getCountry(String countryId){
-		Key key = KeyFactory.createKey(COUNTRY_ENTITY, countryId);
+		Key key = KeyFactory.createKey(COUNTRY_KIND, countryId);
 		try {
 			return Util.getDatastoreServiceInstance().get(key);
 		} catch (EntityNotFoundException e) {
