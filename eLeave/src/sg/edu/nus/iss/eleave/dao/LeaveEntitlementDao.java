@@ -12,4 +12,5 @@ public interface LeaveEntitlementDao {
     public void insertLeaveEntitlement(LeaveEntitlement leaveEntitlement) throws DAOException;
     public void updateLeaveEntitlement(LeaveEntitlement leaveEntitlement) throws DAOException;
     public void deleteLeaveEntitlement(LeaveEntitlement leaveEntitlement) throws DAOException;
+	public List<LeaveEntitlement> findAllLeaveEntitlementsByEmployeeAndYear(Employee employee, int year) throws DAOException;
 }
