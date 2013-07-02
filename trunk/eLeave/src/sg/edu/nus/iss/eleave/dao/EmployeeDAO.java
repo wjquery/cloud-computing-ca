@@ -5,6 +5,7 @@ import java.util.List;
 import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
+import sg.edu.nus.iss.eleave.dto.LeaveApplication;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 
 public interface EmployeeDAO {
@@ -22,6 +23,8 @@ public interface EmployeeDAO {
     
     public List<Employee> findAllEmployeeBySupervisor(Employee supervisor) throws DAOException;
     
+    public boolean addSupervisor(Employee employee, Employee supervisor) throws DAOException;
+    public boolean removeSupervisor(Employee employee, Employee supervisor) throws DAOException;
     
     public void insertEmployee(Employee employee) throws DAOException;
     public void updateEmployee(Employee employee) throws DAOException;

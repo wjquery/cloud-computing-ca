@@ -17,6 +17,15 @@ public class Employee {
 	private String password;
 	private boolean isCurrent;
 	private List<LeaveApplication> leave;
+	private Company company;
+	
+	
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 	public String getEmployeeId() {
 		return employeeId;
 	}

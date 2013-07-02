@@ -15,7 +15,7 @@ import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 
 public class DepartmentDAOImpl implements DepartmentDao {
-	public static final String DEPARTMENT_ENTITY = "Department";
+	public static final String DEPARTMENT_KIND = "Department";
 	
 	@Override
 	public Department findDepartment(String companyId, String departmentId)
@@ -29,7 +29,7 @@ public class DepartmentDAOImpl implements DepartmentDao {
 
 	@Override
 	public List<Department> findAllDepartments() throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(DEPARTMENT_ENTITY, null, null);
+		Iterable<Entity> entities = Util.listEntities(DEPARTMENT_KIND, null, null);
 		List<Department> departments = new ArrayList<Department>();
 		for(Entity entity: entities) {
 			departments.add(this.buildDepartmentDTO(entity));
@@ -40,7 +40,7 @@ public class DepartmentDAOImpl implements DepartmentDao {
 	@Override
 	public List<Department> findAllDepartmentsByCompany(Company company)
 			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(DEPARTMENT_ENTITY, "company", company);
+		Iterable<Entity> entities = Util.listEntities(DEPARTMENT_KIND, "company", company);
 		List<Department> departments = new ArrayList<Department>();
 		for(Entity entity: entities) {
 			departments.add(this.buildDepartmentDTO(entity));
@@ -50,8 +50,8 @@ public class DepartmentDAOImpl implements DepartmentDao {
 
 	@Override
 	public void insertDepartment(Department department) throws DAOException {
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_ENTITY, department.getCompany().getCompanyId());
-		Entity p = new Entity(DEPARTMENT_ENTITY,department.getDepartmentId(), parent);
+		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, department.getCompany().getCompanyId());
+		Entity p = new Entity(DEPARTMENT_KIND,department.getDepartmentId(), parent);
 		p.setProperty("name", department.getName());
 		p.setProperty("company",department.getCompany());
 		p.setProperty("departmentHead", department.getDepartmentHead());
@@ -61,8 +61,8 @@ public class DepartmentDAOImpl implements DepartmentDao {
 
 	@Override
 	public void updateDepartment(Department department) throws DAOException {
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_ENTITY, department.getCompany().getCompanyId());
-		Entity p = new Entity(DEPARTMENT_ENTITY,department.getDepartmentId(), parent);
+		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, department.getCompany().getCompanyId());
+		Entity p = new Entity(DEPARTMENT_KIND,department.getDepartmentId(), parent);
 		p.setProperty("name", department.getName());
 		p.setProperty("company",department.getCompany());
 		p.setProperty("departmentHead", department.getDepartmentHead());
@@ -81,8 +81,8 @@ public class DepartmentDAOImpl implements DepartmentDao {
 	}
 	
 	private Entity getDepartment(String companyId,String departmentId){
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_ENTITY, companyId);
-		Key key = KeyFactory.createKey(parent, DEPARTMENT_ENTITY, departmentId);
+		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, companyId);
+		Key key = KeyFactory.createKey(parent, DEPARTMENT_KIND, departmentId);
 		try {
 			return Util.getDatastoreServiceInstance().get(key);
 		} catch (EntityNotFoundException e) {
