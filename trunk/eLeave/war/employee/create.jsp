@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New Leave Application</title>
+<title>My Leave</title>
 <%@include file="/shared/resources.html"%>
 <script type="text/javascript">
 	$(function() {
@@ -21,8 +21,6 @@
 			$('#joinDate').datepicker('show');
 		});
 		
-		$("#tabs-4").addClass("ui-tabs-active ui-state-active");
-		$("#employees").addClass("action:hover");
 	});
 </script>
 </head>
@@ -52,8 +50,12 @@
 										<img id="joinCal" src="/images/cal.png" height="18px;"></td>
 								</tr>
 								<tr class="overview-item">
-									<td>Email:</td>
-									<td><input name="leaveDays" type="text" /></td>
+									<td>Supervisor:</td>
+									<td><input name="supervisor" type="text" /></td>
+								</tr>
+								<tr class="overview-item">
+									<td>Email Address:</td>
+									<td><input name="email" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Username:</td>

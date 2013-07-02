@@ -51,7 +51,7 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 				<%@include file="/shared/menu.jsp"%>
-					<form action="/shared/template.jsp" method="post">
+					<form action="/leaveApplication/list.jsp" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
@@ -78,7 +78,7 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Approving Officer:</td>
-									<td><input type="text" /></td>
+									<td><input type="text" readonly="readonly" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reason for Leave:</td>

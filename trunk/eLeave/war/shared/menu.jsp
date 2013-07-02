@@ -10,11 +10,11 @@ $(function() {
 	});
 	
 	$("#leaveHistory").click(function() {
-		window.location = "/shared/template.jsp";			
+		window.location = "/leaveApplication/list.jsp";			
 	});
 	
 	$("#leaveSummary").click(function() {
-		window.location = "/shared/template.jsp";			
+		window.location = "/leaveApplication/summary.jsp";			
 	});
 	
 	$("#leaveEntitlement").click(function() {
@@ -23,10 +23,6 @@ $(function() {
 	
 	$("#pendingApp").click(function() {
 		window.location = "/shared/template.jsp";
-	});
-	
-	$("#subordinates").click(function() {
-		window.location = "/shared/template.jsp";			
 	});
 	
 	$("#subHistory").click(function() {
@@ -51,7 +47,6 @@ $(function() {
 		style="border: 0px; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
 		<li><a href="#tabs-1">My Leave</a></li>
 		<li><a href="#tabs-2">Leave Entitlement</a></li>
-		<li><a href="#tabs-3">Calendar</a></li>
 		<li><a href="#tabs-4">Approving Officer</a></li>
 		<li><a href="#tabs-5">Admin</a></li>
 	</ul>
@@ -67,21 +62,13 @@ $(function() {
 			<li><span class="action" id="leaveEntitlement">Leave Entitlement</span></li>
 		</ul>
 	</div>	
-	<div id="tabs-3" style="padding: 0px;">
-		<ul class="action-menu">
-			<li><span class="action">Calendar</span></li>
-		</ul>
-	</div>
 	<div id="tabs-4" style="padding: 0px;">
 		<ul class="action-menu">
-			<li><span class="action" id="pendingApp">Pending
-					Applications</span></li>
-			<li><span class="action" id="subordinates">Subordinates</span></li>
-			<li><span class="action" id="subHistory">Subordinate
-					Leave History</span></li>
+			<li><span class="action" id="pendingApp">Pending Applications</span></li>
+			<li><span class="action" id="subHistory">Subordinate Leave History</span></li>
 		</ul>
 	</div>
-		<div id="tabs-5" style="padding: 0px;">
+	<div id="tabs-5" style="padding: 0px;">
 		<ul class="action-menu">
 			<li><span class="action" id="employees">Employees</span></li>
 			<li><span class="action" id="leaveTypes">Leave Types</span></li>
