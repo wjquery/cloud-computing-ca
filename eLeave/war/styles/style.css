@@ -148,9 +148,9 @@ a {
 
 #footer {
   clear: both;
-  margin: 9px 0 18px 18px;
+  margin: 9px 0 18px 0px;
   padding: 4px 0;
-  width: 70%;
+  width: 100%;
   background-color: #cccccc;
   text-align: center;
   color: #555555;
