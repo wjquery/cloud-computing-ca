@@ -32,11 +32,11 @@
 				toDate = $.datepicker.parseDate(dateformat, selectedDate);
 			}
 		});
-		$('#calFrom').click(function() {
-			$('#').datepicker('show');
+		$('#fromCal').click(function() {
+			$('#fromDate').datepicker('show');
 		});
-		$('#calTo').click(function() {
-			$('#').datepicker('show');
+		$('#toCal').click(function() {
+			$('#toDate').datepicker('show');
 		});
 
 		$("#menu").tabs();
@@ -118,11 +118,14 @@
 							</tr>
 							<tr class="overview-item">
 								<td>From:</td>
-								<td><input id="fromDate" name="fromDate" type="text" /></td>
+								<td><input id="fromDate" name="fromDate" type="text" />&nbsp;
+								<img id="fromCal" src="/images/cal.png" height="18px;">
+								</td>
 							</tr>
 							<tr class="overview-item">
 								<td>To:</td>
-								<td><input id="toDate" name="toDate" type="text" /></td>
+								<td><input id="toDate" name="toDate" type="text" />&nbsp;
+								<img id="toCal" src="/images/cal.png" height="18px;"></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Leave Days:</td>
@@ -137,9 +140,9 @@
 								<td><textarea name="reason" rows="3" cols="30"></textarea></td>
 							</tr>
 							<tr class="overview-item">
-								<td colspan="2"><p>
-										<input type="submit" value="Submit" />
-										&nbsp; <input type="reset" value="Reset" />
+								<td/><td><p>
+										<input type="submit" value="Submit" class="sbutton" />
+										&nbsp; <input type="reset" value="Reset" class="sbutton" />
 									</p></td>
 							</tr>
 						</tbody>

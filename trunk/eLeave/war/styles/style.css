@@ -1689,3 +1689,11 @@ td
 {
 	background: #2c6a97;
 }
+
+.sbutton {
+    background: none repeat scroll 0 0 #2c6a97;
+    border: medium none;
+    color: white;
+    cursor: pointer;
+    padding: 3px 15px;
+}
