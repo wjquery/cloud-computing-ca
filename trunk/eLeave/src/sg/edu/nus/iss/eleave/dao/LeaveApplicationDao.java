@@ -13,6 +13,7 @@ public interface LeaveApplicationDao {
     
     public List<LeaveApplication> findAllLeaveApplicationsByCompany(String companyId) throws DAOException;
     public List<LeaveApplication> findAllLeaveApplicationsByEmployee(Employee employee) throws DAOException;
+    public List<LeaveApplication> findAllLeaveApplicationsByEmployee(Employee employee, int year) throws DAOException;
     
     public void insertLeaveApplication(LeaveApplication leaveApplication) throws DAOException;
     public void updateLeaveApplication(LeaveApplication leaveApplication) throws DAOException;
