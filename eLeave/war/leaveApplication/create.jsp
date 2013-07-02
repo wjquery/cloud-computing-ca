@@ -48,6 +48,23 @@
 		$("#leaveHistory").click(function() {
 			window.location = "/shared/template.jsp";			
 		});
+		
+		$("#leaveSummary").click(function() {
+			window.location = "/shared/template.jsp";			
+		});
+		
+		$("#pendingApp").click(function() {
+			window.location = "/shared/template.jsp";			
+		});
+		
+		$("#subordinates").click(function() {
+			window.location = "/shared/template.jsp";			
+		});
+		
+		$("#subHistory").click(function() {
+			window.location = "/shared/template.jsp";			
+		});
+		
 	});
 </script>
 </head>
@@ -79,11 +96,10 @@
 					</div>
 					<div id="tabs-3" style="padding: 0px;">
 						<ul class="action-menu">
-							<li><span class="action">Pending Applications</span></li>
-							<li><span class="action">Subordinates</span></li>
-							<li><span class="action">Subordinate Leave History</span></li>
+							<li><span class="action" id="pendingApp">Pending Applications</span></li>
+							<li><span class="action" id="subordinates">Subordinates</span></li>
+							<li><span class="action" id="subHistory">Subordinate Leave History</span></li>
 						</ul>
-
 					</div>
 				</div></td>
 		</tr>
