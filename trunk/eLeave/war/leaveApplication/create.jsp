@@ -23,7 +23,7 @@
 									selectedDate);
 							console.info(fromDate);
 							$("#toDate").datepicker("option", "minDate",
-									new Date(indate.getTime()));
+									new Date(fromDate.getTime()));
 						}
 					}
 				});
@@ -49,6 +49,10 @@
 <style type="text/css">
 div.ui-datepicker,.ui-datepicker td {
 	font-size: 10px;
+}
+td
+{
+	vertical-align: top;
 }
 </style>
 </head>
@@ -99,7 +103,8 @@ div.ui-datepicker,.ui-datepicker td {
 								</tr>
 								<tr>
 									<td colspan="2"><p>
-											<button class="btn btn-small btn-primary" type="button">Save</button>
+											<button class="btn btn-small btn-primary" type="button">Save</button>&nbsp;
+											<input type="reset" value="Reset" />
 										</p></td>
 								</tr>
 							</table>
@@ -114,7 +119,9 @@ div.ui-datepicker,.ui-datepicker td {
 				</div>
 			</td>
 		</tr>
-		<tr></tr>
+		<tr>
+		<td><%@include file="/shared/footer.html"%></td>
+		</tr>
 	</table>
 </body>
 </html>
