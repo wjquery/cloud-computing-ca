@@ -27,31 +27,27 @@ a:hover   { color: #ff0000; text-decoration: underline }
 							<tbody>
 								<tr class="overview-item">
 									<td>Leave Type</td>
-									<td style="font-weight: bold;">From Date</td>
-									<td style="font-weight: bold;">To Date</td>
-									<td style="font-weight: bold;">Leave Days</td>
-									<td style="font-weight: bold;">Status</td>
+									<td style="font-weight: bold;">Entitlement</td>
+									<td style="font-weight: bold;">Balance</td>
+									<td style="font-weight: bold;">Used</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Annual</td>
-									<td>15/07/2013</td>
-									<td>17/07/2013</td>
+									<td>18</td>
+									<td>15</td>
 									<td>3</td>
-									<td><a href="/leaveApplication/edit.jsp?id=3">Pending</a></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Medical</td>
-									<td>01/07/2013</td>
-									<td>01/07/2013</td>
+									<td>14</td>
+									<td>13</td>
 									<td>1</td>
-									<td><a href="/leaveApplication/edit.jsp?id=2">Approved</a></td>
 								</tr>
 								<tr class="overview-item">
 									<td>No-pay</td>
-									<td>25/06/2013</td>
-									<td>26/06/2013</td>
+									<td>N.A.</td>
+									<td>N.A.</td>
 									<td>2</td>
-									<td><a href="/leaveApplication/edit.jsp?id=1">Approved</a></td>
 								</tr>
 							</tbody>
 						</table>
