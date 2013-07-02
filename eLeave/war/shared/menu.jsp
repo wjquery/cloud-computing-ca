@@ -34,7 +34,7 @@ $(function() {
 	});
 	
 	$("#employees").click(function() {
-		window.location = "/shared/template.jsp";			
+		window.location = "/employee/create.jsp";			
 	});
 	
 	$("#leaveTypes").click(function() {
