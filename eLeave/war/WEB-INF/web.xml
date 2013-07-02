@@ -15,7 +15,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	</filter-mapping>
 
 	<listener>
-		<listener-class>sg.edu.nus.iss.eleave.util.OgnlListener</listener-class>
+		<listener-class>sg.edu.nus.iss.eleave.listener.OgnlListener</listener-class>
 	</listener>
 
 	<welcome-file-list>
