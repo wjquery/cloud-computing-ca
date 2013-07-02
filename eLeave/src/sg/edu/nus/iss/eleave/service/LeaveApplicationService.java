@@ -10,6 +10,7 @@ public interface LeaveApplicationService {
 	
 	public LeaveApplication findLeaveApplication(String companyId, String leaveApplicationId) throws ServiceException;
 	public List<LeaveApplication> findAllLeaveApplicationByEmployee(Employee employee) throws ServiceException;
+	public List<LeaveApplication> findAllLeaveApplicationByEmployee(Employee employee, int year) throws ServiceException;
 	
 	public void insertLeaveApplication(LeaveApplication leaveApplication) throws ServiceException;
 	public void upadateLeaveApplication(LeaveApplication leaveApplication) throws ServiceException;

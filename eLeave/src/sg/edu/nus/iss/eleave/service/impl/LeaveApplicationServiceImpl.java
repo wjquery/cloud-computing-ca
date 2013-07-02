@@ -143,5 +143,16 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 		
 	}
 
+	@Override
+	public List<LeaveApplication> findAllLeaveApplicationByEmployee(
+			Employee employee, int year) throws ServiceException {
+		try {
+			return leaveApplicationDao.findAllLeaveApplicationsByEmployee(employee, year);
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+	}
+
 	
 }
