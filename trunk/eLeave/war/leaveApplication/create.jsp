@@ -38,32 +38,6 @@
 		$('#toCal').click(function() {
 			$('#toDate').datepicker('show');
 		});
-
-		$("#menu").tabs();
-		
-		$("#leaveForm").click(function() {
-			window.location = "/leaveApplication/create.jsp";			
-		});
-		
-		$("#leaveHistory").click(function() {
-			window.location = "/shared/template.jsp";			
-		});
-		
-		$("#leaveSummary").click(function() {
-			window.location = "/shared/template.jsp";			
-		});
-		
-		$("#pendingApp").click(function() {
-			window.location = "/shared/template.jsp";			
-		});
-		
-		$("#subordinates").click(function() {
-			window.location = "/shared/template.jsp";			
-		});
-		
-		$("#subHistory").click(function() {
-			window.location = "/shared/template.jsp";			
-		});
 		
 	});
 </script>
@@ -74,34 +48,8 @@
 			<td><%@include file="/shared/header.jsp"%></td>
 		</tr>
 		<tr>
-			<td><br />
-				<div id="menu" style="padding: 0px; width: 960px;">
-					<ul
-						style="border: 0px; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
-						<li><a href="#tabs-1">My Leave</a></li>
-						<li><a href="#tabs-2">Calendar</a></li>
-						<li><a href="#tabs-3">Approving Officer</a></li>
-					</ul>
-					<div id="tabs-1" style="padding: 0px;">
-						<ul class="action-menu">
-							<li><span class="action" id="leaveForm">eLeave Form</span></li>
-							<li><span class="action" id="leaveHistory">Leave History</span></li>
-							<li><span class="action" id="leaveSummary">Leave Summary</span></li>
-						</ul>
-					</div>
-					<div id="tabs-2" style="padding: 0px;">
-						<ul class="action-menu">
-							<li><span class="action">Calendar</span></li>
-						</ul>
-					</div>
-					<div id="tabs-3" style="padding: 0px;">
-						<ul class="action-menu">
-							<li><span class="action" id="pendingApp">Pending Applications</span></li>
-							<li><span class="action" id="subordinates">Subordinates</span></li>
-							<li><span class="action" id="subHistory">Subordinate Leave History</span></li>
-						</ul>
-					</div>
-				</div></td>
+			<td><br /><%@include file="/shared/menu.jsp"%>
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -119,13 +67,12 @@
 							<tr class="overview-item">
 								<td>From:</td>
 								<td><input id="fromDate" name="fromDate" type="text" />&nbsp;
-								<img id="fromCal" src="/images/cal.png" height="18px;">
-								</td>
+									<img id="fromCal" src="/images/cal.png" height="18px;"></td>
 							</tr>
 							<tr class="overview-item">
 								<td>To:</td>
 								<td><input id="toDate" name="toDate" type="text" />&nbsp;
-								<img id="toCal" src="/images/cal.png" height="18px;"></td>
+									<img id="toCal" src="/images/cal.png" height="18px;"></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Leave Days:</td>
@@ -140,15 +87,18 @@
 								<td><textarea name="reason" rows="3" cols="30"></textarea></td>
 							</tr>
 							<tr class="overview-item">
-								<td/><td><p>
-										<input type="submit" value="Submit" class="sbutton" />
-										&nbsp; <input type="reset" value="Reset" class="sbutton" />
+								<td />
+								<td><p>
+										<input type="submit" value="Submit" class="sbutton" /> &nbsp;
+										<input type="reset" value="Reset" class="sbutton" />
 									</p></td>
 							</tr>
 						</tbody>
 					</table>
-				</form> 
-				<%@include file="/shared/footer.html"%></td>
+				</form></td>
+		</tr>
+		<tr>
+		<td><%@include file="/shared/footer.html"%></td>
 		</tr>
 	</table>
 </body>
