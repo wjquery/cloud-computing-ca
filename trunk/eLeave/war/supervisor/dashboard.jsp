@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>My Leave</title>
+<title>Approving Officer</title>
 <%@include file="/shared/resources.html"%>
 <style type="text/css">
 a:link {
@@ -27,6 +27,8 @@ a:hover {
 	text-decoration: underline
 }
 </style>
+<script type="text/javascript" src="../scripts/d3.v3.js"></script>
+<script type="text/javascript" src="../scripts/nv.d3.js"></script>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
@@ -37,37 +39,10 @@ a:hover {
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 					<%@include file="/shared/menu.jsp"%>
-					<table class="overview-eleave-items">
-						<tbody>
-							<tr class="overview-item">
-								<td>Leave Type</td>
-								<td style="font-weight: bold;">Entitled</td>
-								<td style="font-weight: bold;">Taken</td>
-								<td style="font-weight: bold;">Balance</td>
-							</tr>
-							<tr class="overview-item">
-								<td>Annual</td>
-								<td>18</td>
-								<td>3</td>
-								<td>15</td>
-							</tr>
-							<tr class="overview-item">
-								<td>Medical</td>
-								<td>14</td>
-								<td>1</td>
-								<td>13</td>
-							</tr>
-							<tr class="overview-item">
-								<td>No-pay</td>
-								<td>N.A.</td>
-								<td>2</td>
-								<td>N.A.</td>
-							</tr>
-						</tbody>
-					</table>
+					<div id="chart">
+						<svg></svg>
+					</div>
 				</div>
-
-
 			</td>
 		</tr>
 		<tr>

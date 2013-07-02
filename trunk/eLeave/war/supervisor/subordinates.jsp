@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>My Leave</title>
+<title>Approving Officer</title>
 <%@include file="/shared/resources.html"%>
 <style type="text/css">
 a:link {
@@ -40,32 +40,36 @@ a:hover {
 					<table class="overview-eleave-items">
 						<tbody>
 							<tr class="overview-item">
-								<td>Leave Type</td>
+								<td>Employee Name</td>
+								<td style="font-weight: bold;">Leave Type</td>
 								<td style="font-weight: bold;">From Date</td>
 								<td style="font-weight: bold;">To Date</td>
 								<td style="font-weight: bold;">Leave Days</td>
-								<td style="font-weight: bold;">Status</td>
+								<td style="font-weight: bold;">Action</td>
 							</tr>
 							<tr class="overview-item">
+								<td>Tan Ah Kow</td>
 								<td>Annual</td>
 								<td>15/07/2013</td>
 								<td>17/07/2013</td>
 								<td>3</td>
-								<td><a href="/leaveApplication/edit.jsp?id=3">Pending</a></td>
+								<td><a href="/supervisor/viewdetail.jsp?id=3">Detail</a></td>
 							</tr>
 							<tr class="overview-item">
+								<td>Lim Ah Thet</td>
 								<td>Medical</td>
 								<td>01/07/2013</td>
 								<td>01/07/2013</td>
 								<td>1</td>
-								<td><a href="/leaveApplication/edit.jsp?id=2">Approved</a></td>
+								<td><a href="/supervisor/viewdetail.jsp?id=2">Detail</a></td>
 							</tr>
 							<tr class="overview-item">
+								<td>Alvin Ng</td>
 								<td>No-pay</td>
 								<td>25/06/2013</td>
 								<td>26/06/2013</td>
 								<td>2</td>
-								<td><a href="/leaveApplication/edit.jsp?id=1">Approved</a></td>
+								<td><a href="/supervisor/viewdetail.jsp?id=1">Detail</a></td>
 							</tr>
 						</tbody>
 					</table>
