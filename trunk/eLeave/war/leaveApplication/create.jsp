@@ -8,7 +8,7 @@
 <%@include file="/shared/resources.html" %>
 <script type="text/javascript">
     $(function () {
-        var dateformat = "d M, yy";
+        var dateformat = "dd/mm/yy";
         var fromDate, toDate;
         var oneDay = 24 * 3600 * 1000;
         $("#fromDate").datepicker({
@@ -37,6 +37,10 @@
         $('#calTo').click(function () {
             $('#').datepicker('show');
         });
+        
+        $(function() {
+        	$( "#tabs" ).tabs();
+       	});
     });
 </script>
 <style type="text/css">
@@ -44,6 +48,12 @@ div.ui-datepicker, .ui-datepicker td
 {
     font-size: 10px;
 }
+.ui-widget 
+{
+	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; font-size: 1.1em;
+}
+
+.ui-tabs .ui-tabs-nav li a { float: left; padding: .2em .5em; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -54,13 +64,22 @@ div.ui-datepicker, .ui-datepicker td
 	</tr>
 	<tr>
 	<td>
-		<%@include file="/shared/sidemenu.jsp" %>
+		
 	</td>
 	<td align="center">
 		<div style="text-align: right;">
 			Welcome, ${employeeName}!
 		</div>
-		<form action="/shared/test.html" method="post">
+		
+		
+		<div id="tabs">
+					<ul>
+						<li><a href="#tabs-1">My Leave</a></li>
+						<li><a href="#tabs-2">Calendar</a></li>
+						<li><a href="#tabs-3">Approving Officer</a></li>
+					</ul>
+					<div id="tabs-1">
+			<form action="/shared/test.html" method="post">
 			<table>
 				<tr>
 					<td>Leave Type:</td>
@@ -81,18 +100,30 @@ div.ui-datepicker, .ui-datepicker td
 					<td><input id="toDate" name="toDate" type="text" /></td>
 				</tr>
 				<tr>
+					<td>Leave Days:</td>
+					<td><input name="leaveDays" type="text" /> </td>
+				</tr>
+				<tr>
 					<td>Approving Officer:</td>
 					<td><input type="text" /></td>
 				</tr>
 				<tr>
-					<td>Reason:</td>
-					<td><textarea rows="3" cols="30"></textarea></td>
+					<td>Reason for Leave:</td>
+					<td><textarea name="reason" rows="3" cols="30"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="Submit Application" /></td>
+					<td colspan="2"><p><button class="btn btn-small btn-primary" type="button">Save</button></p></td>
 				</tr>
 			</table>
 		</form>
+					</div>
+					<div id="tabs-2">
+						<p>Calendar</p>
+					</div>
+					<div id="tabs-3">
+						<p>List of subordinate pending leave applications</p>
+					</div>
+				</div>
 	</td>
 	</tr>
 	<tr></tr>
