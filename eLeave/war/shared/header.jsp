@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <div id="header">
 	<div class="titles">
-		<div id="title">eLeave Application Processing System</div>
+		<div id="title">eLeave Management System</div>
 	</div>
 	<div class="userinfo">
 		<div class="avatar">

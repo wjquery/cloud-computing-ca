@@ -22,11 +22,15 @@ $(function() {
 	});	
 	
 	$("#pendingApp").click(function() {
-		window.location = "/shared/template.jsp";
+		window.location = "/supervisor/pendingList.jsp";
 	});
 	
 	$("#subHistory").click(function() {
-		window.location = "/shared/template.jsp";			
+		window.location = "/supervisor/subordinates.jsp";			
+	});
+	
+	$("#dashboard").click(function() {
+		window.location = "/supervisor/dashboard.jsp";			
 	});
 	
 	$("#employees").click(function() {
@@ -34,11 +38,11 @@ $(function() {
 	});
 	
 	$("#leaveTypes").click(function() {
-		window.location = "/shared/template.jsp";			
+		window.location = "/leaveType/list.jsp";			
 	});
 	
 	$("#holidays").click(function() {
-		window.location = "/shared/template.jsp";			
+		window.location = "/holiday/list.jsp";			
 	});
 });
 </script>
@@ -66,6 +70,7 @@ $(function() {
 		<ul class="action-menu">
 			<li><span class="action" id="pendingApp">Pending Applications</span></li>
 			<li><span class="action" id="subHistory">Subordinate Leave History</span></li>
+			<li><span class="action" id="dashboard">Dashboard</span></li>
 		</ul>
 	</div>
 	<div id="tabs-5" style="padding: 0px;">
