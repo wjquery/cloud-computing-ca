@@ -1,57 +1,79 @@
 package sg.edu.nus.iss.eleave.service.impl;
 
-import java.util.List;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import sg.edu.nus.iss.eleave.dao.ClaimDAO;
+import sg.edu.nus.iss.eleave.dao.LeaveApplicationDao;
 import sg.edu.nus.iss.eleave.dto.Claim;
 import sg.edu.nus.iss.eleave.dto.Employee;
+import sg.edu.nus.iss.eleave.exception.DAOException;
 import sg.edu.nus.iss.eleave.exception.ServiceException;
 import sg.edu.nus.iss.eleave.service.ClaimService;
 
 public class ClaimServiceImpl implements  ClaimService{
+    	private static Logger log = Logger.getLogger(LeaveApplicationServiceImpl.class.getCanonicalName());
+	private ClaimDAO claimnDAO;
 
 	@Override
 	public Claim findClaimApplication(String companyId,
 			String claimApplicationId) throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+	    try{
+		return claimnDAO.findClaim(companyId, claimApplicationId);
+	    }catch (DAOException e) {
+		log.log(Level.SEVERE, e.getMessage());
+		throw new ServiceException();
+	    }
 	}
 
 	@Override
 	public List<Claim> findAllClaimApplicationByEmployee(Employee employee)
 			throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+	    return null;
 	}
 
 	@Override
 	public List<Claim> findAllClaimApplicationByEmployee(Employee employee,
-			int year) throws ServiceException {
+			int month) throws ServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void insertClaimApplication(Claim claim) throws ServiceException {
-		// TODO Auto-generated method stub
+	    try{
+		claimnDAO.insertClaim(claim);
+	    }catch (DAOException e) {
+		log.log(Level.SEVERE, e.getMessage());
+		throw new ServiceException();
+	    }
 		
 	}
 
 	@Override
 	public void upadateClaimApplication(Claim claim) throws ServiceException {
-		// TODO Auto-generated method stub
-		
+	    try{
+ 		claimnDAO.updateClaim(claim);
+ 	    }catch (DAOException e) {
+ 		log.log(Level.SEVERE, e.getMessage());
+ 		throw new ServiceException();
+ 	    }
 	}
 
 	@Override
 	public void deleteClaimApplication(Claim claim) throws ServiceException {
-		// TODO Auto-generated method stub
-		
+	    try{
+ 		claimnDAO.deleteClaim(claim);
+ 	    }catch (DAOException e) {
+ 		log.log(Level.SEVERE, e.getMessage());
+ 		throw new ServiceException();
+ 	    }
 	}
 
 	@Override
 	public void approveClaim(Claim claim) throws ServiceException {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
