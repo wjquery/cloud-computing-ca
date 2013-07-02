@@ -13,11 +13,12 @@
 			<td><%@include file="/shared/header.jsp"%></td>
 		</tr>
 		<tr>
-			<td><br /><%@include file="/shared/menu.jsp"%></td>
-		</tr>
-		<tr>
 			<td>
-				<div style="padding: 5px; width: 960px;">
+				<div style="margin: 2px; padding: 5px; width: 960px;">
+				<%@include file="/shared/menu.jsp"%>
+				</div>
+				<div style="margin: 2px; padding: 5px; width: 960px;">
+					<!-------------------- Add your content here ---------------------->
 					<h2 style="font-size: 20pt;">Under Construction!</h2>
 				</div>
 
@@ -26,7 +27,6 @@
 		<tr>
 			<td><%@include file="/shared/footer.html"%></td>
 		</tr>
-
 	</table>
 </body>
 </html>

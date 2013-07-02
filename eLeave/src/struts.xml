@@ -5,11 +5,11 @@
 <struts>
 	<package name="account" extends="struts-default">
 		<action name="login" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="login">
-			<result name="success">/leaveApplication/create.jsp</result>
-			<result name="input">/index.html</result>
+			<result name="success" type="redirect">/leaveApplication/create.jsp</result>
+			<result name="input">/index.jsp</result>
 		</action>
 		<action name="logout" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="logout">
-			<result name="success">/index.html</result>		    
+			<result name="success" type="redirect">/index.jsp</result>		    
 		</action>
 	</package>
 	

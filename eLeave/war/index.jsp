@@ -13,9 +13,7 @@
 	<div id="header">
 		<div class="titles">
 			<div id="title">
-				<img alt="" src="/images/eleaveicon.png"
-					style="height: 30; background-color: steelblue;"> eLeave
-				Application Processing System
+				eLeave Application Processing System
 			</div>
 		</div>
 	</div>
@@ -56,7 +54,7 @@
 					</tr>
 					<tr>
 						<td align="center" colspan="2"><input id="logon"
-							type="submit" class="button" value="Sign in" /></td><s:actionmessage />
+							type="submit" class="button" value="Sign in" /></td>
 					</tr>
 					<tr><td/><td class="logon-reset" ><span id="logon-reset-message">Can't access your account?</span></td></tr>
 				</table>
