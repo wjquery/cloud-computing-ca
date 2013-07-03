@@ -3,6 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+	<constant name="struts.action.excludePattern" value="/_ah/.*,/upload/.*" />
 	<package name="account" extends="struts-default">
 		<action name="login" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="login">
 			<result name="success" type="redirect">/leaveApplication/create.jsp</result>
@@ -10,6 +11,13 @@
 		</action>
 		<action name="logout" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="logout">
 			<result name="success" type="redirect">/index.jsp</result>		    
+		</action>
+	</package>
+	
+	<package name="company" extends="struts-default">
+		<action name="insert" class="sg.edu.nus.iss.eleave.controller.CompanyAction" method="insert">
+			<result name="success" type="redirect">/employee/create.jsp</result>
+			<result name="input">/company/signUp.jsp</result>
 		</action>
 	</package>
 	

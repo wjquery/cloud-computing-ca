@@ -27,46 +27,44 @@
 				<table class="overview-eleave-items">
 					<tbody>
 						<tr class="overview-item">
-							<td>Company Name</td>
+							<td>Company Name:</td>
+							<td><input id="companyName" style="width: 200px;"
+								type="text" name="companyName" size="32" maxlength="32" /></td>
+						</tr>
+						<tr class="overview-item">
+							<td>Company Code:</td>
+							<td><input id="companyCode" style="width: 200px;"
+								type="text" name="companyCode" size="32" maxlength="32" /></td>
+						</tr>
+						<tr class="overview-item">
+							<td>Subscription Type:</td>
 							<td>
-								<div align="left">
-									<input id="company" style="width: 250px;" type="text"
-										name="company" size="32" maxlength="32" />
-								</div>
+							<select name="subscriptionType">
+								<option value="Free">Free</option>
+								<option value="Premium">Premium</option>
+								<option value="Platinum">Platinum</option>
+							</select>
 							</td>
 						</tr>
 						<tr class="overview-item">
-							<td>Admin Username</td>
-							<td>
-								<div align="left">
-									<input id="username" style="width: 250px;" type="text"
-										name="username" size="32" maxlength="32" />
-								</div>
-							</td>
+							<td>Admin Username:</td>
+							<td><input id="username" style="width: 200px;" type="text"
+								name="username" size="32" maxlength="32" /></td>
 						</tr>
 						<tr class="overview-item">
-							<td>Admin Password</td>
-							<td>
-								<div align="left">
-									<input id="password" style="width: 250px;" type="password"
-										name="password" size="32" maxlength="32" />
-								</div>
-							</td>
+							<td>Admin Password:</td>
+							<td><input id="password" style="width: 200px;"
+								type="password" name="password" size="32" maxlength="32" /></td>
 						</tr>
 						<tr class="overview-item">
-							<td>Reenter Admin Password</td>
-							<td>
-								<div align="left">
-									<input id="password" style="width: 250px;" type="password"
-										name="password" size="32" maxlength="32" />
-								</div>
-							</td>
+							<td>Reenter Admin Password:</td>
+							<td><input id="repassword" style="width: 200px;"
+								type="password" name="repassword" size="32" maxlength="32" /></td>
 						</tr>
-						<tr class="overview-item"><td/>
-							<td>
-							<input type="submit" value="Sign up" class="sbutton" />
-							<input class="sbutton" type="reset" value="Reset" />
-							</td>
+						<tr class="overview-item">
+							<td />
+							<td><input type="submit" value="Sign up" class="sbutton" />
+								<input class="sbutton" type="reset" value="Reset" /></td>
 						</tr>
 					</tbody>
 				</table>
