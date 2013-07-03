@@ -26,6 +26,17 @@ a:hover {
 	color: #ff0000;
 	text-decoration: underline
 }
+#chart1 svg {
+  height: 450px;
+  margin: 10px;
+  min-width: 100px;
+  min-height: 100px;
+/*
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
 </style>
 <script type="text/javascript" src="../scripts/d3.v2.js"></script>
 <script type="text/javascript" src="../scripts/nv.d3.js"></script>
@@ -43,7 +54,7 @@ a:hover {
 						<tbody>
 							<tr class="overview-item">
 								<td>
-									<div id="chart1" style="width: 950px; height: 300px;">
+									<div id="chart1" style="width: 900px; height: 380px;">
 										<svg></svg>
 									</div>
 								</td>
