@@ -46,8 +46,10 @@ public class CompanyDAOImplTest {
 			Assert.assertEquals(0, companys.size());
 			companyDao.insertCompany(company1);
 			companys = companyDao.findAllCompanies();
+			System.out.println(companys.size());
 			Assert.assertEquals(1, companys.size());
 			Company find = companyDao.findCompany("C000001");
+			System.out.println(find.getAddress());
 			Assert.assertNotNull(find);
 			
 		} catch (DAOException e) {
