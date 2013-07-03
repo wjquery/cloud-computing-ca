@@ -21,6 +21,18 @@
 		</action>
 	</package>
 	
+	<package name="employee" extends="struts-default">
+		<action name="insert" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="insert">
+			<result name="success" type="redirectAction">
+				<param name="actionName">findAll</param>
+			</result>
+			<result name="input">/employee/create.jsp</result>
+		</action>
+		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="findAll">
+			<result name="success">/employee/list.jsp</result>
+		</action>
+	</package>
+	
 	<package name="leave" namespace="/leave" extends="struts-default">
 		<action name="insert" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="insert">
 			<result name="success" type="redirectAction">

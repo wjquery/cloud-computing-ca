@@ -8,7 +8,7 @@
 		<div class="avatar">
 			<img src="/images/eleaveicon.png">
 		</div>
-		<div class="username">Welcome, ${employeeName}!</div>
+		<div class="username">Welcome, ${sessionScope.employeeName}!</div>
 		<div class="actions">
 			<a href="" id="settings-action">Settings</a> | <a href="/logout" id="signout-action">Sign out</a>
 		</div>
