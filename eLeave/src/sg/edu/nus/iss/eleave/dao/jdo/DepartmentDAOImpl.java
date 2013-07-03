@@ -5,6 +5,9 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
 import sg.edu.nus.iss.eleave.dao.DepartmentDao;
 import sg.edu.nus.iss.eleave.dto.Claim;
 import sg.edu.nus.iss.eleave.dto.Company;
@@ -18,7 +21,14 @@ public class DepartmentDAOImpl implements DepartmentDao {
 			throws DAOException {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
-	      return pm.getObjectById(Department.class, departmentId);
+	    	Key key = new KeyFactory.Builder("Company", companyId)
+	    	.addChild("Department", departmentId).getKey();
+	    	Company company = pm.getObjectById(Company.class, companyId);	
+	    	Department department =  pm.getObjectById(Department.class, key);
+	    	if(department != null)
+	    		department.setCompany(company);
+	    	return department;
+	    	
 	    } finally {
 	      pm.close();
 	    }
@@ -46,9 +56,9 @@ public class DepartmentDAOImpl implements DepartmentDao {
 		//Company company = pm.getObjectById(Company.class, companyId);
 		Query q = pm.newQuery(Department.class);
 		q.setFilter("company == companyIdParam");
-		q.declareParameters("String companyIdParam");
+		q.declareParameters("Company companyIdParam");
 		try{
-			List<Department> results = (List<Department>) q.execute(company.getCompanyId());
+			List<Department> results = (List<Department>) q.execute(company);
 			return results;
 		}finally{
 			q.closeAll();
