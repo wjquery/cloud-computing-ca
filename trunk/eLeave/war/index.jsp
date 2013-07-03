@@ -13,7 +13,7 @@
 	<div id="header">
 		<div class="titles">
 			<div id="title">
-				eLeave Application Processing System
+				eLeave Management System
 			</div>
 		</div>
 	</div>
@@ -61,14 +61,6 @@
 			</form>
 		</div>
 	</div>
-	<div id="footer">
-		<div class="footer-menu">
-			<a href="#" target="_blank">About</a> | <a href="#"
-				target="_blank">Help</a> | <a
-				href="#" target="_blank">Support</a>
-		</div>
-		<div id="copyright">&copy; 2013 eLeave Application Processing System</div>
-		<div id="buildinfo">Version: 0.1</div>
-	</div>
+	<%@include file="/shared/footer.html" %>
 </body>
 </html>
