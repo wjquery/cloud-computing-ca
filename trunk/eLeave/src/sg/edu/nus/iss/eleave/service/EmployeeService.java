@@ -17,7 +17,7 @@ public interface EmployeeService {
     public List<Employee> findAllEmployeesByDepartment(Department department, int offset) throws ServiceException;
     
     public List<Employee> findAllEmployeesBySupervisor(Employee supervisor) throws ServiceException;
-    public void insertEmployee(Employee employee) throws ServiceException;
+    public boolean insertEmployee(Employee employee) throws ServiceException;
     public void updateEmployee(Employee employee) throws ServiceException;
     public void deleteEmployee(Employee employee) throws ServiceException;
 }

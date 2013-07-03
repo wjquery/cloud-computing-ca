@@ -58,14 +58,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void insertEmployee(Employee employee) throws ServiceException {
+	public boolean insertEmployee(Employee employee) throws ServiceException {
 		try {
 			employeeDao.insertEmployee(employee);
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
-
+		return true;
 	}
 
 	@Override

@@ -1,8 +1,12 @@
 package sg.edu.nus.iss.eleave.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import sg.edu.nus.iss.eleave.dto.Company;
+import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.service.CompanyService;
 import sg.edu.nus.iss.eleave.service.EmployeeService;
 import sg.edu.nus.iss.eleave.service.impl.CompanyServiceImpl;
@@ -65,8 +69,19 @@ public class CompanyAction extends ActionSupport {
 		company.setCompanyId(companyCode);
 		company.setSubcriptionType(subscriptionType);
 		
+		Employee employee = new Employee();
+		employee.setUsername(username);
+		employee.setPassword(password);
+		employee.setCompany(company);
+		
 		if (companyService.insertCompany(company)) {
-			return SUCCESS;
+			if (employeeService.insertEmployee(employee)) {
+				HttpSession session = ServletActionContext.getRequest().getSession();
+				session.setAttribute("companyId", companyCode);
+				session.setAttribute("company", company);
+				session.setAttribute("employeeName", username);
+				return SUCCESS;
+			}
 		}
 		return INPUT;
 	}

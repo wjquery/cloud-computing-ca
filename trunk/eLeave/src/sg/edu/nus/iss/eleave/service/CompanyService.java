@@ -7,6 +7,6 @@ import sg.edu.nus.iss.eleave.exception.ServiceException;
 
 public interface CompanyService {
 	public List<Company> findAllCompanies() throws ServiceException;
-	public Company findCompany(String companyId);
+	public Company findCompany(String companyId) throws ServiceException;
 	public boolean insertCompany(Company company) throws ServiceException;
 }

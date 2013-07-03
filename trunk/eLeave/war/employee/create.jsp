@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin</title>
+<title>Create New Employee</title>
 <%@include file="/shared/resources.html"%>
 <script type="text/javascript">
 	$(function() {
@@ -33,7 +33,7 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 					<%@include file="/shared/menu.jsp"%>
-					<form action="/shared/template.jsp" method="post">
+					<form action="/employee/insert" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">

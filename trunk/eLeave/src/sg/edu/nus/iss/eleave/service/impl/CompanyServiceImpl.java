@@ -10,7 +10,6 @@ import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 import sg.edu.nus.iss.eleave.exception.ServiceException;
 import sg.edu.nus.iss.eleave.service.CompanyService;
-import sg.edu.nus.iss.eleave.service.EmployeeService;
 
 public class CompanyServiceImpl implements CompanyService {
 
@@ -26,14 +25,22 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public List<Company> findAllCompanies() throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return companyDAO.findAllCompanies();
+		} catch (DAOException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
 	}
 
 	@Override
-	public Company findCompany(String companyId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Company findCompany(String companyId) throws ServiceException {
+		try {
+			return companyDAO.findCompany(companyId);
+		} catch (DAOException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
 	}
 
 	@Override
