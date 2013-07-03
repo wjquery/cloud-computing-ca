@@ -37,6 +37,10 @@ $(function() {
 		window.location = "/employee/create.jsp";			
 	});
 	
+	$("#departments").click(function() {
+		window.location = "/department/create.jsp";			
+	});
+	
 	$("#leaveTypes").click(function() {
 		window.location = "/leaveType/list.jsp";			
 	});
@@ -76,6 +80,7 @@ $(function() {
 	<div id="tabs-5" style="padding: 0px;">
 		<ul class="action-menu">
 			<li><span class="action" id="employees">Employees</span></li>
+			<li><span class="action" id="departments">Departments</span></li>
 			<li><span class="action" id="leaveTypes">Leave Types</span></li>
 			<li><span class="action" id="holidays">Public Holidays</span></li>
 		</ul>
