@@ -65,5 +65,11 @@ public class Department {
 		this.departmentHead = departmentHead;
 		this.company = company;
 	}
+	public String getEncodedKey() {
+		return encodedKey;
+	}
+	public void setEncodedKey(String encodedKey) {
+		this.encodedKey = encodedKey;
+	}
 	
 }

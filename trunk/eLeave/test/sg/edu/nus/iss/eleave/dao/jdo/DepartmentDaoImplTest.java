@@ -52,6 +52,8 @@ public class DepartmentDaoImplTest {
 		try {
 			List<Department> departments = departmentDao.findAllDepartments();
 			Assert.assertEquals(0, departments.size());
+			
+			//After testing, it won't cascade saving,so have to store company first
 			companyDao.insertCompany(company1);
 			departmentDao.insertDepartment(department1);
 			//test whether cascade
@@ -59,6 +61,12 @@ public class DepartmentDaoImplTest {
 			System.out.println("companys.size() " + companys.size());
 			departments = departmentDao.findAllDepartments();
 			Assert.assertEquals(1, departments.size());
+			//test find department
+			Department department = departmentDao.findDepartment("", "D000001");
+			Assert.assertNotNull(department);
+			System.out.println(department.getDepartmentId());
+			
+			
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
