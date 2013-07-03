@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.eleave.dto;
 
+import java.util.List;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -26,6 +28,9 @@ public class Company {
 	
 	@Persistent
 	private String subcriptionType;
+	
+	@Persistent(mappedBy = "company")
+	private List<Department> departments;
 	
 	public Company(String companyId, String name, String address,
 			String countryCode, String contactNo, String subcriptionType) {

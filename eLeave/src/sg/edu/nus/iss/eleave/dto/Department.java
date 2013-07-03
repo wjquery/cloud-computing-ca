@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.eleave.dto;
 
+import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -11,6 +12,12 @@ public class Department {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    @Extension(vendorName="datanucleus", key="gae.encoded-pk", value="true")
+	private String encodedKey;
+	
+	
+	@Persistent
+    @Extension(vendorName="datanucleus", key="gae.pk-name", value="true")
 	private String departmentId;
 	
 	@Persistent
