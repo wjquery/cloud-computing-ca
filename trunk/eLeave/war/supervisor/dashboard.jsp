@@ -49,5 +49,12 @@ a:hover {
 			<td><%@include file="/shared/footer.html"%></td>
 		</tr>
 	</table>
+	<script type="text/javascript">
+	$(function() {
+		var index = $('#menu a[href="#tabs-4"]').parent().index();
+		$("#menu").tabs("option", "active", index);
+		$("#dashboard").addClass("selected");
+	});
+	</script>
 </body>
 </html>

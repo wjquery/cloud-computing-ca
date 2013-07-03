@@ -32,17 +32,17 @@
 		<tr>
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
-				<%@include file="/shared/menu.jsp"%>
+					<%@include file="/shared/menu.jsp"%>
 					<form action="/shared/template.jsp" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
 									<td>Employee Name:</td>
-									<td><input name="name" type="text" /> </td>
+									<td><input name="name" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Designation:</td>
-									<td><input name="designation" type="text" /> </td>
+									<td><input name="designation" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Date Joined:</td>
@@ -63,30 +63,35 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Password:</td>
-									<td><input type="password" /> </td>
+									<td><input type="password" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reenter Password:</td>
-									<td><input type="password" /> </td>
+									<td><input type="password" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td />
 									<td><p>
-											<input type="submit" value="Save" class="sbutton" />
-											&nbsp; <input type="reset" value="Reset" class="sbutton" />
+											<input type="submit" value="Save" class="sbutton" /> &nbsp;
+											<input type="reset" value="Reset" class="sbutton" />
 										</p></td>
 								</tr>
 							</tbody>
 						</table>
 					</form>
 				</div>
-
-
 			</td>
 		</tr>
 		<tr>
 			<td><%@include file="/shared/footer.html"%></td>
 		</tr>
 	</table>
+	<script type="text/javascript">
+	$(function() {
+		var index = $('#menu a[href="#tabs-5"]').parent().index();
+		$("#menu").tabs("option", "active", index);
+		$("#employees").addClass("selected");
+	});
+	</script>
 </body>
 </html>
