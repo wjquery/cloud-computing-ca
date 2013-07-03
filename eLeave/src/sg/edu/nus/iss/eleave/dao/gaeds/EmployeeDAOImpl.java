@@ -207,7 +207,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		p.setName((String) entity.getProperty("name"));
 		//TODO refine
 		p.setPassword((String) entity.getProperty("password"));
-		p.setSupervisors((List<Employee>) entity.getProperty("supervisors"));
+		//TODO, should we retrieve the real Object or just pass key?
+		//p.setSupervisors((List<Employee>) entity.getProperty("supervisors"));
 		p.setUsername((String) entity.getProperty("username"));
 		
 		

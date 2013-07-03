@@ -1,9 +1,21 @@
 package sg.edu.nus.iss.eleave.dto;
 
-public class LeaveType {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+@PersistenceCapable
+public class LeaveType {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String leaveTypeId;
+	
+	@Persistent
 	private String name;
+	
+	@Persistent
 	private double defaultEntitlement;
 	
 	public String getLeaveTypeId() {

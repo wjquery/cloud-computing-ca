@@ -18,6 +18,4 @@ public interface LeaveApplicationDao {
     public void insertLeaveApplication(LeaveApplication leaveApplication) throws DAOException;
     public void updateLeaveApplication(LeaveApplication leaveApplication) throws DAOException;
     public void deleteLeaveApplication(LeaveApplication leaveApplication) throws DAOException;
-    
-	
 }

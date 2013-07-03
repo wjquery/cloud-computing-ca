@@ -2,22 +2,58 @@ package sg.edu.nus.iss.eleave.dto;
 
 import java.util.Date;
 
-public class LeaveApplication {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+@PersistenceCapable
+public class LeaveApplication {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String applicationId;
+	
+	@Persistent
 	private LeaveType type;
+	
+	@Persistent
 	private Date fromDate;
+	
+	@Persistent
 	private Date toDate;
+	
+	@Persistent
 	private double days;
+	
+	@Persistent
 	private String reason;
+	
+	@Persistent
 	private String contactDetail;
+	
+	@Persistent
 	private String status;
+	
+	@Persistent
 	private Date applyDate;
+	
+	@Persistent
 	private Date modifyDate;
+	
+	@Persistent
 	private Date processDate;
+	
+	@Persistent
 	private Employee applicant;
+	
+	@Persistent
 	private Employee approvedBy;
+	
+	@Persistent
 	private String processComment;
+	
+	@Persistent
 	private Company company;
 	
 	public String getApplicationId() {
