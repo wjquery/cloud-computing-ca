@@ -57,7 +57,6 @@
 							type="submit" class="button" value="Sign in" /></td>
 					</tr>
 					<tr><td/><td class="logon-reset" ><span id="logon-reset-message">Can't access your account?</span></td></tr>
-					<tr><td/><td class="logon-reset" ><span id="logon-reset-message">Don't have an account? Sign up now</span></td></tr>
 				</table>
 			</form>
 		</div>
