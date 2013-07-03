@@ -6,23 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin</title>
 <%@include file="/shared/resources.html"%>
-<script type="text/javascript">
-	$(function() {
-		var dateformat = "dd/mm/yy";
-		$("#joinDate").datepicker(
-				{
-					defaultDate : 1,
-					minDate : 1,
-					numberOfMonths : 1,
-					dateFormat : dateformat
-				});
-
-		$('#joinCal').click(function() {
-			$('#joinDate').datepicker('show');
-		});
-		
-	});
-</script>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
@@ -37,37 +20,16 @@
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
-									<td>Employee Name:</td>
+									<td>DepartmentId:</td>
 									<td><input name="name" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
-									<td>Designation:</td>
+									<td>Department Name:</td>
 									<td><input name="designation" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
-									<td>Date Joined:</td>
-									<td><input id="joinDate" name="joinDate" type="text" />&nbsp;
-										<img id="joinCal" src="/images/cal.png" height="18px;"></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Supervisor:</td>
-									<td><input name="supervisor" type="text" /></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Email Address:</td>
-									<td><input name="email" type="text" /></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Username:</td>
-									<td><input type="text" /></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Password:</td>
-									<td><input type="password" /></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Reenter Password:</td>
-									<td><input type="password" /></td>
+									<td>Department Head:</td>
+									<td><input id="joinDate" name="joinDate" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td />
@@ -90,7 +52,7 @@
 	$(function() {
 		var index = $('#menu a[href="#tabs-5"]').parent().index();
 		$("#menu").tabs("option", "active", index);
-		$("#employees").addClass("selected");
+		$("#departments").addClass("selected");
 	});
 	</script>
 </body>
