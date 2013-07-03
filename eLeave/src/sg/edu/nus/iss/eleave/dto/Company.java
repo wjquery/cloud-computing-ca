@@ -2,10 +2,12 @@ package sg.edu.nus.iss.eleave.dto;
 
 import java.util.List;
 
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.persistence.CascadeType;
 
 @PersistenceCapable
 public class Company {
@@ -30,7 +32,7 @@ public class Company {
 	private String subcriptionType;
 	
 	@Persistent(mappedBy = "company")
-	private List<Department> departments;
+	private List<Department> departments;/*@Element(dependent = "true")*/
 	
 	public Company(String companyId, String name, String address,
 			String countryCode, String contactNo, String subcriptionType) {
