@@ -103,5 +103,12 @@
 			<td><%@include file="/shared/footer.html"%></td>
 		</tr>
 	</table>
+	<script type="text/javascript">
+	$(function() {
+		var index = $('#menu a[href="#tabs-1"]').parent().index();
+		$("#menu").tabs("option", "active", index);
+		$("#leaveForm").addClass("selected");
+	});
+	</script>
 </body>
 </html>
