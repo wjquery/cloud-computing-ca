@@ -4,21 +4,42 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class Claim {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String claimId;
+	
+	@Persistent
 	private Company company;
+	
+	@Persistent
 	private Employee employee;
 	//private LeaveType leave;
 	//private Date OTDate;
-	
+	@Persistent
 	private int month;//yymm
 	//private double OTHours;
+	@Persistent
 	private double totalOTHours;
+	@Persistent
 	private String status;//D=draft;S=Submited;A=Approved
+	@Persistent
 	private Date applyDate;
+	@Persistent
 	private Date processDate;
+	@Persistent
 	private String processComment;
+	@Persistent
 	private List<ClaimItem> claimItems=new ArrayList<ClaimItem>();
+	
+	
 	
 	public String getClaimId() {
 		return claimId;

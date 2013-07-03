@@ -1,11 +1,30 @@
 package sg.edu.nus.iss.eleave.dto;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+@PersistenceCapable
 public class LeaveEntitlement {
 	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private String leaveEntitlementId;
+	
+	@Persistent
 	private Employee employee;
+	
+	@Persistent
 	private int year;
+	
+	@Persistent
 	private LeaveType leaveType;
+	
+	@Persistent
 	private double entitlement;
+	
+	@Persistent
 	private double balance;
 	
 	public Employee getEmployee() {

@@ -1,10 +1,25 @@
 package sg.edu.nus.iss.eleave.dto;
 
-public class Department {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+
+@PersistenceCapable
+public class Department {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String departmentId;
+	
+	@Persistent
 	private String name;
+	
+	@Persistent
 	private Employee departmentHead;
+	
+	@Persistent
 	private Company company;
 	
 	public String getDepartmentId() {

@@ -1,10 +1,23 @@
 package sg.edu.nus.iss.eleave.dto;
 
-public class Country {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+@PersistenceCapable
+public class Country {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String countryId;
+	
+	@Persistent
 	private String countryCode;
+	
+	@Persistent
 	private String countryName;
+	
 	
 	public String getCountryId() {
 		return countryId;

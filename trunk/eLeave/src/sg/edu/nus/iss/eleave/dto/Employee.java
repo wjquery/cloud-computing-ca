@@ -3,19 +3,49 @@ package sg.edu.nus.iss.eleave.dto;
 import java.util.Date;
 import java.util.List;
 
-public class Employee {
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+@PersistenceCapable
+public class Employee {
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String employeeId;
+	
+	@Persistent
 	private String name;
+	
+	@Persistent
 	private Department deparment;
+	
+	@Persistent
 	private List<Employee> supervisors;
+	
+	@Persistent
 	private Date joinDate;
+	
+	@Persistent
 	private Date resignDate;
+	
+	@Persistent
 	private String Designation;
+	
+	@Persistent
 	private String email;
+	
+	@Persistent
 	private String username;
+	
+	@Persistent
 	private String password;
+	
+	@Persistent
 	private boolean isCurrent;
+	
+	@Persistent
 	private List<LeaveApplication> leave;
 	private Company company;
 	
