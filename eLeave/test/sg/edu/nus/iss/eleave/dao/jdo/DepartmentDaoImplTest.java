@@ -65,6 +65,7 @@ public class DepartmentDaoImplTest {
 			Department department = departmentDao.findDepartment("", "D000001");
 			Assert.assertNotNull(department);
 			System.out.println(department.getDepartmentId());
+			System.out.println(department.getCompany());
 			
 			
 		} catch (DAOException e) {
