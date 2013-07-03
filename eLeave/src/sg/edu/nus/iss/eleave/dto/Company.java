@@ -82,5 +82,11 @@ public class Company {
 	public void setSubcriptionType(String subcriptionType) {
 		this.subcriptionType = subcriptionType;
 	}
+	public List<Department> getDepartments() {
+		return departments;
+	}
+	public void setDepartments(List<Department> departments) {
+		this.departments = departments;
+	}
 	
 }
