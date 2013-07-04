@@ -29,13 +29,13 @@ public class ClaimServiceImpl implements  ClaimService{
 	}
 
 	@Override
-	public List<Claim> findAllClaimApplicationByEmployee(Employee employee)
+	public List<Claim> findAllClaimApplicationByEmployee(String employeeId)
 			throws ServiceException {
 	    return null;
 	}
 
 	@Override
-	public List<Claim> findAllClaimApplicationByEmployee(Employee employee,
+	public Claim findAllClaimApplicationByEmployee(String employeeId,
 			int month) throws ServiceException {
 		// TODO Auto-generated method stub
 		return null;
@@ -73,13 +73,46 @@ public class ClaimServiceImpl implements  ClaimService{
 	}
 
 	@Override
+	public List<Claim> findClaimByManager(String managerId)
+		throws ServiceException {
+	    try{
+ 		return claimnDAO.findClaimByManager(managerId);
+ 	    }catch (DAOException e) {
+ 		log.log(Level.SEVERE, e.getMessage());
+ 		throw new ServiceException();
+ 	    }
+	}
+
+	@Override
+	public List<Claim> findClaimByManager(String managerId, int month)
+		throws ServiceException {
+	    try {
+		return claimnDAO.findClaimByManager(managerId,month);
+	    } catch (DAOException e) {
+		log.log(Level.SEVERE, e.getMessage());
+ 		throw new ServiceException();
+ 	    }
+	}
+	
+	@Override
 	public void approveClaim(Claim claim) throws ServiceException {
+	    try{
+ 		claimnDAO.updateClaim(claim);
+ 	    }catch (DAOException e) {
+ 		log.log(Level.SEVERE, e.getMessage());
+ 		throw new ServiceException();
+ 	    }
 	}
 
 	@Override
 	public void rejectClaim(Claim claim) throws ServiceException {
-		// TODO Auto-generated method stub
-		
+	    claim.setStatus("R");
+	    try{
+ 		claimnDAO.updateClaim(claim);
+ 	    }catch (DAOException e) {
+ 		log.log(Level.SEVERE, e.getMessage());
+ 		throw new ServiceException();
+ 	    }	
 	}
 
 	@Override
@@ -105,5 +138,4 @@ public class ClaimServiceImpl implements  ClaimService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }
