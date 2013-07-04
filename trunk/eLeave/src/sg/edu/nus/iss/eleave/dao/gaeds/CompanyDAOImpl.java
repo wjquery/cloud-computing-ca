@@ -48,7 +48,6 @@ public class CompanyDAOImpl implements CompanyDAO {
 		p.setProperty("name",company.getName());
 		p.setProperty("address",company.getAddress());
 		p.setProperty("contactNo",company.getContactNo());
-		p.setProperty("countryCode",company.getCountryCode());
 		p.setProperty("subscriptionType", company.getSubcriptionType());
 		Util.persistEntity(p);
 		
@@ -56,13 +55,18 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public void updateCompany(Company company) throws DAOException {
-		Entity p = new Entity(COMPANY_KIND,company.getCompanyId());
+		Key key = KeyFactory.createKey(COMPANY_KIND, company.getCompanyId());
+		Entity p = Util.findEntity(key);
+		
 		p.setProperty("name",company.getName());
 		p.setProperty("address",company.getAddress());
 		p.setProperty("contactNo",company.getContactNo());
-		p.setProperty("countryCode",company.getCountryCode());
 		p.setProperty("subscriptionType", company.getSubcriptionType());
 		Util.persistEntity(p);
+		
+	}
+	
+	public void saveOrUpdate() throws DAOException {
 		
 	}
 
@@ -91,7 +95,6 @@ public class CompanyDAOImpl implements CompanyDAO {
 		p.setCompanyId(entity.getKey().getName());
 		p.setAddress(entity.getProperty("address").toString());
 		p.setContactNo(entity.getProperty("contactNo").toString());
-		p.setCountryCode(entity.getProperty("countryCode").toString());
 		p.setSubcriptionType(entity.getProperty("subscriptionType").toString());
 		return p;
 	}

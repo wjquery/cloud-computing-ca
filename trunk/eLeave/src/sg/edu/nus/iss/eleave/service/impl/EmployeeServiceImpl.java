@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import sg.edu.nus.iss.eleave.dao.EmployeeDAO;
+import sg.edu.nus.iss.eleave.dao.gaeds.EmployeeDAOImpl;
 import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
@@ -16,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	private static Logger log = Logger.getLogger(EmployeeService.class.getCanonicalName());
 	
-	private EmployeeDAO employeeDao;
+	private EmployeeDAO employeeDao = new EmployeeDAOImpl();
 
 	@Override
 	public boolean validateUser(String companyId, String username, String password)
