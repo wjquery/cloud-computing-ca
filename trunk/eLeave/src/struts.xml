@@ -17,7 +17,7 @@
 	<package name="company" namespace="/company" extends="struts-default">
 		<action name="insert" class="sg.edu.nus.iss.eleave.controller.CompanyAction" method="insert">
 			<result name="success" type="redirect">/employee/create.jsp</result>
-			<result name="input">/company/create.jsp</result>
+			<result name="input">/company/signUp.jsp</result>
 		</action>
 	</package>
 	
