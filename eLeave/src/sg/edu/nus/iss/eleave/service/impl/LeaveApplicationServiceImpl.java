@@ -109,7 +109,6 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 
 		 Queue queue = QueueFactory.getQueue("EmailQueue");
 		 TaskOptions taskOptions = TaskOptions.Builder.withUrl("/email")
-				 				  .param("companyId", leaveApplication.getCompany().getCompanyId())
 		                          .param("leaveApplicationId", leaveApplication.getApplicationId())
 		                          .param("notificationType", type)
 		                          .method(Method.POST);

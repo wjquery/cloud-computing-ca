@@ -116,7 +116,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public void insertEmployee(Employee employee) throws DAOException {
 		//Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
-		Iterable<Entity> list = Util.listEntities("Company", "name", employee.getCompany().getName());
+		Iterable<Entity> list = Util.listEntities("Company", "name", employee.getCompanyId());
 		List<Entity> c = new ArrayList<Entity>();
 		for (Entity e : list) {
 			c.add(e);
@@ -133,7 +133,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 //		}
 		
 		//p.setProperty("company", employee.getCompany());
-		p.setProperty("company", employee.getCompany().getCompanyId());
+//		p.setProperty("company", employee.getCompany().getCompanyId());
 		p.setProperty("employeeId", employee.getEmployeeId());
 		p.setProperty("designation", employee.getDesignation());
 		p.setProperty("email", employee.getEmail());
@@ -172,7 +172,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void deleteEmployee(Employee employee) throws DAOException {
-		Entity entity = this.getEmployee(employee.getCompany().getCompanyId(), employee.getEmployeeId());
+		Entity entity = this.getEmployee(employee.getCompanyId(), employee.getEmployeeId());
 		if(entity != null) {
 			Util.deleteEntity(entity.getKey());
 		}
@@ -182,10 +182,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public boolean addSupervisor(Employee employee, Employee supervisor)
 			throws DAOException {
-		Entity entity = this.getEmployee(employee.getCompany().getCompanyId(), employee.getEmployeeId());
+		Entity entity = this.getEmployee(employee.getCompanyId(), employee.getEmployeeId());
 		if(entity != null) {
 			List<Key> supervisors = (List<Key>) entity.getProperty("supervisors");
-			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompany().getCompanyId())
+			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompanyId())
 				.addChild(EMPLOYEE_KIND, supervisor.getEmployeeId()).getKey();
 			supervisors.add(sKey);
 			entity.setProperty("supervisors", supervisors);
@@ -198,10 +198,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public boolean removeSupervisor(Employee employee, Employee supervisor)
 			throws DAOException {
-		Entity entity = this.getEmployee(employee.getCompany().getCompanyId(), employee.getEmployeeId());
+		Entity entity = this.getEmployee(employee.getCompanyId(), employee.getEmployeeId());
 		if(entity != null) {
 			List<Key> supervisors = (List<Key>) entity.getProperty("supervisors");
-			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompany().getCompanyId())
+			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompanyId())
 				.addChild(EMPLOYEE_KIND, supervisor.getEmployeeId()).getKey();
 			supervisors.remove(sKey);
 			entity.setProperty("supervisors", supervisors);
@@ -223,13 +223,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private Employee buildEmployeeDTO(Entity entity){
+	public Employee buildEmployeeDTO(Entity entity){
 		Employee p = new Employee();
-		p.setCurrent((Boolean) entity.getProperty("isActive"));
-		p.setDeparment((Department) entity.getProperty("department"));
+		//p.setCurrent((Boolean) entity.getProperty("isCurrent"));
+		//p.setDeparment((Department) entity.getProperty("department"));
 		p.setDesignation((String) entity.getProperty("designation"));
 		p.setEmail((String) entity.getProperty("email"));
-		p.setEmployeeId((String) entity.getKey().getName());
+		p.setEmployeeId((String) entity.getProperty("employeeId"));
 		p.setName((String) entity.getProperty("name"));
 		//TODO refine
 		p.setPassword((String) entity.getProperty("password"));

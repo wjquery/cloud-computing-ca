@@ -21,7 +21,6 @@ public class EmployeeAction extends ActionSupport {
 		employee.setName(name);
 		employee.setDesignation(designation);
 		employee.setJoinDate(null);
-		employee.setSupervisors(null);
 		employee.setEmail(email);
 		employee.setUserrole(userrole);
 		employee.setUsername(username);
@@ -29,7 +28,6 @@ public class EmployeeAction extends ActionSupport {
 		Company company = new Company();
 		company.setCompanyId("nus");
 		company.setName("nus");
-		employee.setCompany(company);
 		
 		employeeService.insertEmployee(employee);
 		return SUCCESS;

@@ -18,51 +18,31 @@ public class Employee {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String employeeId;
-	
 	@Persistent
 	private String name;
-	
 	@Persistent
-	private Department deparment;
-	
+	private String companyId;
 	@Persistent
-	private List<Employee> supervisors;
-	
+	private String deparmentId;
+	@Persistent
+	private String designation;
+	@Persistent
+	private String supervisorId;
 	@Persistent
 	private Date joinDate;
-	
 	@Persistent
 	private Date resignDate;
-	
-	@Persistent
-	private String Designation;
-	
 	@Persistent
 	private String email;
-	
-	@Persistent
-	private String username;
-	
-	@Persistent
-	private String password;
-	
 	@Persistent
 	private String userrole;
-	
+	@Persistent
+	private String username;
+	@Persistent
+	private String password;
 	@Persistent
 	private boolean isCurrent;
 	
-	@Persistent
-	private List<LeaveApplication> leave;
-	private Company company;
-	
-	
-	public Company getCompany() {
-		return company;
-	}
-	public void setCompany(Company company) {
-		this.company = company;
-	}
 	public String getEmployeeId() {
 		return employeeId;
 	}
@@ -75,17 +55,29 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Department getDeparment() {
-		return deparment;
+	public String getCompanyId() {
+		return companyId;
 	}
-	public void setDeparment(Department deparment) {
-		this.deparment = deparment;
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
-	public List<Employee> getSupervisors() {
-		return supervisors;
+	public String getDeparmentId() {
+		return deparmentId;
 	}
-	public void setSupervisors(List<Employee> supervisors) {
-		this.supervisors = supervisors;
+	public void setDeparmentId(String deparmentId) {
+		this.deparmentId = deparmentId;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public String getSupervisorId() {
+		return supervisorId;
+	}
+	public void setSupervisorId(String supervisorId) {
+		this.supervisorId = supervisorId;
 	}
 	public Date getJoinDate() {
 		return joinDate;
@@ -99,17 +91,17 @@ public class Employee {
 	public void setResignDate(Date resignDate) {
 		this.resignDate = resignDate;
 	}
-	public String getDesignation() {
-		return Designation;
-	}
-	public void setDesignation(String designation) {
-		Designation = designation;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getUserrole() {
+		return userrole;
+	}
+	public void setUserrole(String userrole) {
+		this.userrole = userrole;
 	}
 	public String getUsername() {
 		return username;
@@ -123,25 +115,33 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getUserrole() {
-		return userrole;
-	}
-	public void setUserrole(String userrole) {
-		this.userrole = userrole;
-	}
 	public boolean isCurrent() {
 		return isCurrent;
 	}
 	public void setCurrent(boolean isCurrent) {
 		this.isCurrent = isCurrent;
 	}
-	public List<LeaveApplication> getLeave() {
-		return leave;
+	
+	public Employee(String employeeId, String name, String companyId,
+			String deparmentId, String designation, String supervisorId,
+			Date joinDate, Date resignDate, String email, String userrole,
+			String username, String password, boolean isCurrent) {
+		super();
+		this.employeeId = employeeId;
+		this.name = name;
+		this.companyId = companyId;
+		this.deparmentId = deparmentId;
+		this.designation = designation;
+		this.supervisorId = supervisorId;
+		this.joinDate = joinDate;
+		this.resignDate = resignDate;
+		this.email = email;
+		this.userrole = userrole;
+		this.username = username;
+		this.password = password;
+		this.isCurrent = isCurrent;
 	}
-	public void setLeave(List<LeaveApplication> leave) {
-		this.leave = leave;
+	public Employee() {
+		super();
 	}
-	
-	
-	
 }

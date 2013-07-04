@@ -85,7 +85,7 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 		p.setApplicationId((String) entity.getProperty("leaveApplicationId"));
 		p.setApplyDate((Date) entity.getProperty("applyDate"));
 		//TODO, store employee key or Employee Object
-		p.setApplicant((Employee) entity.getProperty("applicant"));
+//		p.setApplicant((Employee) entity.getProperty("applicant"));
 		
 		
 	

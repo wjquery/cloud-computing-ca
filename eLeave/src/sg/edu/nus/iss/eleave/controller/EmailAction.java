@@ -29,27 +29,27 @@ public class EmailAction extends ActionSupport implements ServletRequestAware  {
 	private HttpServletRequest request;
 	@Override
 	public String execute() throws Exception {
-		//READ the task from EmailTaskQueue, then calling email Service to send out email
-		String companyId = request.getParameter("companyId");
-		String leaveApplicationId = request.getParameter("leaveApplicationId");
-		String type = request.getParameter("notificationType");
-		//find the LeaveAppliation
-		LeaveApplication leaveApplication = leaveApplicationService.findLeaveApplication(companyId, leaveApplicationId);
-		if(leaveApplication != null){
-			Employee applicant = leaveApplication.getApplicant();
-			String subject = leaveApplicationService.formEmailSubjectToApplicant(leaveApplication, type);
-			String content = leaveApplicationService.formEmailContentToApplicant(leaveApplication, type);
-			emailService.sendEmail(fromAddress, applicant.getEmail(), subject, content);
-			
-			//send to supervisor
-			subject = leaveApplicationService.formEmailSubjectToApprover(leaveApplication, type);
-			content = leaveApplicationService.formEmailContentToApprover(leaveApplication, type);
-			List<String> emails = new ArrayList<String>();
-			for(Employee manager: applicant.getSupervisors()){
-				emails.add(manager.getEmail());
-			}
-			emailService.sendEmail(fromAddress, emails, subject, content);
-		}
+//		//READ the task from EmailTaskQueue, then calling email Service to send out email
+//		String companyId = request.getParameter("companyId");
+//		String leaveApplicationId = request.getParameter("leaveApplicationId");
+//		String type = request.getParameter("notificationType");
+//		//find the LeaveAppliation
+//		LeaveApplication leaveApplication = leaveApplicationService.findLeaveApplication(companyId, leaveApplicationId);
+//		if(leaveApplication != null){
+//			Employee applicant = leaveApplication.getApplicant();
+//			String subject = leaveApplicationService.formEmailSubjectToApplicant(leaveApplication, type);
+//			String content = leaveApplicationService.formEmailContentToApplicant(leaveApplication, type);
+//			emailService.sendEmail(fromAddress, applicant.getEmail(), subject, content);
+//			
+//			//send to supervisor
+//			subject = leaveApplicationService.formEmailSubjectToApprover(leaveApplication, type);
+//			content = leaveApplicationService.formEmailContentToApprover(leaveApplication, type);
+//			List<String> emails = new ArrayList<String>();
+//			for(Employee manager: applicant.getSupervisors()){
+//				emails.add(manager.getEmail());
+//			}
+//			emailService.sendEmail(fromAddress, emails, subject, content);
+//		}
 		
 		return Action.SUCCESS;
 		

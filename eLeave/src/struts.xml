@@ -3,7 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<constant name="struts.action.excludePattern" value="/_ah/.*,/upload/.*" />
+	<constant name="struts.action.excludePattern" value="/_ah/.*,/upload/.*,/test" />
 	<package name="account" extends="struts-default">
 		<action name="login" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="login">
 			<result name="success" type="redirect">/leaveApplication/create.jsp</result>
