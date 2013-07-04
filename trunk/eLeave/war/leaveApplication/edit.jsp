@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New Leave Application</title>
+<title>Edit Leave Application</title>
 <%@include file="/shared/resources.html"%>
 <script type="text/javascript">
 	$(function() {

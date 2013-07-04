@@ -58,14 +58,14 @@ a:hover {
 								<td>01/07/2013</td>
 								<td>01/07/2013</td>
 								<td>1</td>
-								<td><a href="/leaveApplication/edit.jsp?id=2">Approved</a></td>
+								<td><a href="/leaveApplication/details.jsp?id=2&status=approved">Approved</a></td>
 							</tr>
 							<tr class="overview-item">
 								<td>No-pay</td>
 								<td>25/06/2013</td>
 								<td>26/06/2013</td>
 								<td>2</td>
-								<td><a href="/leaveApplication/edit.jsp?id=1">Approved</a></td>
+								<td><a href="/leaveApplication/details.jsp?id=1&status=cancelled">Cancelled</a></td>
 							</tr>
 						</tbody>
 					</table>

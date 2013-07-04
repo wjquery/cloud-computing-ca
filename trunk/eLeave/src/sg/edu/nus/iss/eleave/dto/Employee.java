@@ -11,6 +11,10 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class Employee {
 	
+	public static final String ADMIN = "admin";
+	public static final String SUPERVISOR = "supervisor";
+	public static final String STAFF = "staff";
+	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String employeeId;
@@ -41,6 +45,9 @@ public class Employee {
 	
 	@Persistent
 	private String password;
+	
+	@Persistent
+	private String userrole;
 	
 	@Persistent
 	private boolean isCurrent;
@@ -115,6 +122,12 @@ public class Employee {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getUserrole() {
+		return userrole;
+	}
+	public void setUserrole(String userrole) {
+		this.userrole = userrole;
 	}
 	public boolean isCurrent() {
 		return isCurrent;

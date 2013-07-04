@@ -29,16 +29,21 @@ a:hover   { color: #ff0000; text-decoration: underline }
 									<td>Employee Name</td>
 									<td style="font-weight: bold;">Designation</td>
 									<td style="font-weight: bold;">Date Joined</td>
+									<td style="font-weight: bold;">Action</td>
 								</tr>
 								<tr class="overview-item">
 									<td><a href="/employee/edit.jsp?id=1">Tan Ah Kow</a></td>
 									<td>Software Engineer</td>
 									<td>01/01/2013</td>
+									<td>
+										<a href="/employee/details.jsp?id=1">Details</a>&nbsp;
+										<a href="/employee/edit.jsp?id=1">Edit</a>
+									</td>
 								</tr>
 								<tr class="overview-item">
-									<td/><td/>
+									<td/><td/><td/>
 									<td>
-										<input type="submit" value="Add New Employee" class="sbutton" />
+										<input type="submit" value="New Employee" class="sbutton" />
 									</td>
 								</tr>
 							</tbody>

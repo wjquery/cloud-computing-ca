@@ -117,6 +117,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		p.setProperty("name", employee.getName());
 		p.setProperty("password", employee.getPassword());
 		p.setProperty("username", employee.getUsername());
+		p.setProperty("userrole", employee.getUserrole());
 		Util.persistEntity(p);
 
 	}
@@ -140,6 +141,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		p.setProperty("name", employee.getName());
 		p.setProperty("password", employee.getPassword());
 		p.setProperty("username", employee.getUsername());
+		p.setProperty("userrole", employee.getUserrole());
 		Util.persistEntity(p);
 
 	}
@@ -210,7 +212,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		//TODO, should we retrieve the real Object or just pass key?
 		//p.setSupervisors((List<Employee>) entity.getProperty("supervisors"));
 		p.setUsername((String) entity.getProperty("username"));
-		
+		p.setUserrole((String) entity.getProperty("userrole"));
 		
 		return p;
 	}
