@@ -32,7 +32,7 @@
 								<td>15/07/2013</td>
 								<td>17/07/2013</td>
 								<td>3</td>
-								<td class="drill"><a href="/supervisor/list.jsp?id=3">Details</a></td>
+								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=3">Details</a></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Lim Ah Thet</td>
@@ -40,7 +40,7 @@
 								<td>01/07/2013</td>
 								<td>01/07/2013</td>
 								<td>1</td>
-								<td class="drill"><a href="/supervisor/list.jsp?id=2">Details</a></td>
+								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=2">Details</a></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Alvin Ng</td>
@@ -48,7 +48,7 @@
 								<td>25/06/2013</td>
 								<td>26/06/2013</td>
 								<td>2</td>
-								<td class="drill"><a href="/supervisor/list.jsp?id=1">Details</a></td>
+								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=1">Details</a></td>
 							</tr>
 						</tbody>
 					</table>
