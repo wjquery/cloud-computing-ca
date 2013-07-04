@@ -1,7 +1,6 @@
 package sg.edu.nus.iss.eleave.dto;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -21,13 +20,13 @@ public class Employee {
 	@Persistent
 	private String name;
 	@Persistent
-	private String companyId;
+	private String companyId; // many-to-one relationship with company
 	@Persistent
-	private String deparmentId;
+	private String deparmentId; // foreign key to department
 	@Persistent
 	private String designation;
 	@Persistent
-	private String supervisorId;
+	private String supervisorId; // foreign key to another employee
 	@Persistent
 	private Date joinDate;
 	@Persistent
