@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>My Leave</title>
+<title>My Leave Summary</title>
 <%@include file="/shared/resources.html"%>
 <style type="text/css">
 a:link {

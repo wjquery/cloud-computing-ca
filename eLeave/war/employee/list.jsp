@@ -50,7 +50,7 @@
 								<tr class="overview-item">
 									<td/><td/><td/>
 									<td>
-										<input type="submit" value="New Employee" class="sbutton" />
+										<input type="submit" value="Add Employee" class="sbutton" />
 									</td>
 								</tr>
 							</tbody>
