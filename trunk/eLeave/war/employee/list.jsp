@@ -6,12 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Employee List</title>
 <%@include file="/shared/resources.html"%>
-<style type="text/css">
-a:link    { color: #000000; text-decoration: underline }
-a:visited { color: #000000; text-decoration: none }
-a:active  { color: #ff0000; text-decoration: none }
-a:hover   { color: #ff0000; text-decoration: underline }
-</style>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
@@ -32,10 +26,10 @@ a:hover   { color: #ff0000; text-decoration: underline }
 									<td style="font-weight: bold;">Action</td>
 								</tr>
 								<tr class="overview-item">
-									<td><a href="/employee/edit.jsp?id=1">Tan Ah Kow</a></td>
+									<td>Tan Ah Kow</td>
 									<td>Software Engineer</td>
 									<td>01/01/2013</td>
-									<td>
+									<td class="drill">
 										<a href="/employee/details.jsp?id=1">Details</a>&nbsp;
 										<a href="/employee/edit.jsp?id=1">Edit</a>
 									</td>
