@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.eleave.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -8,7 +9,9 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class LeaveApplication {
+public class LeaveApplication implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	public static final String PENDING = "pending";
 	public static final String APPROVED = "approved";

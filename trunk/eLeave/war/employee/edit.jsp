@@ -1,18 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="sg.edu.nus.iss.eleave.service.impl.*,sg.edu.nus.iss.eleave.dto.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Edit Employee Info</title>
 <%@include file="/shared/resources.html"%>
+<%
+	Employee emp = new EmployeeServiceImpl().findEmployee(request.getParameter("employeeId"));
+	request.setAttribute("emp", emp);
+%>
 <script type="text/javascript">
 	$(function() {
 		var dateformat = "dd/mm/yy";
 		$("#joinDate").datepicker(
 				{
 					defaultDate : 1,
-					minDate : 1,
 					numberOfMonths : 1,
 					dateFormat : dateformat
 				});
@@ -33,20 +38,24 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 					<%@include file="/shared/menu.jsp"%>
-					<form class="new" action="/employee/insert" method="post">
+					<form class="new" action="/employee/update" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
+									<td>Employee ID:</td>
+									<td><input name="employeeId" type="text" readonly="readonly" value="${emp.employeeId}" /></td>
+								</tr>
+								<tr class="overview-item">
 									<td>Employee Name:</td>
-									<td><input name="name" type="text" /></td>
+									<td><input name="name" type="text" value="${emp.name}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Designation:</td>
-									<td><input name="designation" type="text" /></td>
+									<td><input name="designation" type="text" value="${emp.designation}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Date Joined:</td>
-									<td><input id="joinDate" name="joinDate" type="text" />&nbsp;
+									<td><input id="joinDate" name="joinDate" type="text" value='<fmt:formatDate value="${emp.joinDate}" pattern="dd/MM/yyyy"/>' />&nbsp;
 										<img id="joinCal" src="/images/cal.png" height="18px;"></td>
 								</tr>
 								<tr class="overview-item">
@@ -55,23 +64,15 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Email Address:</td>
-									<td><input name="email" type="text" /></td>
+									<td><input name="email" type="text" value="${emp.email}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>User Role:</td>
-									<td><input type="text" /></td>
+									<td><input name="userrole" type="text" value="${emp.userrole}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Username:</td>
-									<td><input type="text" /></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Password:</td>
-									<td><input type="password" /></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Reenter Password:</td>
-									<td><input type="password" /></td>
+									<td><input name="username" type="text" value="${emp.username}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td />

@@ -6,6 +6,16 @@ in struts.xml, add:
 	<constant name="struts.action.excludePattern" value="/_ah/.*,/upload/.*" />
 </struts>
 
+
 Problem: Error 500 null when saving new entity
 Solution:
 1) check DAO, make sure entity has all required properties set, especially id(key) cannot be empty or null
+
+
+Problem: There is no Action mapped for namespace / and action name “yourActionName”
+Solution:
+check struts.xml, make sure namespace and action names are correct
+
+Problem: Error 500 java.io.NotSerializableException: sg.edu.nus.iss.eleave.dto.Employee
+Solution:
+to enable expression language to retrieve employee data on jsp, Employee must implement java.io.Serializable

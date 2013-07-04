@@ -12,7 +12,6 @@
 		$("#joinDate").datepicker(
 				{
 					defaultDate : 1,
-					minDate : 1,
 					numberOfMonths : 1,
 					dateFormat : dateformat
 				});

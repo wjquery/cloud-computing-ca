@@ -5,6 +5,7 @@ import com.google.appengine.api.datastore.Entity;
 public class DataMapper {
 	
 	public Object buildDTO(Entity entity, Class<?> dto) {
+		// TODO
 		try {
 			dto.newInstance();
 			

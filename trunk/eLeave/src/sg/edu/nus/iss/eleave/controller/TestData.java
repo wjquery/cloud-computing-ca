@@ -53,11 +53,11 @@ public class TestData extends HttpServlet {
 		Iterable<Entity> entities = Util.listEntities("Employee", "company", "nus");
 		List<Employee> employees = new ArrayList<Employee>();
 		for(Entity entity : entities) {
-			employees.add(dao.buildEmployeeDTO(entity));
+//			employees.add(dao.buildEmployeeDTO(entity));
 		}
 		
 		for (Employee e: employees) {
-			out.write(e.getName() + "<br>");
+			out.write(e.getName() + "\n");
 			out.write(e.getDesignation());
 		}
 	}
