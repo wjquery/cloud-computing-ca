@@ -33,7 +33,7 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 					<%@include file="/shared/menu.jsp"%>
-					<form action="/employee/insert" method="post">
+					<form class="new" action="/employee/insert" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">

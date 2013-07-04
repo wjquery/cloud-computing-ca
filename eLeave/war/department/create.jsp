@@ -16,7 +16,7 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 					<%@include file="/shared/menu.jsp"%>
-					<form action="/shared/template.jsp" method="post">
+					<form class="new" action="/shared/template.jsp" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">

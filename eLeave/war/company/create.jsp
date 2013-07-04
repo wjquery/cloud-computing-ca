@@ -23,7 +23,7 @@
 			style="margin: 0 auto; height: 30px; padding: 10px; width: 420px; text-align: center; background: none repeat scroll 0 0 #005588; font-size: 150%; color: white;">Sign
 			Up New Account</div>
 		<div style="margin: 0 auto; padding: 0px 0; width: 440px;">
-			<form method="post" action="/company/insert">
+			<form class="new" method="post" action="/company/insert">
 				<table class="overview-eleave-items">
 					<tbody>
 						<tr class="overview-item">
