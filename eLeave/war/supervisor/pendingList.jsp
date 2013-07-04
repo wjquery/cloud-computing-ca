@@ -6,27 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Approving Officer</title>
 <%@include file="/shared/resources.html"%>
-<style type="text/css">
-a:link {
-	color: #000000;
-	text-decoration: underline
-}
-
-a:visited {
-	color: #000000;
-	text-decoration: none
-}
-
-a:active {
-	color: #ff0000;
-	text-decoration: none
-}
-
-a:hover {
-	color: #ff0000;
-	text-decoration: underline
-}
-</style>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
@@ -53,7 +32,7 @@ a:hover {
 								<td>15/07/2013</td>
 								<td>17/07/2013</td>
 								<td>3</td>
-								<td><a href="/supervisor/viewdetail.jsp?id=3">Details</a></td>
+								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=3">Details</a></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Lim Ah Thet</td>
@@ -61,7 +40,7 @@ a:hover {
 								<td>01/07/2013</td>
 								<td>01/07/2013</td>
 								<td>1</td>
-								<td><a href="/supervisor/viewdetail.jsp?id=2">Details</a></td>
+								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=2">Details</a></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Alvin Ng</td>
@@ -69,7 +48,7 @@ a:hover {
 								<td>25/06/2013</td>
 								<td>26/06/2013</td>
 								<td>2</td>
-								<td><a href="/supervisor/viewdetail.jsp?id=1">Details</a></td>
+								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=1">Details</a></td>
 							</tr>
 						</tbody>
 					</table>

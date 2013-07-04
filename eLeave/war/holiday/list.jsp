@@ -6,12 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin</title>
 <%@include file="/shared/resources.html"%>
-<style type="text/css">
-a:link    { color: #000000; text-decoration: underline }
-a:visited { color: #000000; text-decoration: none }
-a:active  { color: #ff0000; text-decoration: none }
-a:hover   { color: #ff0000; text-decoration: underline }
-</style>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
@@ -30,17 +24,17 @@ a:hover   { color: #ff0000; text-decoration: underline }
 									<td style="font-weight: bold;">Date To</td>
 								</tr>
 								<tr class="overview-item">
-									<td><a href="/holiday/edit.jsp?id=1">New Year's Day</a></td>
+									<td class="drill"><a href="/holiday/edit.jsp?id=1">New Year's Day</a></td>
 									<td>01/01/2013</td>
 									<td>01/01/2013</td>
 								</tr>
 								<tr class="overview-item">
-									<td><a href="/holiday/edit.jsp?id=2">Chinese New Year</a></td>
+									<td class="drill"><a href="/holiday/edit.jsp?id=2">Chinese New Year</a></td>
 									<td>10/02/2013</td>
 									<td>11/02/2013</td>
 								</tr>
 								<tr class="overview-item">
-									<td><a href="/holiday/edit.jsp?id=3">Good Friday</a></td>
+									<td class="drill"><a href="/holiday/edit.jsp?id=3">Good Friday</a></td>
 									<td>29/03/2013</td>
 									<td>29/03/2013</td>
 								</tr>
