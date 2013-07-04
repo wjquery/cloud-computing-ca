@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.eleave.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -70,16 +72,15 @@ public class CompanyAction extends ActionSupport {
 		company.setSubcriptionType(subscriptionType);
 		
 		Employee employee = new Employee();
+		employee.setCompanyId(companyCode);
+		employee.setUserrole(Employee.ADMIN);
 		employee.setUsername(username);
 		employee.setPassword(password);
-		employee.setUserrole(Employee.ADMIN);
-		employee.setCompanyId("nus");
 		
 		if (companyService.insertCompany(company)) {
 			if (employeeService.insertEmployee(employee)) {
 				HttpSession session = ServletActionContext.getRequest().getSession();
 				session.setAttribute("companyId", companyCode);
-				session.setAttribute("company", company);
 				session.setAttribute("employeeName", username);
 				return SUCCESS;
 			}

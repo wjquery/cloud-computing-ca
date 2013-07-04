@@ -8,6 +8,8 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class LeaveEntitlement {
 	
+	public static final String KIND = "LeaveEntitlement";
+	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String leaveEntitlementId;

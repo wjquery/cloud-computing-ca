@@ -9,6 +9,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 import sg.edu.nus.iss.eleave.dao.LeaveApplicationDao;
+import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.dto.LeaveApplication;
@@ -68,7 +69,7 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 	}
 	
 	private Entity getLeaveApplication(String companyId,String leaveApplicationId){
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, leaveApplicationId);
+		Key parent = KeyFactory.createKey(Company.KIND, leaveApplicationId);
 		//TODO should we model it as a child of Employee, then in employee, just do listChild
 		Key key = KeyFactory.createKey(parent, LEAVE_APPLICATION_KIND, leaveApplicationId);
 		try {

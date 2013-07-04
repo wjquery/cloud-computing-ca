@@ -8,6 +8,8 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class Department {
 	
+	public static final String KIND = "Department";
+	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String departmentId;

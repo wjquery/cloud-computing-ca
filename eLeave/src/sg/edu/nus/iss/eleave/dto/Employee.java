@@ -13,6 +13,7 @@ public class Employee {
 	public static final String ADMIN = "admin";
 	public static final String SUPERVISOR = "supervisor";
 	public static final String STAFF = "staff";
+	public static final String KIND = "Employee";
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
