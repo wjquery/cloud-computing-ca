@@ -16,7 +16,7 @@ public class LeaveType {
 	@Persistent
 	private double defaultEntitlement;
 	@Persistent
-	private String companyId;
+	private String companyId; // many-to-one relationship with company
 	
 	public String getLeaveTypeId() {
 		return leaveTypeId;

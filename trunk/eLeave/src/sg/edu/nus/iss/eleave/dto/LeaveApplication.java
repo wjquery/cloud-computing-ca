@@ -20,7 +20,7 @@ public class LeaveApplication {
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String applicationId;
 	@Persistent
-	private String leaveTypeId;
+	private String leaveTypeId; // foreign key to LeaveType
 	@Persistent
 	private Date fromDate;
 	@Persistent
@@ -38,9 +38,9 @@ public class LeaveApplication {
 	@Persistent
 	private Date processDate;
 	@Persistent
-	private String applicantId;
+	private String applicantId; // many-to-one relationship with employee
 	@Persistent
-	private String processedById;
+	private String processedById; // foreign key to employee
 	@Persistent
 	private String processComment;
 	

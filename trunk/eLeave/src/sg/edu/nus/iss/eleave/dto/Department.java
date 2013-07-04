@@ -14,9 +14,9 @@ public class Department {
 	@Persistent
 	private String name;
 	@Persistent
-	private String departmentHeadId;
+	private String departmentHeadId; // foreign key to employee
 	@Persistent
-	private String companyId;
+	private String companyId; // many-to-one relationship with company
 	
 	public String getDepartmentId() {
 		return departmentId;

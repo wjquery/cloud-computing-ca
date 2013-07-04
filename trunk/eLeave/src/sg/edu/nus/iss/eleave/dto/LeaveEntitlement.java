@@ -11,27 +11,28 @@ public class LeaveEntitlement {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String leaveEntitlementId;
-	
 	@Persistent
-	private Employee employee;
-	
+	private String employeeId; // one-to-one relationship with employee
 	@Persistent
 	private int year;
-	
 	@Persistent
-	private LeaveType leaveType;
-	
+	private String leaveTypeId; // foreign key to LeaveType
 	@Persistent
-	private double entitlement;
-	
+	private double entitled;
 	@Persistent
 	private double balance;
 	
-	public Employee getEmployee() {
-		return employee;
+	public String getLeaveEntitlementId() {
+		return leaveEntitlementId;
 	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setLeaveEntitlementId(String leaveEntitlementId) {
+		this.leaveEntitlementId = leaveEntitlementId;
+	}
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 	public int getYear() {
 		return year;
@@ -39,17 +40,17 @@ public class LeaveEntitlement {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public LeaveType getLeaveType() {
-		return leaveType;
+	public String getLeaveTypeId() {
+		return leaveTypeId;
 	}
-	public void setLeaveType(LeaveType leaveType) {
-		this.leaveType = leaveType;
+	public void setLeaveTypeId(String leaveTypeId) {
+		this.leaveTypeId = leaveTypeId;
 	}
-	public double getEntitlement() {
-		return entitlement;
+	public double getEntitled() {
+		return entitled;
 	}
-	public void setEntitlement(double entitlement) {
-		this.entitlement = entitlement;
+	public void setEntitled(double entitled) {
+		this.entitled = entitled;
 	}
 	public double getBalance() {
 		return balance;
@@ -57,14 +58,14 @@ public class LeaveEntitlement {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
-	public LeaveEntitlement(Employee employee, int year, LeaveType leaveType,
-			double entitlement, double balance) {
+	public LeaveEntitlement(String leaveEntitlementId, String employeeId,
+			int year, String leaveTypeId, double entitled, double balance) {
 		super();
-		this.employee = employee;
+		this.leaveEntitlementId = leaveEntitlementId;
+		this.employeeId = employeeId;
 		this.year = year;
-		this.leaveType = leaveType;
-		this.entitlement = entitlement;
+		this.leaveTypeId = leaveTypeId;
+		this.entitled = entitled;
 		this.balance = balance;
 	}
 	public LeaveEntitlement() {
