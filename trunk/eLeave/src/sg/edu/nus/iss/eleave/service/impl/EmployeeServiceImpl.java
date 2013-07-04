@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.eleave.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,11 +12,12 @@ import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 import sg.edu.nus.iss.eleave.exception.ServiceException;
+import sg.edu.nus.iss.eleave.service.CompanyService;
 import sg.edu.nus.iss.eleave.service.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService {
 	
-	private static Logger log = Logger.getLogger(EmployeeService.class.getCanonicalName());
+	private static Logger log = Logger.getLogger(EmployeeServiceImpl.class.getCanonicalName());
 	
 	private EmployeeDAO employeeDao = new EmployeeDAOImpl();
 
@@ -27,46 +29,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public Employee findEmployee(String companyId, String employeeId) throws ServiceException {
-		
-		try {
-			return employeeDao.findEmployee(companyId, employeeId);
-		} catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
+	public Employee findEmployee(String employeeId) throws ServiceException {
+		return employeeDao.findEmployeeById(employeeId);
 	}
 
 	@Override
-	public List<Employee> findAllEmployeesByCompany(Company company) throws ServiceException {
-		
-		try {
-			return employeeDao.findAllEmployeesByCompany(company);
-		} catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
+	public List<Employee> findAllEmployeesByCompany(String companyId) throws ServiceException {
+		return employeeDao.findAllEmployeesByCompany(companyId);
 	}
 
 	@Override
-	public List<Employee> findAllEmployeesByCompany(Company company, int offset) throws ServiceException {
-		try {
-			return employeeDao.findAllEmployeesByCompany(company, offset);
-		} catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
+	public List<Employee> findAllEmployeesByCompany(String companyId, int offset, int fetchSize) {
+		return employeeDao.findAllEmployeesByCompany(companyId, offset, fetchSize);
 	}
 
 	@Override
 	public boolean insertEmployee(Employee employee) throws ServiceException {
+		boolean isSuccessful = true;
 		try {
+			employee.setEmployeeId(UUID.randomUUID().toString());
 			employeeDao.insertEmployee(employee);
 		} catch (DAOException e) {
+			isSuccessful = false;
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
-		return true;
+		return isSuccessful;
 	}
 
 	@Override
@@ -77,7 +65,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
-
 	}
 
 	@Override
@@ -88,16 +75,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
-
 	}
 	
-	
-
 	@Override
-	public List<Employee> findAllEmployeesByDepartment(Department department)
-			throws ServiceException {
+	public List<Employee> findAllEmployeesByDepartment(String departmentId) throws ServiceException {
 		try {
-			return employeeDao.findAllEmployeesByDeparment(department);
+			return employeeDao.findAllEmployeesByDeparment(departmentId);
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
@@ -105,29 +88,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> findAllEmployeesByDepartment(Department department,
-			int offset) throws ServiceException {
-		try {
-			return employeeDao.findAllEmployeesByDeparment(department, offset);
-		} catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
+	public List<Employee> findAllEmployeesByDepartment(String departmentId, int offset, int fetchSize) throws ServiceException {
+		return employeeDao.findAllEmployeesByDeparment(departmentId, offset, fetchSize);
 	}
 	
-	
+	@Override
+	public List<Employee> findAllEmployeesBySupervisor(String supervisorId) {
+		return employeeDao.findAllEmployeesBySupervisor(supervisorId);
+	}
 
 	@Override
-	public List<Employee> findAllEmployeesBySupervisor(Employee supervisor)
-			throws ServiceException {
-		try {
-			return employeeDao.findAllEmployeeBySupervisor(supervisor);
-		} catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
+	public List<Employee> findAllEmployeesBySupervisor(String supervisorId, int offset, int fetchSize) throws ServiceException {
+		return employeeDao.findAllEmployeesBySupervisor(supervisorId, offset, fetchSize);
 	}
-
+	
 	public EmployeeDAO getEmployeeDao() {
 		return employeeDao;
 	}

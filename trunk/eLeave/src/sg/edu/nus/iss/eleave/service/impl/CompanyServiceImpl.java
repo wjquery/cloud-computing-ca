@@ -25,33 +25,25 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public List<Company> findAllCompanies() throws ServiceException {
-		try {
-			return companyDAO.findAllCompanies();
-		} catch (DAOException e) {
-			e.printStackTrace();
-			throw new ServiceException();
-		}
+		return companyDAO.findAllCompanies();
 	}
 
 	@Override
 	public Company findCompany(String companyId) throws ServiceException {
-		try {
-			return companyDAO.findCompany(companyId);
-		} catch (DAOException e) {
-			e.printStackTrace();
-			throw new ServiceException();
-		}
+		return companyDAO.findCompanyById(companyId);
 	}
 
 	@Override
 	public boolean insertCompany(Company company) throws ServiceException {
+		boolean isSuccessful = true;
 		try {
 			companyDAO.insertCompany(company);
 		} catch (DAOException e) {
+			isSuccessful = false;
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
-		return true;
+		return isSuccessful;
 	}
 
 }

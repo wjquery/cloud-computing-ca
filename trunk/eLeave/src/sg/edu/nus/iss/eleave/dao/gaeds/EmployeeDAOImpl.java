@@ -1,243 +1,161 @@
 package sg.edu.nus.iss.eleave.dao.gaeds;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.EntityNotFoundException;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-
 import sg.edu.nus.iss.eleave.dao.EmployeeDAO;
 import sg.edu.nus.iss.eleave.dto.Company;
-import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
-import sg.edu.nus.iss.eleave.dto.LeaveApplication;
 import sg.edu.nus.iss.eleave.exception.DAOException;
-import sun.util.logging.resources.logging;
+import sg.edu.nus.iss.eleave.service.CompanyService;
+
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 	
-	public static final String EMPLOYEE_KIND = "Employee";
-
+	private static Logger log = Logger.getLogger(EmployeeDAOImpl.class.getCanonicalName());
+	
 	@Override
-	public Employee findEmployee(String companyId, String employeeId)
-			throws DAOException {
-		Entity entity = this.getEmployee(companyId, employeeId);
+	public Employee findEmployeeById(String employeeId) {
+		Entity entity = getEmployee(employeeId);
 		if(entity != null) {
-			return this.buildEmployeeDTO(entity);
+			return buildEmployeeDTO(entity);
 		}
 		return null;
 	}
 
 	@Override
-	public List<Employee> findAllEmployees() throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, null, null);
+	public List<Employee> findAllEmployees() {
+		Iterable<Entity> entities = Util.listEntities(Employee.KIND, null, null);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(buildEmployeeDTO(entity));
+		}
+		return employees;
+	}
+
+	@Override
+	public List<Employee> findAllEmployeesByCompany(String companyId) {
+		Key ancestorKey = KeyFactory.createKey(Company.KIND, companyId); 
+		Iterable<Entity> entities = Util.listChildren(Employee.KIND, ancestorKey);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(buildEmployeeDTO(entity));
+		}
+		return employees;
+	}
+
+	@Override
+	public List<Employee> findAllEmployeesByCompany(String companyId, int offset, int fetchSize) {
+		return findAllEmployeesByCompany(companyId).subList(offset, offset + fetchSize + 1);
+	}
+
+	@Override
+	public List<Employee> findAllEmployeesByDeparment(String departmentId) {
+		Iterable<Entity> entities = Util.listEntities(Employee.KIND, "departmentId", departmentId);
+		List<Employee> employees = new ArrayList<Employee>();
+		for(Entity entity : entities) {
+			employees.add(buildEmployeeDTO(entity));
+		}
+		return employees;
+	}
+
+	@Override
+	public List<Employee> findAllEmployeesByDeparment(String departmentId, int offset, int fetchSize) {
+		return findAllEmployeesByDeparment(departmentId).subList(offset, offset + fetchSize + 1);
+	}
+
+	@Override
+	public List<Employee> findAllEmployeesBySupervisor(String supervisorId) {
+		Iterable<Entity> entities = Util.listEntities(Employee.KIND, "supervisorId", supervisorId);
 		List<Employee> employees = new ArrayList<Employee>();
 		for(Entity entity : entities) {
 			employees.add(this.buildEmployeeDTO(entity));
 		}
 		return employees;
 	}
-
+	
 	@Override
-	public List<Employee> findAllEmployeesByCompany(Company company)
-			throws DAOException {
-//		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", company);
-//		List<Employee> employees = new ArrayList<Employee>();
-//		for(Entity entity : entities) {
-//			employees.add(this.buildEmployeeDTO(entity));
-//		}
-		
-//		Iterable<Entity> list = Util.listEntities("Company", "name", "nus");
-//		List<Entity> c = new ArrayList<Entity>();
-//		for (Entity e : list) {
-//			c.add(e);
-//		}
-//		Entity co = c.get(0);
-		Key co = KeyFactory.createKey("Company", "nus");
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", "nus");
-		List<Employee> employees = new ArrayList<Employee>();
-		for(Entity entity : entities) {
-			employees.add(this.buildEmployeeDTO(entity));
-		}
-		
-		return employees;
-	}
-
-	@Override
-	public List<Employee> findAllEmployeesByCompany(Company company, int offset)
-			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", "");
-		List<Employee> employees = new ArrayList<Employee>();
-		for(Entity entity : entities) {
-			employees.add(this.buildEmployeeDTO(entity));
-		}
-		return employees;
-	}
-
-	@Override
-	public List<Employee> findAllEmployeesByDeparment(Department department)
-			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", "");
-		List<Employee> employees = new ArrayList<Employee>();
-		for(Entity entity : entities) {
-			employees.add(this.buildEmployeeDTO(entity));
-		}
-		return employees;
-	}
-
-	@Override
-	public List<Employee> findAllEmployeesByDeparment(Department department,
-			int offset) throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", "");
-		List<Employee> employees = new ArrayList<Employee>();
-		for(Entity entity : entities) {
-			employees.add(this.buildEmployeeDTO(entity));
-		}
-		return employees;
-	}
-
-	@Override
-	public List<Employee> findAllEmployeeBySupervisor(Employee supervisor)
-			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "supervisors", "");
-		List<Employee> employees = new ArrayList<Employee>();
-		for(Entity entity : entities) {
-			employees.add(this.buildEmployeeDTO(entity));
-		}
-		return employees;
+	public List<Employee> findAllEmployeesBySupervisor(String supervisorId, int offset, int fetchSize) {
+		return findAllEmployeesBySupervisor(supervisorId).subList(offset, offset + fetchSize + 1);
 	}
 
 	@Override
 	public void insertEmployee(Employee employee) throws DAOException {
-		//Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
-		Iterable<Entity> list = Util.listEntities("Company", "name", employee.getCompanyId());
-		List<Entity> c = new ArrayList<Entity>();
-		for (Entity e : list) {
-			c.add(e);
-		}
-		Entity company = c.get(0);
+		Key companyKey = KeyFactory.createKey(Company.KIND, employee.getCompanyId());
+		Entity e = new Entity(Employee.KIND, employee.getEmployeeId(), companyKey);
+		e.setProperty("employeeId", employee.getEmployeeId());
+		e.setProperty("companyId", employee.getCompanyId());
 		
-		Entity p = new Entity(EMPLOYEE_KIND, employee.getEmployeeId(), company.getKey());
-//		if(employee.getDeparment()!=null){
-//			//p.setProperty("department", employee.getDeparment());
-//			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
-//					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
-//					.getKey();
-//			p.setProperty("department", department);
-//		}
-		
-		//p.setProperty("company", employee.getCompany());
-//		p.setProperty("company", employee.getCompany().getCompanyId());
-		p.setProperty("employeeId", employee.getEmployeeId());
-		p.setProperty("designation", employee.getDesignation());
-		p.setProperty("email", employee.getEmail());
-		p.setProperty("joinDate", employee.getJoinDate());
-		p.setProperty("name", employee.getName());
-		p.setProperty("password", employee.getPassword());
-		p.setProperty("username", employee.getUsername());
-		p.setProperty("userrole", employee.getUserrole());
-		Util.persistEntity(p);
-
+		e.setProperty("name", employee.getName());
+		e.setProperty("designation", employee.getDesignation());
+		e.setProperty("departmentId", employee.getDeparmentId());
+		e.setProperty("supervisorId", employee.getSupervisorId());
+		e.setProperty("joinDate", employee.getJoinDate());
+		e.setProperty("resignDate", employee.getResignDate());
+		e.setProperty("userrole", employee.getUserrole());
+		e.setProperty("email", employee.getEmail());
+		e.setProperty("password", employee.getPassword());
+		e.setProperty("username", employee.getUsername());
+		e.setProperty("isCurrent", employee.isCurrent());
+		Util.persistEntity(e);
 	}
 
 	@Override
 	public void updateEmployee(Employee employee) throws DAOException {
-//		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
-//		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
-//		if(employee.getDeparment()!=null){
-//			//p.setProperty("department", employee.getDeparment());
-//			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
-//					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
-//					.getKey();
-//			p.setProperty("department", department);
-//		}
-//		//p.setProperty("company", employee.getCompany());
-//		p.setProperty("designation", employee.getDesignation());
-//		p.setProperty("email", employee.getEmail());
-//		p.setProperty("employeeId", employee.getEmployeeId());
-//		p.setProperty("joinDate", employee.getJoinDate());
-//		p.setProperty("name", employee.getName());
-//		p.setProperty("password", employee.getPassword());
-//		p.setProperty("username", employee.getUsername());
-//		p.setProperty("userrole", employee.getUserrole());
-//		Util.persistEntity(p);
-
+		
+		Entity e = getEmployee(employee.getEmployeeId());
+		
+		e.setProperty("name", employee.getName());
+		e.setProperty("designation", employee.getDesignation());
+		e.setProperty("departmentId", employee.getDeparmentId());
+		e.setProperty("supervisorId", employee.getSupervisorId());
+		e.setProperty("joinDate", employee.getJoinDate());
+		e.setProperty("resignDate", employee.getResignDate());
+		e.setProperty("userrole", employee.getUserrole());
+		e.setProperty("email", employee.getEmail());
+		e.setProperty("password", employee.getPassword());
+		e.setProperty("username", employee.getUsername());
+		e.setProperty("isCurrent", employee.isCurrent());
+		Util.persistEntity(e);
 	}
 
 	@Override
 	public void deleteEmployee(Employee employee) throws DAOException {
-		Entity entity = this.getEmployee(employee.getCompanyId(), employee.getEmployeeId());
+		Entity entity = getEmployee(employee.getEmployeeId());
 		if(entity != null) {
 			Util.deleteEntity(entity.getKey());
 		}
-
 	}
 	
-	@Override
-	public boolean addSupervisor(Employee employee, Employee supervisor)
-			throws DAOException {
-		Entity entity = this.getEmployee(employee.getCompanyId(), employee.getEmployeeId());
-		if(entity != null) {
-			List<Key> supervisors = (List<Key>) entity.getProperty("supervisors");
-			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompanyId())
-				.addChild(EMPLOYEE_KIND, supervisor.getEmployeeId()).getKey();
-			supervisors.add(sKey);
-			entity.setProperty("supervisors", supervisors);
-			Util.persistEntity(entity);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean removeSupervisor(Employee employee, Employee supervisor)
-			throws DAOException {
-		Entity entity = this.getEmployee(employee.getCompanyId(), employee.getEmployeeId());
-		if(entity != null) {
-			List<Key> supervisors = (List<Key>) entity.getProperty("supervisors");
-			Key sKey = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, supervisor.getCompanyId())
-				.addChild(EMPLOYEE_KIND, supervisor.getEmployeeId()).getKey();
-			supervisors.remove(sKey);
-			entity.setProperty("supervisors", supervisors);
-			Util.persistEntity(entity);
-			return true;
-		}
-		return false;
-	}
-
-	private Entity getEmployee(String companyId,String employeeId){
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, companyId);
-		Key key = KeyFactory.createKey(parent, EMPLOYEE_KIND, employeeId);
-		try {
-			return Util.getDatastoreServiceInstance().get(key);
-		} catch (EntityNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		}
+	private Entity getEmployee(String employeeId){
+		Key key = KeyFactory.createKey(Employee.KIND, employeeId);
+		return Util.findEntity(key);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public Employee buildEmployeeDTO(Entity entity){
 		Employee p = new Employee();
-		//p.setCurrent((Boolean) entity.getProperty("isCurrent"));
-		//p.setDeparment((Department) entity.getProperty("department"));
-		p.setDesignation((String) entity.getProperty("designation"));
-		p.setEmail((String) entity.getProperty("email"));
 		p.setEmployeeId((String) entity.getProperty("employeeId"));
 		p.setName((String) entity.getProperty("name"));
-		//TODO refine
-		p.setPassword((String) entity.getProperty("password"));
-		//TODO, should we retrieve the real Object or just pass key?
-		//p.setSupervisors((List<Employee>) entity.getProperty("supervisors"));
-		p.setUsername((String) entity.getProperty("username"));
+		p.setCompanyId((String) entity.getProperty("companyId"));
+		p.setDeparmentId((String) entity.getProperty("departmentId"));
+		p.setDesignation((String) entity.getProperty("designation"));
+		p.setSupervisorId((String) entity.getProperty("supervisorId"));
+		p.setJoinDate((Date) entity.getProperty("joinDate"));
+		p.setResignDate((Date) entity.getProperty("joinDate"));
+		p.setEmail((String) entity.getProperty("email"));
 		p.setUserrole((String) entity.getProperty("userrole"));
-		
+		p.setUsername((String) entity.getProperty("username"));
+		p.setPassword((String) entity.getProperty("password"));
+		p.setCurrent((Boolean) entity.getProperty("isCurrent"));
 		return p;
 	}
 

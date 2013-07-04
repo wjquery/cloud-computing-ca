@@ -8,4 +8,4 @@ in struts.xml, add:
 
 Problem: Error 500 null when saving new entity
 Solution:
-1) check DAO, make sure entity has all required properties
+1) check DAO, make sure entity has all required properties set, especially id(key) cannot be empty or null

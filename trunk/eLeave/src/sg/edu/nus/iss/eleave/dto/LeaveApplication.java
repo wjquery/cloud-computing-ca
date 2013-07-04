@@ -15,6 +15,7 @@ public class LeaveApplication {
 	public static final String REJECTED = "rejected";
 	public static final String CANCELLED = "cancelled";
 	public static final String EXPIRED = "expired";
+	public static final String KIND = "LeaveApplication";
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)

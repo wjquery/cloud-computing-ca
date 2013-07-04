@@ -9,14 +9,16 @@ import sg.edu.nus.iss.eleave.exception.ServiceException;
 
 public interface EmployeeService {
 	public boolean validateUser(String companyId, String username, String password);
-	public Employee findEmployee(String companyId, String employeeId) throws ServiceException;
-    public List<Employee> findAllEmployeesByCompany(Company company) throws ServiceException;
-    public List<Employee> findAllEmployeesByCompany(Company company,int offset) throws ServiceException;
+	public Employee findEmployee(String employeeId) throws ServiceException;
+    public List<Employee> findAllEmployeesByCompany(String companyId) throws ServiceException;
+    public List<Employee> findAllEmployeesByCompany(String companyId,int offset, int fetchSize) throws ServiceException;
     
-    public List<Employee> findAllEmployeesByDepartment(Department department) throws ServiceException;
-    public List<Employee> findAllEmployeesByDepartment(Department department, int offset) throws ServiceException;
+    public List<Employee> findAllEmployeesByDepartment(String departmentId) throws ServiceException;
+    public List<Employee> findAllEmployeesByDepartment(String departmentId, int offset, int fetchSize) throws ServiceException;
     
-    public List<Employee> findAllEmployeesBySupervisor(Employee supervisor) throws ServiceException;
+    public List<Employee> findAllEmployeesBySupervisor(String supervisorId) throws ServiceException;
+    public List<Employee> findAllEmployeesBySupervisor(String supervisorId, int offset, int fetchSize) throws ServiceException;
+    
     public boolean insertEmployee(Employee employee) throws ServiceException;
     public void updateEmployee(Employee employee) throws ServiceException;
     public void deleteEmployee(Employee employee) throws ServiceException;
