@@ -22,6 +22,7 @@ a:hover   { color: #ff0000; text-decoration: underline }
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 					<%@include file="/shared/menu.jsp"%>
+					<form action="/employee/create.jsp" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
@@ -34,8 +35,15 @@ a:hover   { color: #ff0000; text-decoration: underline }
 									<td>Software Engineer</td>
 									<td>01/01/2013</td>
 								</tr>
+								<tr class="overview-item">
+									<td/><td/>
+									<td>
+										<input type="submit" value="Add New Employee" class="sbutton" />
+									</td>
+								</tr>
 							</tbody>
 						</table>
+					</form>
 						${employees[0].username}
 				</div>
 			</td>

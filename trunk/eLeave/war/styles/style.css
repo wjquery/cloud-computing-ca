@@ -1677,12 +1677,12 @@ tr.row_selected {
 div.ui-datepicker,.ui-datepicker td {
 	font-size: 10px;
 }
-form td
+form.new td
 {
 	vertical-align: top;
 	text-align: left;
 }
-form td:first-child
+form.new td:first-child
 {
 	text-align: right;
 }

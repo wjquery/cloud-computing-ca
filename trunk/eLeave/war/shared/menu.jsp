@@ -34,7 +34,7 @@ $(function() {
 	});
 	
 	$("#employees").click(function() {
-		window.location = "/employee/create.jsp";			
+		window.location = "/employee/findAll";			
 	});
 	
 	$("#departments").click(function() {

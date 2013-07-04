@@ -14,14 +14,14 @@
 		</action>
 	</package>
 	
-	<package name="company" extends="struts-default">
+	<package name="company" namespace="/company" extends="struts-default">
 		<action name="insert" class="sg.edu.nus.iss.eleave.controller.CompanyAction" method="insert">
 			<result name="success" type="redirect">/employee/create.jsp</result>
 			<result name="input">/company/signUp.jsp</result>
 		</action>
 	</package>
 	
-	<package name="employee" extends="struts-default">
+	<package name="employee" namespace="/employee" extends="struts-default">
 		<action name="insert" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="insert">
 			<result name="success" type="redirectAction">
 				<param name="actionName">findAll</param>
@@ -29,7 +29,7 @@
 			<result name="input">/employee/create.jsp</result>
 		</action>
 		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="findAll">
-			<result name="success">/employee/list.jsp</result>
+			<result name="success" type="redirect">/employee/list.jsp</result>
 		</action>
 	</package>
 	

@@ -61,6 +61,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 		p.setProperty("address",company.getAddress());
 		p.setProperty("contactNo",company.getContactNo());
 		p.setProperty("countryCode",company.getCountryCode());
+		p.setProperty("subscriptionType", company.getSubcriptionType());
 		Util.persistEntity(p);
 		
 	}
@@ -91,6 +92,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 		p.setAddress(entity.getProperty("address").toString());
 		p.setContactNo(entity.getProperty("contactNo").toString());
 		p.setCountryCode(entity.getProperty("countryCode").toString());
+		p.setSubcriptionType(entity.getProperty("subscriptionType").toString());
 		return p;
 	}
 

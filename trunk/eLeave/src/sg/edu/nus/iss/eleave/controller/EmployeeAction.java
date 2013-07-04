@@ -23,10 +23,10 @@ public class EmployeeAction extends ActionSupport {
 	}
 	
 	public String findAll() throws Exception {
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		Company company = (Company) session.getAttribute("company");
-		List<Employee> employees = employeeService.findAllEmployeesByCompany(company);
-		session.setAttribute("employees", employees);
+//		HttpSession session = ServletActionContext.getRequest().getSession();
+//		Company company = (Company) session.getAttribute("company");
+//		List<Employee> employees = employeeService.findAllEmployeesByCompany(company);
+//		session.setAttribute("employees", employees);
 		return SUCCESS;
 	}
 }

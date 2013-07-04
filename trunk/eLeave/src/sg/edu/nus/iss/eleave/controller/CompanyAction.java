@@ -75,13 +75,14 @@ public class CompanyAction extends ActionSupport {
 		employee.setCompany(company);
 		
 		if (companyService.insertCompany(company)) {
-			if (employeeService.insertEmployee(employee)) {
-				HttpSession session = ServletActionContext.getRequest().getSession();
-				session.setAttribute("companyId", companyCode);
-				session.setAttribute("company", company);
-				session.setAttribute("employeeName", username);
-				return SUCCESS;
-			}
+//			if (employeeService.insertEmployee(employee)) {
+//				HttpSession session = ServletActionContext.getRequest().getSession();
+//				session.setAttribute("companyId", companyCode);
+//				session.setAttribute("company", company);
+//				session.setAttribute("employeeName", username);
+//				return SUCCESS;
+//			}
+			return SUCCESS;
 		}
 		return INPUT;
 	}
