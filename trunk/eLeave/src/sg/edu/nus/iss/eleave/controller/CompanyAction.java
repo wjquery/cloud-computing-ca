@@ -73,7 +73,7 @@ public class CompanyAction extends ActionSupport {
 		employee.setUsername(username);
 		employee.setPassword(password);
 		employee.setUserrole(Employee.ADMIN);
-		employee.setCompany(company);
+		employee.setCompanyId("nus");
 		
 		if (companyService.insertCompany(company)) {
 			if (employeeService.insertEmployee(employee)) {

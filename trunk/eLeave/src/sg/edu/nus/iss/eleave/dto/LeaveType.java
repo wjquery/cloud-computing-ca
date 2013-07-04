@@ -11,12 +11,12 @@ public class LeaveType {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String leaveTypeId;
-	
 	@Persistent
 	private String name;
-	
 	@Persistent
 	private double defaultEntitlement;
+	@Persistent
+	private String companyId;
 	
 	public String getLeaveTypeId() {
 		return leaveTypeId;
@@ -36,15 +36,23 @@ public class LeaveType {
 	public void setDefaultEntitlement(double defaultEntitlement) {
 		this.defaultEntitlement = defaultEntitlement;
 	}
-	
-	public LeaveType() {
-		super();
+	public String getCompanyId() {
+		return companyId;
 	}
-	public LeaveType(String leaveTypeId, String name, double defaultEntitlement) {
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+	
+	public LeaveType(String leaveTypeId, String name,
+			double defaultEntitlement, String companyId) {
 		super();
 		this.leaveTypeId = leaveTypeId;
 		this.name = name;
 		this.defaultEntitlement = defaultEntitlement;
+		this.companyId = companyId;
+	}
+	public LeaveType() {
+		super();
 	}
 	
 }

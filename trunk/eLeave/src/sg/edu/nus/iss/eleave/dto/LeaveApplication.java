@@ -10,51 +10,39 @@ import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable
 public class LeaveApplication {
 	
+	public static final String PENDING = "pending";
+	public static final String APPROVED = "approved";
+	public static final String REJECTED = "rejected";
+	public static final String CANCELLED = "cancelled";
+	public static final String EXPIRED = "expired";
+	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private String applicationId;
-	
 	@Persistent
-	private LeaveType type;
-	
+	private String leaveTypeId;
 	@Persistent
 	private Date fromDate;
-	
 	@Persistent
 	private Date toDate;
-	
 	@Persistent
 	private double days;
-	
 	@Persistent
 	private String reason;
-	
-	@Persistent
-	private String contactDetail;
-	
 	@Persistent
 	private String status;
-	
 	@Persistent
 	private Date applyDate;
-	
 	@Persistent
 	private Date modifyDate;
-	
 	@Persistent
 	private Date processDate;
-	
 	@Persistent
-	private Employee applicant;
-	
+	private String applicantId;
 	@Persistent
-	private Employee approvedBy;
-	
+	private String processedById;
 	@Persistent
 	private String processComment;
-	
-	@Persistent
-	private Company company;
 	
 	public String getApplicationId() {
 		return applicationId;
@@ -62,11 +50,11 @@ public class LeaveApplication {
 	public void setApplicationId(String applicationId) {
 		this.applicationId = applicationId;
 	}
-	public LeaveType getType() {
-		return type;
+	public String getLeaveTypeId() {
+		return leaveTypeId;
 	}
-	public void setType(LeaveType type) {
-		this.type = type;
+	public void setLeaveTypeId(String leaveTypeId) {
+		this.leaveTypeId = leaveTypeId;
 	}
 	public Date getFromDate() {
 		return fromDate;
@@ -92,12 +80,6 @@ public class LeaveApplication {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public String getContactDetail() {
-		return contactDetail;
-	}
-	public void setContactDetail(String contactDetail) {
-		this.contactDetail = contactDetail;
-	}
 	public String getStatus() {
 		return status;
 	}
@@ -122,11 +104,17 @@ public class LeaveApplication {
 	public void setProcessDate(Date processDate) {
 		this.processDate = processDate;
 	}
-	public Employee getApprovedBy() {
-		return approvedBy;
+	public String getApplicantId() {
+		return applicantId;
 	}
-	public void setApprovedBy(Employee approvedBy) {
-		this.approvedBy = approvedBy;
+	public void setApplicantId(String applicantId) {
+		this.applicantId = applicantId;
+	}
+	public String getProcessedById() {
+		return processedById;
+	}
+	public void setProcessedById(String processedById) {
+		this.processedById = processedById;
 	}
 	public String getProcessComment() {
 		return processComment;
@@ -135,40 +123,27 @@ public class LeaveApplication {
 		this.processComment = processComment;
 	}
 	
-	public LeaveApplication() {
-		super();
-	}
-	public LeaveApplication(String applicationId, LeaveType type,
+	public LeaveApplication(String applicationId, String leaveTypeId,
 			Date fromDate, Date toDate, double days, String reason,
-			String contactDetail, String status, Date applyDate,
-			Date modifyDate, Date processDate, Employee approvedBy,
-			String processComment) {
+			String status, Date applyDate, Date modifyDate, Date processDate,
+			String applicantId, String processedById, String processComment) {
 		super();
 		this.applicationId = applicationId;
-		this.type = type;
+		this.leaveTypeId = leaveTypeId;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
 		this.days = days;
 		this.reason = reason;
-		this.contactDetail = contactDetail;
 		this.status = status;
 		this.applyDate = applyDate;
 		this.modifyDate = modifyDate;
 		this.processDate = processDate;
-		this.approvedBy = approvedBy;
+		this.applicantId = applicantId;
+		this.processedById = processedById;
 		this.processComment = processComment;
 	}
-	public Employee getApplicant() {
-		return applicant;
-	}
-	public void setApplicant(Employee applicant) {
-		this.applicant = applicant;
-	}
-	public Company getCompany() {
-		return company;
-	}
-	public void setCompany(Company company) {
-		this.company = company;
+	public LeaveApplication() {
+		super();
 	}
 	
 }
