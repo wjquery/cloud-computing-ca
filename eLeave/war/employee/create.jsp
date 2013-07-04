@@ -58,6 +58,10 @@
 									<td><input name="email" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
+									<td>User Role:</td>
+									<td><input type="text" /></td>
+								</tr>
+								<tr class="overview-item">
 									<td>Username:</td>
 									<td><input type="text" /></td>
 								</tr>

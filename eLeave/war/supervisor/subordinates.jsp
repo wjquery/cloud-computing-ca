@@ -53,7 +53,7 @@ a:hover {
 								<td>15/07/2013</td>
 								<td>17/07/2013</td>
 								<td>3</td>
-								<td><a href="/supervisor/viewdetail.jsp?id=3">Detail</a></td>
+								<td><a href="/supervisor/viewdetail.jsp?id=3">Details</a></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Lim Ah Thet</td>
@@ -61,7 +61,7 @@ a:hover {
 								<td>01/07/2013</td>
 								<td>01/07/2013</td>
 								<td>1</td>
-								<td><a href="/supervisor/viewdetail.jsp?id=2">Detail</a></td>
+								<td><a href="/supervisor/viewdetail.jsp?id=2">Details</a></td>
 							</tr>
 							<tr class="overview-item">
 								<td>Alvin Ng</td>
@@ -69,7 +69,7 @@ a:hover {
 								<td>25/06/2013</td>
 								<td>26/06/2013</td>
 								<td>2</td>
-								<td><a href="/supervisor/viewdetail.jsp?id=1">Detail</a></td>
+								<td><a href="/supervisor/viewdetail.jsp?id=1">Details</a></td>
 							</tr>
 						</tbody>
 					</table>
