@@ -1,33 +1,22 @@
 package sg.edu.nus.iss.eleave.dto;
 
-import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-
 
 @PersistenceCapable
 public class Department {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    @Extension(vendorName="datanucleus", key="gae.encoded-pk", value="true")
-	private String encodedKey;
-	
-	
-	@Persistent
-    @Extension(vendorName="datanucleus", key="gae.pk-name", value="true")
 	private String departmentId;
-	
 	@Persistent
 	private String name;
-	
 	@Persistent
-	private Employee departmentHead;
-	
+	private String departmentHeadId;
 	@Persistent
-	private Company company;
+	private String companyId;
 	
 	public String getDepartmentId() {
 		return departmentId;
@@ -41,35 +30,27 @@ public class Department {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Employee getDepartmentHead() {
-		return departmentHead;
+	public String getDepartmentHeadId() {
+		return departmentHeadId;
 	}
-	public void setDepartmentHead(Employee departmentHead) {
-		this.departmentHead = departmentHead;
+	public void setDepartmentHead(String departmentHeadId) {
+		this.departmentHeadId = departmentHeadId;
 	}
-	public Company getCompany() {
-		return company;
+	public String getCompanyId() {
+		return companyId;
 	}
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
-	
-	public Department() {
-		super();
-	}
-	public Department(String departmentId, String name,
-			Employee departmentHead, Company company) {
+	public Department(String departmentId, String name, String departmentHeadId,
+			String companyId) {
 		super();
 		this.departmentId = departmentId;
 		this.name = name;
-		this.departmentHead = departmentHead;
-		this.company = company;
+		this.departmentHeadId = departmentHeadId;
+		this.companyId = companyId;
 	}
-	public String getEncodedKey() {
-		return encodedKey;
+	public Department() {
+		super();
 	}
-	public void setEncodedKey(String encodedKey) {
-		this.encodedKey = encodedKey;
-	}
-	
 }

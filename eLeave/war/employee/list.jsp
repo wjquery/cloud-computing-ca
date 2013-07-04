@@ -43,7 +43,9 @@
 							</tbody>
 						</table>
 					</form>
-						${employees[0].username}
+						username: ${employees[0].username}<br>
+						name: ${employees[0].name}<br>
+						designation: ${employees[0].designation}
 				</div>
 			</td>
 		</tr>

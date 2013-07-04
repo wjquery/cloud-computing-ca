@@ -37,6 +37,10 @@
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
+									<td>Employee ID:</td>
+									<td><input name="employeeId" type="text" /></td>
+								</tr>
+								<tr class="overview-item">
 									<td>Employee Name:</td>
 									<td><input name="name" type="text" /></td>
 								</tr>
@@ -59,19 +63,19 @@
 								</tr>
 								<tr class="overview-item">
 									<td>User Role:</td>
-									<td><input type="text" /></td>
+									<td><input name="userrole" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Username:</td>
-									<td><input type="text" /></td>
+									<td><input name="username" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Password:</td>
-									<td><input type="password" /></td>
+									<td><input name="password" type="password" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reenter Password:</td>
-									<td><input type="password" /></td>
+									<td><input name="repassword" type="password" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td />

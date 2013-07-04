@@ -2,6 +2,8 @@ package sg.edu.nus.iss.eleave.dao.gaeds;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
@@ -14,6 +16,7 @@ import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.dto.LeaveApplication;
 import sg.edu.nus.iss.eleave.exception.DAOException;
+import sun.util.logging.resources.logging;
 
 
 
@@ -44,18 +47,32 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public List<Employee> findAllEmployeesByCompany(Company company)
 			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", company);
+//		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", company);
+//		List<Employee> employees = new ArrayList<Employee>();
+//		for(Entity entity : entities) {
+//			employees.add(this.buildEmployeeDTO(entity));
+//		}
+		
+//		Iterable<Entity> list = Util.listEntities("Company", "name", "nus");
+//		List<Entity> c = new ArrayList<Entity>();
+//		for (Entity e : list) {
+//			c.add(e);
+//		}
+//		Entity co = c.get(0);
+		Key co = KeyFactory.createKey("Company", "nus");
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", "nus");
 		List<Employee> employees = new ArrayList<Employee>();
 		for(Entity entity : entities) {
 			employees.add(this.buildEmployeeDTO(entity));
 		}
+		
 		return employees;
 	}
 
 	@Override
 	public List<Employee> findAllEmployeesByCompany(Company company, int offset)
 			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", company, offset);
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "company", "");
 		List<Employee> employees = new ArrayList<Employee>();
 		for(Entity entity : entities) {
 			employees.add(this.buildEmployeeDTO(entity));
@@ -66,7 +83,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public List<Employee> findAllEmployeesByDeparment(Department department)
 			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", department);
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", "");
 		List<Employee> employees = new ArrayList<Employee>();
 		for(Entity entity : entities) {
 			employees.add(this.buildEmployeeDTO(entity));
@@ -77,7 +94,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public List<Employee> findAllEmployeesByDeparment(Department department,
 			int offset) throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", department, offset);
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "department", "");
 		List<Employee> employees = new ArrayList<Employee>();
 		for(Entity entity : entities) {
 			employees.add(this.buildEmployeeDTO(entity));
@@ -88,7 +105,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public List<Employee> findAllEmployeeBySupervisor(Employee supervisor)
 			throws DAOException {
-		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "supervisors", supervisor);
+		Iterable<Entity> entities = Util.listEntities(EMPLOYEE_KIND, "supervisors", "");
 		List<Employee> employees = new ArrayList<Employee>();
 		for(Entity entity : entities) {
 			employees.add(this.buildEmployeeDTO(entity));
@@ -98,21 +115,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void insertEmployee(Employee employee) throws DAOException {
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
-		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
-		if(employee.getDeparment()!=null){
-			//p.setProperty("department", employee.getDeparment());
-			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
-					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
-					.getKey();
-			p.setProperty("department", department);
+		//Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
+		Iterable<Entity> list = Util.listEntities("Company", "name", employee.getCompany().getName());
+		List<Entity> c = new ArrayList<Entity>();
+		for (Entity e : list) {
+			c.add(e);
 		}
+		Entity company = c.get(0);
+		
+		Entity p = new Entity(EMPLOYEE_KIND, employee.getEmployeeId(), company.getKey());
+//		if(employee.getDeparment()!=null){
+//			//p.setProperty("department", employee.getDeparment());
+//			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
+//					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
+//					.getKey();
+//			p.setProperty("department", department);
+//		}
 		
 		//p.setProperty("company", employee.getCompany());
-		p.setProperty("company", parent);
+		p.setProperty("company", employee.getCompany().getCompanyId());
+		p.setProperty("employeeId", employee.getEmployeeId());
 		p.setProperty("designation", employee.getDesignation());
 		p.setProperty("email", employee.getEmail());
-		p.setProperty("employeeId", employee.getEmployeeId());
 		p.setProperty("joinDate", employee.getJoinDate());
 		p.setProperty("name", employee.getName());
 		p.setProperty("password", employee.getPassword());
@@ -124,25 +148,25 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void updateEmployee(Employee employee) throws DAOException {
-		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
-		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
-		if(employee.getDeparment()!=null){
-			//p.setProperty("department", employee.getDeparment());
-			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
-					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
-					.getKey();
-			p.setProperty("department", department);
-		}
-		//p.setProperty("company", employee.getCompany());
-		p.setProperty("designation", employee.getDesignation());
-		p.setProperty("email", employee.getEmail());
-		p.setProperty("employeeId", employee.getEmployeeId());
-		p.setProperty("joinDate", employee.getJoinDate());
-		p.setProperty("name", employee.getName());
-		p.setProperty("password", employee.getPassword());
-		p.setProperty("username", employee.getUsername());
-		p.setProperty("userrole", employee.getUserrole());
-		Util.persistEntity(p);
+//		Key parent = KeyFactory.createKey(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId());
+//		Entity p = new Entity(EMPLOYEE_KIND,employee.getEmployeeId(), parent);
+//		if(employee.getDeparment()!=null){
+//			//p.setProperty("department", employee.getDeparment());
+//			Key department = new KeyFactory.Builder(CompanyDAOImpl.COMPANY_KIND, employee.getCompany().getCompanyId())
+//					.addChild(DepartmentDAOImpl.DEPARTMENT_KIND, employee.getDeparment().getDepartmentId())
+//					.getKey();
+//			p.setProperty("department", department);
+//		}
+//		//p.setProperty("company", employee.getCompany());
+//		p.setProperty("designation", employee.getDesignation());
+//		p.setProperty("email", employee.getEmail());
+//		p.setProperty("employeeId", employee.getEmployeeId());
+//		p.setProperty("joinDate", employee.getJoinDate());
+//		p.setProperty("name", employee.getName());
+//		p.setProperty("password", employee.getPassword());
+//		p.setProperty("username", employee.getUsername());
+//		p.setProperty("userrole", employee.getUserrole());
+//		Util.persistEntity(p);
 
 	}
 
