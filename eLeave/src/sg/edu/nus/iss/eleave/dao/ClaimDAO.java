@@ -8,10 +8,16 @@ import sg.edu.nus.iss.eleave.dto.Claim;
 
 public interface ClaimDAO {
 	
-	public Claim findClaim(String CompanyId, String claimId) throws DAOException;
+    public Claim findClaim(String CompanyId, String claimId) throws DAOException;
     public List<Claim> findAllClaimsByCompany(String companyId) throws DAOException;
+    
+    public List<Claim> findClaimByManager(String managerId) throws DAOException;
+    public List<Claim> findClaimByManager(String managerId, int month) throws DAOException;
+    
     public List<Claim> findAllClaims(String companyId, int offset) throws DAOException;
     public void insertClaim(Claim claim) throws DAOException;
     public void updateClaim(Claim claim) throws DAOException;
     public void deleteClaim(Claim claim) throws DAOException;
+    
+    
 }
