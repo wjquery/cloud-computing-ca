@@ -3,7 +3,6 @@ package sg.edu.nus.iss.eleave.dao.gaeds;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,24 +10,23 @@ import sg.edu.nus.iss.eleave.dao.EmployeeDAO;
 import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.exception.DAOException;
-import sg.edu.nus.iss.eleave.service.CompanyService;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
-
-
 public class EmployeeDAOImpl implements EmployeeDAO {
-	
 	private static Logger log = Logger.getLogger(EmployeeDAOImpl.class.getCanonicalName());
 	
 	@Override
 	public Employee findEmployeeById(String employeeId) {
-		Entity entity = getEmployee(employeeId);
-		if(entity != null) {
-			return buildEmployeeDTO(entity);
+		Entity entity = Util.findFirstMatch(Employee.KIND, "employeeId", employeeId);
+		if (entity != null) {
+			Employee employee = buildEmployeeDTO(entity);
+			log.log(Level.INFO, "Employee found: " + employee.getName());
+			return employee;
 		}
+		log.log(Level.INFO, "Employee not found for Id: " + employeeId);
 		return null;
 	}
 
@@ -91,7 +89,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public void insertEmployee(Employee employee) throws DAOException {
 		Key companyKey = KeyFactory.createKey(Company.KIND, employee.getCompanyId());
-		Entity e = new Entity(Employee.KIND, employee.getEmployeeId(), companyKey);
+		log.log(Level.INFO, "Adding employee for company: " + companyKey.getName());
+		Entity e = new Entity(Employee.KIND, companyKey);
 		e.setProperty("employeeId", employee.getEmployeeId());
 		e.setProperty("companyId", employee.getCompanyId());
 		
@@ -106,13 +105,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		e.setProperty("password", employee.getPassword());
 		e.setProperty("username", employee.getUsername());
 		e.setProperty("isCurrent", employee.isCurrent());
+		log.log(Level.INFO, "Employee: " + e.getKey().getName());
 		Util.persistEntity(e);
 	}
 
 	@Override
 	public void updateEmployee(Employee employee) throws DAOException {
 		
-		Entity e = getEmployee(employee.getEmployeeId());
+		Entity e = Util.findFirstMatch(Employee.KIND, "employeeId", employee.getEmployeeId());
 		
 		e.setProperty("name", employee.getName());
 		e.setProperty("designation", employee.getDesignation());
@@ -141,7 +141,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return Util.findEntity(key);
 	}
 	
-	public Employee buildEmployeeDTO(Entity entity){
+	private Employee buildEmployeeDTO(Entity entity){
 		Employee p = new Employee();
 		p.setEmployeeId((String) entity.getProperty("employeeId"));
 		p.setName((String) entity.getProperty("name"));

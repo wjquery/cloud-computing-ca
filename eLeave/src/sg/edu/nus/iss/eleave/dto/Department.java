@@ -1,13 +1,17 @@
 package sg.edu.nus.iss.eleave.dto;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class Department {
+public class Department implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	public static final String KIND = "Department";
 	
 	@PrimaryKey

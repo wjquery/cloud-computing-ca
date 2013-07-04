@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="sg.edu.nus.iss.eleave.service.impl.*,sg.edu.nus.iss.eleave.dto.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Employee Details</title>
 <%@include file="/shared/resources.html"%>
+<%
+	Employee emp = new EmployeeServiceImpl().findEmployee(request.getParameter("employeeId"));
+	request.setAttribute("emp", emp);
+%>
 <script type="text/javascript">
 	$(function() {
 		var dateformat = "dd/mm/yy";
@@ -38,31 +44,35 @@
 							<tbody>
 								<tr class="overview-item">
 									<td>Employee Name:</td>
-									<td>${param.id}</td>
+									<td>${emp.name}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Designation:</td>
-									<td>${param.id}</td>
+									<td>${emp.designation}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Date Joined:</td>
-									<td>${param.id}</td>
+									<td><fmt:formatDate value="${emp.joinDate}" pattern="dd/MM/yyyy"/></td>
+								</tr>
+								<tr class="overview-item">
+									<td>Department:</td>
+									<td></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Supervisor:</td>
-									<td>${param.id}</td>
+									<td></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Email Address:</td>
-									<td>${param.id}</td>
+									<td>${emp.email}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>User Role:</td>
-									<td>${param.id}</td>
+									<td>${emp.userrole}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Username:</td>
-									<td>${param.id}</td>
+									<td>${emp.username}</td>
 								</tr>
 								<tr class="overview-item">
 									<td />

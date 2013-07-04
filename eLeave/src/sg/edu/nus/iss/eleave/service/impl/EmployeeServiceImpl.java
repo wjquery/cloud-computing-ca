@@ -47,7 +47,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public boolean insertEmployee(Employee employee) throws ServiceException {
 		boolean isSuccessful = true;
 		try {
-			employee.setEmployeeId(UUID.randomUUID().toString());
 			employeeDao.insertEmployee(employee);
 		} catch (DAOException e) {
 			isSuccessful = false;

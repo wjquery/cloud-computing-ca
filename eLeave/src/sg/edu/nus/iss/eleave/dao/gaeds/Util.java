@@ -134,6 +134,14 @@ public class Util {
     return pq.asIterable();
   }
   
+  public static Entity findFirstMatch(String kind, String searchBy,	String searchFor) {
+	  Iterable<Entity> l = listEntities(kind, searchBy, searchFor);
+	  for (Entity e : l) {
+		  return e;
+	  }
+	  return null;
+  }
+  
   public static Iterable<Entity> listChildren(String kind, Key ancestor) {
     logger.log(Level.INFO, "Search entities based on parent");
     Query q = new Query(kind);

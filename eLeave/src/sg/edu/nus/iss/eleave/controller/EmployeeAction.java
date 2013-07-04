@@ -1,43 +1,71 @@
 package sg.edu.nus.iss.eleave.controller;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import sg.edu.nus.iss.eleave.dao.gaeds.EmployeeDAOImpl;
 import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.service.EmployeeService;
 import sg.edu.nus.iss.eleave.service.impl.EmployeeServiceImpl;
+import sg.edu.nus.iss.eleave.util.DateUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class EmployeeAction extends ActionSupport {
 	
+	private static Logger log = Logger.getLogger(EmployeeDAOImpl.class.getCanonicalName());
+	
+	private HttpServletRequest request = ServletActionContext.getRequest();
+	private HttpSession session = request.getSession();
+	private String companyId = (String) session.getAttribute("companyId");
+	
 	public String insert() throws Exception {
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeId);
 		employee.setName(name);
+		employee.setCompanyId("NTU");//HARD-CODE to be removed
 		employee.setDesignation(designation);
-		employee.setJoinDate(null);
+		employee.setJoinDate(DateUtil.parse(joinDate, "dd/MM/yyyy"));
 		employee.setEmail(email);
 		employee.setUserrole(userrole);
 		employee.setUsername(username);
 		employee.setPassword(password);
-		Company company = new Company();
-		company.setCompanyId("nus");
-		company.setName("nus");
 		
 		employeeService.insertEmployee(employee);
 		return SUCCESS;
 	}
 	
 	public String findAll() throws Exception {
-//		HttpSession session = ServletActionContext.getRequest().getSession();
-//		Company company = null;
-//		List<Employee> employees = employeeService.findAllEmployeesByCompany(company);
-//		session.setAttribute("employees", employees);
+		List<Employee> employees = employeeService.findAllEmployeesByCompany("NTU");//HARD-CODE
+		session.setAttribute("employees", employees); // TODO: save attr in request scope instead
+		return SUCCESS;
+	}
+	
+	public String findById() throws Exception {
+		Employee employee = employeeService.findEmployee(employeeId);
+		session.setAttribute("emp", employee);
+		return SUCCESS;
+	}
+	
+	public String update() throws Exception {
+		Employee employee = new Employee();
+		employee.setEmployeeId(employeeId);
+		employee.setName(name);
+		employee.setCompanyId("NTU");//HARD-CODE
+		employee.setDesignation(designation);
+		employee.setJoinDate(DateUtil.parse(joinDate, "dd/MM/yyyy"));
+		employee.setEmail(email);
+		employee.setUserrole(userrole);
+		employee.setUsername(username);
+		employee.setPassword(password);
+		employeeService.updateEmployee(employee);
 		return SUCCESS;
 	}
 	

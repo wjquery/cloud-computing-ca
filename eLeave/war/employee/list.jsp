@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,6 +36,17 @@
 										<a href="/employee/edit.jsp?id=1">Edit</a>
 									</td>
 								</tr>
+								<c:forEach var="emp" items="${employees}">
+									<tr class="overview-item">
+										<td>${emp.name}</td>
+										<td>${emp.designation}</td>
+										<td><fmt:formatDate value="${emp.joinDate}" pattern="dd/MM/yyyy"/></td>
+										<td class="drill">
+											<a href="/employee/details.jsp?employeeId=${emp.employeeId}">Details</a>&nbsp;
+											<a href="/employee/edit.jsp?employeeId=${emp.employeeId}">Edit</a>
+										</td>
+									</tr>
+								</c:forEach>
 								<tr class="overview-item">
 									<td/><td/><td/>
 									<td>
@@ -43,9 +56,6 @@
 							</tbody>
 						</table>
 					</form>
-						username: ${employees[0].username}<br>
-						name: ${employees[0].name}<br>
-						designation: ${employees[0].designation}
 				</div>
 			</td>
 		</tr>

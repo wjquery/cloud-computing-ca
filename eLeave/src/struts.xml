@@ -31,6 +31,11 @@
 		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="findAll">
 			<result name="success" type="redirect">/employee/list.jsp</result>
 		</action>
+		<action name="update" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">findAll</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="leave" namespace="/leave" extends="struts-default">
