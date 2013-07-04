@@ -30,6 +30,10 @@ public class Claim {
 	private double totalOTHours;
 	@Persistent
 	private String status;//D=draft;S=Submited;A=Approved
+	
+	@Persistent
+	private String appoveOfficer;
+	
 	@Persistent
 	private Date applyDate;
 	@Persistent
@@ -101,6 +105,13 @@ public class Claim {
 	public void setClaimItems(List<ClaimItem> claimItems) {
 		this.claimItems = claimItems;
 	}	
+	
+	public String getAppoveOfficer() {
+	    return appoveOfficer;
+	}
+	public void setAppoveOfficer(String appoveOfficer) {
+	    this.appoveOfficer = appoveOfficer;
+	}
 	public void addClaimItem(ClaimItem claimItem)
 	{
 	    claimItems.add(claimItem);
