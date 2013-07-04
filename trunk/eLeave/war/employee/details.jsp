@@ -9,6 +9,7 @@
 <title>Employee Details</title>
 <%@include file="/shared/resources.html"%>
 <%
+// TODO: find employee should be done in action method, to be removed from jsp page
 	Employee emp = new EmployeeServiceImpl().findEmployee(request.getParameter("employeeId"));
 	request.setAttribute("emp", emp);
 %>

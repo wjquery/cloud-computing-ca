@@ -5,11 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * @author Xiong Gaogao
- * @metric_id A0015118U
- *
- */
 public class DateUtil {
 	
 	public static final String DEFAULT_FORMAT = "yyyy-MM-dd";

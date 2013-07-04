@@ -45,6 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean insertEmployee(Employee employee) throws ServiceException {
+		// TODO: when inserting new employee, LeaveEntitlement(default) of the employee will be inserted at the same time
 		boolean isSuccessful = true;
 		try {
 			employeeDao.insertEmployee(employee);
