@@ -130,16 +130,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void deleteEmployee(Employee employee) throws DAOException {
-		Entity entity = getEmployee(employee.getEmployeeId());
+		Entity entity = Util.findFirstMatch(Employee.KIND, "employeeId", employee.getEmployeeId());
 		if(entity != null) {
 			Util.deleteEntity(entity.getKey());
 		}
 	}
 	
-	private Entity getEmployee(String employeeId){
-		Key key = KeyFactory.createKey(Employee.KIND, employeeId);
-		return Util.findEntity(key);
-	}
+//	private Entity getEmployee(String employeeId){
+//		Key key = KeyFactory.createKey(Employee.KIND, employeeId);
+//		return Util.findEntity(key);
+//	}
 	
 	private Employee buildEmployeeDTO(Entity entity){
 		Employee p = new Employee();

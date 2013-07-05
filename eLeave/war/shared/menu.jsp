@@ -42,7 +42,7 @@ $(function() {
 	});
 	
 	$("#leaveTypes").click(function() {
-		window.location = "/leaveType/list.jsp";			
+		window.location = "/leaveType/findAll";			
 	});
 	
 	$("#holidays").click(function() {
