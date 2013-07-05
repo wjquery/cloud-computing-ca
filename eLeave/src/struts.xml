@@ -7,10 +7,13 @@
 	<package name="account" extends="struts-default">
 		<action name="login" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="login">
 			<result name="success" type="redirect">/leaveApplication/create.jsp</result>
-			<result name="input">/index.jsp</result>
+			<result name="none" type="redirectAction">
+				<param name="actionName">employee/findAll</param>
+			</result>
+			<result name="input">/login.jsp</result>
 		</action>
 		<action name="logout" class="sg.edu.nus.iss.eleave.controller.AccountAction" method="logout">
-			<result name="success" type="redirect">/index.jsp</result>		    
+			<result name="success" type="redirect">/login.jsp</result>		    
 		</action>
 	</package>
 	

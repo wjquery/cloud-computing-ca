@@ -6,27 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>My Leave Summary</title>
 <%@include file="/shared/resources.html"%>
-<style type="text/css">
-a:link {
-	color: #000000;
-	text-decoration: underline
-}
-
-a:visited {
-	color: #000000;
-	text-decoration: none
-}
-
-a:active {
-	color: #ff0000;
-	text-decoration: none
-}
-
-a:hover {
-	color: #ff0000;
-	text-decoration: underline
-}
-</style>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
