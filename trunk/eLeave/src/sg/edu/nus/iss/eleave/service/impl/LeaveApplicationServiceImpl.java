@@ -114,7 +114,8 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	}
 
 	@Override
-	public void approveApplication(LeaveApplication leaveApplication) {
+	public void approveApplication(String applicationId) {
+		LeaveApplication leaveApplication = findLeaveApplicationById(applicationId);
 		try {
 			leaveApplication.setStatus(LeaveApplication.APPROVED);
 			leaveApplication.setProcessDate(new Date());
@@ -127,7 +128,8 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	}
 
 	@Override
-	public void rejectApplication(LeaveApplication leaveApplication) {
+	public void rejectApplication(String applicationId) {
+		LeaveApplication leaveApplication = findLeaveApplicationById(applicationId);
 		try {
 			leaveApplication.setStatus(LeaveApplication.REJECTED);
 			leaveApplication.setProcessDate(new Date());

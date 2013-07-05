@@ -83,7 +83,7 @@ $(function() {
 		<ul class="action-menu">
 			<li><span class="action" id="pendingApp">Pending Applications</span></li>
 			<li><span class="action" id="subHistory">Subordinate Leave History</span></li>
-			<li><span class="action" id="dashboard">Dashboard</span></li>
+			<li><span class="action" id="dashboard">Report & Dashboard</span></li>
 		</ul>
 		</div>
 	</c:if>
