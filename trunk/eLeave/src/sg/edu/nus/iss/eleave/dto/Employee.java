@@ -26,7 +26,7 @@ public class Employee implements Serializable {
 	@Persistent
 	private String companyId; // many-to-one relationship with company
 	@Persistent
-	private String deparmentId; // foreign key to department
+	private String departmentId; // foreign key to department
 	@Persistent
 	private String designation;
 	@Persistent
@@ -64,11 +64,11 @@ public class Employee implements Serializable {
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
 	}
-	public String getDeparmentId() {
-		return deparmentId;
+	public String getDepartmentId() {
+		return departmentId;
 	}
-	public void setDeparmentId(String deparmentId) {
-		this.deparmentId = deparmentId;
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
 	public String getDesignation() {
 		return designation;
@@ -126,14 +126,14 @@ public class Employee implements Serializable {
 	}
 	
 	public Employee(String employeeId, String name, String companyId,
-			String deparmentId, String designation, String supervisorId,
+			String departmentId, String designation, String supervisorId,
 			Date joinDate, Date resignDate, String email, String userrole,
 			String username, String password, boolean isCurrent) {
 		super();
 		this.employeeId = employeeId;
 		this.name = name;
 		this.companyId = companyId;
-		this.deparmentId = deparmentId;
+		this.departmentId = departmentId;
 		this.designation = designation;
 		this.supervisorId = supervisorId;
 		this.joinDate = joinDate;

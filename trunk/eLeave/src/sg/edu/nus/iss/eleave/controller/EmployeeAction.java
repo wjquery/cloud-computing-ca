@@ -33,6 +33,8 @@ public class EmployeeAction extends ActionSupport {
 		employee.setCompanyId("NTU");//HARD-CODE to be removed
 		employee.setDesignation(designation);
 		employee.setJoinDate(DateUtil.parse(joinDate, "dd/MM/yyyy"));
+		employee.setDepartmentId(department);
+		employee.setSupervisorId(supervisor);
 		employee.setEmail(email);
 		employee.setUserrole(userrole);
 		employee.setUsername(username);
@@ -61,6 +63,8 @@ public class EmployeeAction extends ActionSupport {
 		employee.setCompanyId("NTU");//HARD-CODE
 		employee.setDesignation(designation);
 		employee.setJoinDate(DateUtil.parse(joinDate, "dd/MM/yyyy"));
+		employee.setDepartmentId(department);
+		employee.setSupervisorId(supervisor);
 		employee.setEmail(email);
 		employee.setUserrole(userrole);
 		employee.setUsername(username);
@@ -74,6 +78,7 @@ public class EmployeeAction extends ActionSupport {
 	private String name;
 	private String designation;
 	private String joinDate;
+	private String department;
 	private String supervisor;
 	private String email;
 	private String userrole;
@@ -108,6 +113,13 @@ public class EmployeeAction extends ActionSupport {
 	public String getSupervisor() {
 		return supervisor;
 	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public void setSupervisor(String supervisor) {
 		this.supervisor = supervisor;
 	}
