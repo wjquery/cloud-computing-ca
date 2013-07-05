@@ -73,7 +73,7 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Leave Days:</td>
-									<td><input name="leaveDays" type="text" value='<fmt:formatNumber type="number" maxFractionDigits="0" value="${appDetails.days}" />' /></td>
+									<td><input name="days" type="text" value='<fmt:formatNumber type="number" maxFractionDigits="0" value="${appDetails.days}" />' /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Approving Officer:</td>

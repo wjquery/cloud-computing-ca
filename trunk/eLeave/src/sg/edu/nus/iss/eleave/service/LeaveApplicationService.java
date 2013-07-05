@@ -11,6 +11,8 @@ public interface LeaveApplicationService {
 	public LeaveApplication findLeaveApplicationById(String leaveApplicationId);
 	public List<LeaveApplication> findAllLeaveApplicationsByCompany(String companyId);
     public List<LeaveApplication> findAllLeaveApplicationsBySupervisor(String companyId, String supervisorId);
+    public List<LeaveApplication> findPendingLeaveApplicationsBySupervisor(String companyId, String supervisorId);
+    public List<LeaveApplication> findLeaveApplicationsHistoryBySupervisor(String companyId, String supervisorId);
     public List<LeaveApplication> findAllLeaveApplicationsByEmployee(String companyId, String employeeId);
 	
 	public void insertLeaveApplication(LeaveApplication leaveApplication) throws ServiceException;

@@ -53,6 +53,14 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	
 	public String update() throws Exception {
+		LeaveApplication application = new LeaveApplication();
+		application.setApplicantId(myId);
+		application.setLeaveTypeId(leaveTypeId);
+		application.setFromDate(DateUtil.parse(fromDate, "dd/MM/yyyy"));
+		application.setToDate(DateUtil.parse(toDate, "dd/MM/yyyy"));
+		application.setDays(days);
+		application.setReason(reason);
+		leaveApplicationService.upadateLeaveApplication(application);
 		return SUCCESS;
 	}
 	
@@ -68,7 +76,7 @@ public class LeaveApplicationAction extends ActionSupport {
 			return NONE;
 	}
 	
-	public String findByEmployee() {
+	public String findByEmployee() throws Exception {
 		List<LeaveApplication> applications = leaveApplicationService.findAllLeaveApplicationsByEmployee(companyId, myId);
 		List<LeaveType> types = new ArrayList<LeaveType>();
 		for (LeaveApplication app : applications) {
@@ -80,11 +88,15 @@ public class LeaveApplicationAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String findPendingBySupervisor() {
+	public String findPendingBySupervisor() throws Exception {
+		List<LeaveApplication> pending = leaveApplicationService.findPendingLeaveApplicationsBySupervisor(companyId, myId);
+		session.setAttribute("pending", pending);
 		return SUCCESS;
 	}
 	
-	public String findHistoryBySupervisor() {
+	public String findHistoryBySupervisor() throws Exception {
+		List<LeaveApplication> history = leaveApplicationService.findAllLeaveApplicationsBySupervisor(companyId, myId);
+		session.setAttribute("history", history);
 		return SUCCESS;
 	}
 	
