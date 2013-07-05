@@ -62,7 +62,13 @@
 								</tr>
 								<tr class="overview-item">
 									<td>User Role:</td>
-									<td><input name="userrole" type="text" /></td>
+									<td>
+										<select name="userrole">
+											<option value="staff">Staff Member</option>
+											<option value="supervisor">Supervisor</option>
+											<option value="admin">Administrator</option>
+										</select>
+									</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Username:</td>
@@ -80,7 +86,8 @@
 									<td />
 									<td><p>
 											<input type="submit" value="Save" class="sbutton" /> &nbsp;
-											<input type="reset" value="Reset" class="sbutton" />
+											<input type="reset" value="Reset" class="sbutton" /> &nbsp;
+											<a href="/employee/findAll" class="sbutton">Cancel</a>
 										</p></td>
 								</tr>
 							</tbody>
