@@ -54,6 +54,8 @@ public class AccountAction extends ActionSupport {
 			session.setAttribute("myName", me.getName());
 			session.setAttribute("role", me.getUserrole());
 			session.setAttribute("myId", me.getEmployeeId());
+			if (me.getUsername() == null || Employee.ADMIN.equals(me.getUserrole()))
+				return NONE;
 			return SUCCESS;
 		}
 		return INPUT;
