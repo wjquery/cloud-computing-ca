@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Approving Officer</title>
+<title>Pending Leave Applications</title>
 <%@include file="/shared/resources.html"%>
 </head>
 <body>
@@ -43,7 +43,7 @@
 									<td><fmt:formatDate value="${app.toDate}" pattern="dd/MM/yyyy"/></td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${app.days}" /></td>
 									<td class="drill">
-										<a href="/supervisor/viewdetail.jsp?id=${app.applicationId}">Details</a>
+										<a href="/supervisor/leavedetails.jsp?id=${app.applicationId}">Details</a>
 									</td>
 								</tr>
 								</c:forEach>

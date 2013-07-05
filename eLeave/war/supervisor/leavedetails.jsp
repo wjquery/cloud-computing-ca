@@ -17,12 +17,11 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 				<%@include file="/shared/menu.jsp"%>
-					<form class="new" action="/leaveApplication/list.jsp" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
 									<td>Leave Type:</td>
-									<td>value="${t}"</td>
+									<td>${t}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>From:</td>
@@ -45,18 +44,19 @@
 									<td><textarea name="reason" rows="3" cols="30" readonly="readonly">${appDetails.reason}</textarea></td>
 								</tr>
 								<tr class="overview-item">
-									<td>Status</td>
-									<td>${appDetails.status}</td>
+									<td>Comment</td>
+									<td><textarea name="comment" rows="3" cols="30"></textarea></td>
 								</tr>
 								<tr class="overview-item">
 									<td />
 									<td><p>
-											<input type="submit" value="Back" class="sbutton" />
+											<a href="/supervisor/approve/?id=${appDetails.applicationId}" class="sbutton">Approve</a>
+											<a href="/supervisor/reject/?id=${appDetails.applicationId}" class="sbutton">Reject</a>
+											<a href="/supervisor/findPendingBySupervisor" class="sbutton">Back</a>
 										</p></td>
 								</tr>
 							</tbody>
 						</table>
-					</form>
 				</div>
 
 
@@ -68,9 +68,9 @@
 	</table>
 	<script type="text/javascript">
 	$(function() {
-		var index = $('#menu a[href="#tabs-1"]').parent().index();
+		var index = $('#menu a[href="#tabs-4"]').parent().index();
 		$("#menu").tabs("option", "active", index);
-		$("#leaveForm").addClass("selected");
+		$("#pendingApp").addClass("selected");
 	});
 	</script>
 </body>
