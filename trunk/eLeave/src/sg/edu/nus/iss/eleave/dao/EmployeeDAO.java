@@ -12,6 +12,7 @@ public interface EmployeeDAO {
     public List<Employee> findAllEmployees();
     public List<Employee> findAllEmployeesByCompany(String companyId);
     public List<Employee> findAllEmployeesByCompany(String companyId, int offset, int fetchSize);
+    public Employee findEmployeeByCompany(String companyId, String username);
     
     public List<Employee> findAllEmployeesByDeparment(String departmentId) throws DAOException;
     public List<Employee> findAllEmployeesByDeparment(String departmentId, int offset, int fetchSize);

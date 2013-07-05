@@ -22,4 +22,7 @@ public interface EmployeeService {
     public boolean insertEmployee(Employee employee) throws ServiceException;
     public void updateEmployee(Employee employee) throws ServiceException;
     public void deleteEmployee(Employee employee) throws ServiceException;
+    
+    public Employee findSupervisor(String employeeId);
+    public Employee findEmployeeByUsername(String companyId, String username);
 }

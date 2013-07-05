@@ -28,10 +28,10 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 			throws DAOException {
 		Entity employee = Util.findFirstMatch(Employee.KIND, "employeeId", leaveApplication.getApplicantId());
 		Key employeeKey = employee.getKey();
-		log.log(Level.INFO, "Adding leave application for employee: " + employeeKey.getName());
+		log.log(Level.INFO, "Adding leave application for employee: " + employeeKey.toString());
 		Entity e = new Entity(LeaveApplication.KIND, employeeKey);
 		
-		e.setProperty("applicationId", UUID.randomUUID());
+		e.setProperty("applicationId", UUID.randomUUID().toString());
 		e.setProperty("applicantId", leaveApplication.getApplicantId());
 		e.setProperty("fromDate", leaveApplication.getFromDate());
 		e.setProperty("toDate", leaveApplication.getToDate());
