@@ -18,7 +18,6 @@ public class LeaveApplication implements Serializable {
 	public static final String REJECTED = "rejected";
 	public static final String CANCELLED = "cancelled";
 	public static final String EXPIRED = "expired";
-	public static final String MODIFIED = "modified";
 	public static final String KIND = "LeaveApplication";
 	
 	@PrimaryKey

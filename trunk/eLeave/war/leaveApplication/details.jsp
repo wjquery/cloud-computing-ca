@@ -6,41 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Leave Application Details</title>
 <%@include file="/shared/resources.html"%>
-<script type="text/javascript">
-	$(function() {
-		var dateformat = "dd/mm/yy";
-		var fromDate, toDate;
-		var oneDay = 24 * 3600 * 1000;
-		$("#fromDate").datepicker(
-				{
-					defaultDate : 1,
-					minDate : 1,
-					numberOfMonths : 1,
-					dateFormat : dateformat,
-					onClose : function(selectedDate) {
-						if (selectedDate) {
-							fromDate = $.datepicker.parseDate(dateformat,
-									selectedDate);
-							$("#toDate").datepicker("option", "minDate",
-									new Date(fromDate.getTime()));
-						}
-					}
-				});
-		$("#toDate").datepicker({
-			dateFormat : dateformat,
-			onClose : function(selectedDate) {
-				toDate = $.datepicker.parseDate(dateformat, selectedDate);
-			}
-		});
-		$('#fromCal').click(function() {
-			$('#fromDate').datepicker('show');
-		});
-		$('#toCal').click(function() {
-			$('#toDate').datepicker('show');
-		});
-
-	});
-</script>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
@@ -51,7 +16,7 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 				<%@include file="/shared/menu.jsp"%>
-					<form action="/leaveApplication/list.jsp" method="post">
+					<form class="new" action="/leaveApplication/list.jsp" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">

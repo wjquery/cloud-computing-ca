@@ -62,16 +62,14 @@
 			</result>
 			<result name="input">/leaveApplication/create.jsp</result>
 		</action>
-		<action name="edit" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="findById">
-			<result name="success" type="redirect">/leaveApplication/edit.jsp</result>
-		</action>
 		<action name="update" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="update">
 			<result name="success" type="redirectAction">
 				<param name="actionName">findByEmployee</param>
 			</result>
 		</action>
 		<action name="findById" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="findById">
-			<result name="success">/leaveApplication/details.jsp</result>
+			<result name="success" type="redirect">/leaveApplication/edit.jsp</result>
+			<result name="none" type="redirect">/leaveApplication/details.jsp</result>
 		</action>
 		<action name="findByEmployee" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="findByEmployee">
 			<result name="success">/leaveApplication/list.jsp</result>
