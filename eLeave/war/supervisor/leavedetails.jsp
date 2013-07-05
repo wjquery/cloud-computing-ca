@@ -50,8 +50,8 @@
 								<tr class="overview-item">
 									<td />
 									<td><p>
-											<a href="/supervisor/approve/?id=${appDetails.applicationId}" class="sbutton">Approve</a>
-											<a href="/supervisor/reject/?id=${appDetails.applicationId}" class="sbutton">Reject</a>
+											<a href="/supervisor/approve?id=${appDetails.applicationId}" class="sbutton">Approve</a>
+											<a href="/supervisor/reject?id=${appDetails.applicationId}" class="sbutton">Reject</a>
 											<a href="/supervisor/findPendingBySupervisor" class="sbutton">Back</a>
 										</p></td>
 								</tr>
