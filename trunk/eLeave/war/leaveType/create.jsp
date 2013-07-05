@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin</title>
+<title>New Leave Type</title>
 <%@include file="/shared/resources.html"%>
 </head>
 <body>
