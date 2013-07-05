@@ -37,8 +37,8 @@
 								</tr>
 								<c:forEach var="app" items="${history}" varStatus="status">
 								<tr class="overview-item">
-									<td>${app.applicantId}</td>
-									<td>${app.leaveTypeId}</td>
+									<td>${employees[status.index].name}</td>
+									<td>${types[status.index].name}</td>
 									<td><fmt:formatDate value="${app.fromDate}" pattern="dd/MM/yyyy"/></td>
 									<td><fmt:formatDate value="${app.toDate}" pattern="dd/MM/yyyy"/></td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${app.days}" /></td>
