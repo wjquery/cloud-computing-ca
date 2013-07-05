@@ -112,9 +112,11 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 	public List<LeaveApplication> findAllLeaveApplicationsBySupervisor(String companyId, String supervisorId) {
 		Key ancestorKey = KeyFactory.createKey(Company.KIND, companyId); 
 		Iterable<Entity> entities = Util.listChildren(LeaveApplication.KIND, ancestorKey);
+		log.log(Level.INFO, "@@@@@@@@@@@@Company key: " + ancestorKey);
 		List<LeaveApplication> applications = new ArrayList<LeaveApplication>();
 		for (Entity entity : entities) {
-			String sId = (String) entity.getProperty("supervisorId");
+			String sId = (String) entity.getProperty("processedById");
+			log.log(Level.INFO, "@@@@@@@@@" + sId);
 			if (supervisorId.equals(sId)) {
 				applications.add(buildLeaveApplicationDTO(entity));
 			}
