@@ -21,8 +21,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public boolean validateUser(String companyId, String username, String password)
 	{
-		// TODO
-		return true;
+		Employee e = findEmployeeByUsername(companyId, username);
+		if (e != null && e.getPassword().equals(password)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Employee findEmployeeByUsername(String companyId, String username) {
+		return employeeDao.findEmployeeByCompany(companyId, username);
+	}
+	
+	@Override
+	public Employee findSupervisor(String employeeId) {
+		Employee me = employeeDao.findEmployeeById(employeeId);
+		return employeeDao.findEmployeeById(me.getSupervisorId());
 	}
 	
 	@Override
@@ -51,6 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO: when inserting new employee, LeaveEntitlement(default) of the employee will be inserted at the same time
 		boolean isSuccessful = true;
 		try {
+			employee.setCurrent(true);
 			employeeDao.insertEmployee(employee);
 		} catch (DAOException e) {
 			isSuccessful = false;

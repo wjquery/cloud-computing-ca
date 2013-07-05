@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import sg.edu.nus.iss.eleave.dao.LeaveApplicationDao;
+import sg.edu.nus.iss.eleave.dao.gaeds.LeaveApplicationDAOImpl;
 import sg.edu.nus.iss.eleave.dto.LeaveApplication;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 import sg.edu.nus.iss.eleave.exception.ServiceException;
@@ -21,7 +22,7 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	private static Logger log = Logger.getLogger(LeaveApplicationServiceImpl.class.getCanonicalName());
 	
 	
-	private LeaveApplicationDao leaveApplicationDao;
+	private LeaveApplicationDao leaveApplicationDao = new LeaveApplicationDAOImpl();
 
 	@Override
 	public LeaveApplication findLeaveApplicationById(String leaveApplicationId) {

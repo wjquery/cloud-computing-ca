@@ -12,7 +12,7 @@
 <body>
 	<div id="header">
 		<div class="titles">
-			<div id="title">
+			<div id="title" style="font-family: Georgia;">
 				eLeave Management System
 			</div>
 		</div>
@@ -29,8 +29,8 @@
 						<td class="logon-company" style="color: white">Company</td>
 						<td>
 							<div align="left">
-								<input id="company" style="width: 250px;" type="text"
-									name="company" size="32" maxlength="32" />
+								<input id="companyId" style="width: 250px;" type="text"
+									name="companyId" size="32" maxlength="32" value="NTU" />
 							</div>
 						</td>
 					</tr>
@@ -39,7 +39,7 @@
 						<td>
 							<div align="left">
 								<input id="username" style="width: 250px;" type="text"
-									name="username" size="32" maxlength="32" />
+									name="username" size="32" maxlength="32" value="bill" />
 							</div>
 						</td>
 					</tr>
@@ -48,7 +48,7 @@
 						<td>
 							<div align="left">
 								<input id="password" style="width: 250px;" type="password"
-									name="password" size="32" maxlength="32" />
+									name="password" size="32" maxlength="32" value="password" />
 							</div>
 						</td>
 					</tr>

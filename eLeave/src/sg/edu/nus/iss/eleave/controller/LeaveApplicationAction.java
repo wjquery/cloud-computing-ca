@@ -1,5 +1,13 @@
 package sg.edu.nus.iss.eleave.controller;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import sg.edu.nus.iss.eleave.dto.LeaveApplication;
@@ -12,13 +20,20 @@ import com.opensymphony.xwork2.ActionSupport;
 @Controller
 public class LeaveApplicationAction extends ActionSupport {
 
+	private static Logger log = Logger.getLogger(LeaveApplicationAction.class.getCanonicalName());
+	
+	private HttpServletRequest request = ServletActionContext.getRequest();
+	private HttpSession session = request.getSession();
+	
 	public String insert() throws Exception {
 		LeaveApplication application = new LeaveApplication();
-		application.setApplicantId(applicantId);
+		application.setApplicantId("A00006");
+		application.setLeaveTypeId(leaveTypeId);
 		application.setFromDate(DateUtil.parse(fromDate, "dd/MM/yyyy"));
 		application.setToDate(DateUtil.parse(toDate, "dd/MM/yyyy"));
 		application.setDays(days);
 		application.setReason(reason);
+		log.log(Level.INFO, application.toString());
 		leaveApplicationService.insertLeaveApplication(application);
 		return SUCCESS;
 	}
@@ -40,6 +55,8 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	
 	public String findByEmployee() {
+		List<LeaveApplication> applications = leaveApplicationService.findAllLeaveApplicationsByEmployee("NTU", "A00006");
+		session.setAttribute("myApplications", applications);
 		return SUCCESS;
 	}
 	

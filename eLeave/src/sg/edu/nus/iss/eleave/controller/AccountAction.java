@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
+import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.service.EmployeeService;
 import sg.edu.nus.iss.eleave.service.impl.EmployeeServiceImpl;
 
@@ -47,9 +48,11 @@ public class AccountAction extends ActionSupport {
 
 	public String login() throws Exception {
 		if (employeeService.validateUser(companyId, username, password)) {
+			Employee me = employeeService.findEmployeeByUsername(companyId, username);
 			HttpSession session = ServletActionContext.getRequest().getSession();
 			session.setAttribute("companyId", companyId);
-			session.setAttribute("employeeName", "Jon Doe");
+			session.setAttribute("myName", me.getName());
+			session.setAttribute("myId", me.getEmployeeId());
 			return SUCCESS;
 		}
 		return INPUT;

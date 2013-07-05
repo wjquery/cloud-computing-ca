@@ -31,6 +31,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
+	public Employee findEmployeeByCompany(String companyId, String username) {
+		List<Employee> employees = findAllEmployeesByCompany(companyId);
+		for (Employee employee : employees) {
+			if (employee.getUsername().equals(username))
+				return employee;
+		}
+		return null;
+	}
+	
+	@Override
 	public List<Employee> findAllEmployees() {
 		Iterable<Entity> entities = Util.listEntities(Employee.KIND, null, null);
 		List<Employee> employees = new ArrayList<Employee>();
@@ -122,9 +132,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		e.setProperty("resignDate", employee.getResignDate());
 		e.setProperty("userrole", employee.getUserrole());
 		e.setProperty("email", employee.getEmail());
-		e.setProperty("password", employee.getPassword());
+//		e.setProperty("password", employee.getPassword()); //TODO
 		e.setProperty("username", employee.getUsername());
-		e.setProperty("isCurrent", employee.isCurrent());
+//		e.setProperty("isCurrent", employee.isCurrent());
 		Util.persistEntity(e);
 	}
 

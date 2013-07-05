@@ -151,4 +151,15 @@ public class LeaveApplication implements Serializable {
 		super();
 	}
 	
+	@Override
+	public String toString() {
+		return "LeaveApplication [applicationId=" + applicationId
+				+ ", leaveTypeId=" + leaveTypeId + ", fromDate=" + fromDate
+				+ ", toDate=" + toDate + ", days=" + days + ", reason="
+				+ reason + ", status=" + status + ", applyDate=" + applyDate
+				+ ", modifyDate=" + modifyDate + ", processDate=" + processDate
+				+ ", applicantId=" + applicantId + ", processedById="
+				+ processedById + ", processComment=" + processComment + "]";
+	}
+	
 }

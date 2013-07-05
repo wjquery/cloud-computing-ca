@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="sg.edu.nus.iss.eleave.service.impl.*,sg.edu.nus.iss.eleave.dto.*,java.util.*"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New Leave Application</title>
 <%@include file="/shared/resources.html"%>
+<%
+	List<LeaveType> leaveTypes = new LeaveTypeServiceImpl().findAllLeaveTypesByCompany("NTU");
+	request.setAttribute("leaveTypes", leaveTypes);
+%>
 <script type="text/javascript">
 	$(function() {
 		var dateformat = "dd/mm/yy";
@@ -51,15 +57,15 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 				<%@include file="/shared/menu.jsp"%>
-					<form class="new" action="/leaveApplication/list.jsp" method="post">
+					<form class="new" action="/leaveApplication/insert" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
 									<td>Leave Type:</td>
-									<td><select>
-											<option>Annual</option>
-											<option>Medical</option>
-											<option>No-pay</option>
+									<td><select name="leaveTypeId">
+										<c:forEach var="type" items="${leaveTypes}">
+											<option value="${type.leaveTypeId}">${type.name}</option>
+										</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="overview-item">
@@ -74,7 +80,7 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Leave Days:</td>
-									<td><input name="leaveDays" type="text" /></td>
+									<td><input name="days" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Approving Officer:</td>
