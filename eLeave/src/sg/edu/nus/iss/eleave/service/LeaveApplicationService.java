@@ -20,8 +20,8 @@ public interface LeaveApplicationService {
 	public void deleteLeaveApplication(LeaveApplication leaveApplication) throws ServiceException;
 	public void cancelLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException;
 	
-	public void approveApplication(LeaveApplication leaveApplication);
-	public void rejectApplication(LeaveApplication leaveApplication);
+	public void approveApplication(String applicationId);
+	public void rejectApplication(String applicationId);
 	
 	//Email Related
 	public String formEmailSubjectToApplicant(LeaveApplication leaveApplication, String type);

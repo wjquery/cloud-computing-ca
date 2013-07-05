@@ -35,7 +35,7 @@
 									<td style="font-weight: bold;">Leave Days</td>
 									<td style="font-weight: bold;">Action</td>
 								</tr>
-								<c:forEach var="app" items="${pending}">
+								<c:forEach var="app" items="${pending}" varStatus="status">
 								<tr class="overview-item">
 									<td>${app.applicantId}</td>
 									<td>${app.leaveTypeId}</td>
@@ -43,7 +43,7 @@
 									<td><fmt:formatDate value="${app.toDate}" pattern="dd/MM/yyyy"/></td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${app.days}" /></td>
 									<td class="drill">
-										<a href="/supervisor/leavedetails.jsp?id=${app.applicationId}">Details</a>
+										<a href="/supervisor/findById?type=${types[status.index].name}&id=${app.applicationId}">Details</a>
 									</td>
 								</tr>
 								</c:forEach>

@@ -51,10 +51,14 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	
 	public String approve() throws Exception {
+		String applicationId = request.getParameter("id");
+		leaveApplicationService.approveApplication(applicationId);
 		return SUCCESS;
 	}
 	
 	public String reject() throws Exception {
+		String applicationId = request.getParameter("id");
+		leaveApplicationService.rejectApplication(applicationId);
 		return SUCCESS;
 	}
 	
@@ -96,13 +100,23 @@ public class LeaveApplicationAction extends ActionSupport {
 	
 	public String findPendingBySupervisor() throws Exception {
 		List<LeaveApplication> pending = leaveApplicationService.findPendingLeaveApplicationsBySupervisor(companyId, myId);
+		List<LeaveType> types = new ArrayList<LeaveType>();
+		for (LeaveApplication app : pending) {
+			types.add(leaveTypeService.findLeaveTypeById(app.getLeaveTypeId()));
+		}
 		session.setAttribute("pending", pending);
+		session.setAttribute("types", types);
 		return SUCCESS;
 	}
 	
 	public String findHistoryBySupervisor() throws Exception {
 		List<LeaveApplication> history = leaveApplicationService.findAllLeaveApplicationsBySupervisor(companyId, myId);
+		List<LeaveType> types = new ArrayList<LeaveType>();
+		for (LeaveApplication app : history) {
+			types.add(leaveTypeService.findLeaveTypeById(app.getLeaveTypeId()));
+		}
 		session.setAttribute("history", history);
+		session.setAttribute("types", types);
 		return SUCCESS;
 	}
 	

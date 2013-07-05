@@ -22,7 +22,7 @@
 							<tbody>
 								<tr class="overview-item">
 									<td>Leave Type:</td>
-									<td>value="${t}"</td>
+									<td>${t}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>From:</td>
