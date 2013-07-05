@@ -28,7 +28,7 @@ public class EmployeeAction extends ActionSupport {
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeId);
 		employee.setName(name);
-		employee.setCompanyId("NTU");//HARD-CODE to be removed
+		employee.setCompanyId(companyId);
 		employee.setDesignation(designation);
 		employee.setJoinDate(DateUtil.parse(joinDate, "dd/MM/yyyy"));
 		employee.setDepartmentId(department);
@@ -43,8 +43,8 @@ public class EmployeeAction extends ActionSupport {
 	}
 	
 	public String findAll() throws Exception {
-		List<Employee> employees = employeeService.findAllEmployeesByCompany("NTU");//HARD-CODE
-		session.setAttribute("employees", employees); // TODO: save attr in request scope instead
+		List<Employee> employees = employeeService.findAllEmployeesByCompany(companyId);
+		session.setAttribute("employees", employees);
 		return SUCCESS;
 	}
 	
@@ -58,7 +58,7 @@ public class EmployeeAction extends ActionSupport {
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeId);
 		employee.setName(name);
-		employee.setCompanyId("NTU");//HARD-CODE
+		employee.setCompanyId(companyId);
 		employee.setDesignation(designation);
 		employee.setJoinDate(DateUtil.parse(joinDate, "dd/MM/yyyy"));
 		employee.setDepartmentId(department);

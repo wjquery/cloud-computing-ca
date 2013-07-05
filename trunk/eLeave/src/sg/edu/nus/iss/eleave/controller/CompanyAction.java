@@ -81,7 +81,7 @@ public class CompanyAction extends ActionSupport {
 			if (employeeService.insertEmployee(employee)) {
 				HttpSession session = ServletActionContext.getRequest().getSession();
 				session.setAttribute("companyId", companyCode);
-				session.setAttribute("employeeName", username);
+				session.setAttribute("myName", username);
 				return SUCCESS;
 			}
 		}
