@@ -8,12 +8,12 @@ import sg.edu.nus.iss.eleave.exception.DAOException;
 
 public interface LeaveApplicationDao {
 	
-	public LeaveApplication findLeaveApplication(String companyId, String leaveApplicationId) throws DAOException;
-    public List<LeaveApplication> findAllLeaveApplications() throws DAOException;
+	public LeaveApplication findLeaveApplicationById(String leaveApplicationId);
+    public List<LeaveApplication> findAllLeaveApplications();
     
-    public List<LeaveApplication> findAllLeaveApplicationsByCompany(String companyId) throws DAOException;
-    public List<LeaveApplication> findAllLeaveApplicationsByEmployee(Employee employee) throws DAOException;
-    public List<LeaveApplication> findAllLeaveApplicationsByEmployee(Employee employee, int year) throws DAOException;
+    public List<LeaveApplication> findAllLeaveApplicationsByCompany(String companyId);
+    public List<LeaveApplication> findAllLeaveApplicationsBySupervisor(String companyId, String supervisorId);
+    public List<LeaveApplication> findAllLeaveApplicationsByEmployee(String companyId, String employeeId);
     
     public void insertLeaveApplication(LeaveApplication leaveApplication) throws DAOException;
     public void updateLeaveApplication(LeaveApplication leaveApplication) throws DAOException;

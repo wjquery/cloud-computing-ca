@@ -8,18 +8,18 @@ import sg.edu.nus.iss.eleave.exception.ServiceException;
 
 public interface LeaveApplicationService {
 	
-	public LeaveApplication findLeaveApplication(String companyId, String leaveApplicationId) throws ServiceException;
-	public List<LeaveApplication> findAllLeaveApplicationByEmployee(Employee employee) throws ServiceException;
-	public List<LeaveApplication> findAllLeaveApplicationByEmployee(Employee employee, int year) throws ServiceException;
+	public LeaveApplication findLeaveApplicationById(String leaveApplicationId);
+	public List<LeaveApplication> findAllLeaveApplicationsByCompany(String companyId);
+    public List<LeaveApplication> findAllLeaveApplicationsBySupervisor(String companyId, String supervisorId);
+    public List<LeaveApplication> findAllLeaveApplicationsByEmployee(String companyId, String employeeId);
 	
 	public void insertLeaveApplication(LeaveApplication leaveApplication) throws ServiceException;
 	public void upadateLeaveApplication(LeaveApplication leaveApplication) throws ServiceException;
 	public void deleteLeaveApplication(LeaveApplication leaveApplication) throws ServiceException;
+	public void cancelLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException;
 	
-	
-	
-	public void approveApplication(LeaveApplication leaveApplication) throws ServiceException;
-	public void rejectApplication(LeaveApplication leaveApplication) throws ServiceException;
+	public void approveApplication(LeaveApplication leaveApplication);
+	public void rejectApplication(LeaveApplication leaveApplication);
 	
 	//Email Related
 	public String formEmailSubjectToApplicant(LeaveApplication leaveApplication, String type);

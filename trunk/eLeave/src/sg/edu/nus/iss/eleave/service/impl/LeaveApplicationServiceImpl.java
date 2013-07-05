@@ -1,20 +1,20 @@
 package sg.edu.nus.iss.eleave.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import sg.edu.nus.iss.eleave.dao.LeaveApplicationDao;
+import sg.edu.nus.iss.eleave.dto.LeaveApplication;
+import sg.edu.nus.iss.eleave.exception.DAOException;
+import sg.edu.nus.iss.eleave.exception.ServiceException;
+import sg.edu.nus.iss.eleave.service.LeaveApplicationService;
 
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.taskqueue.TaskOptions.Method;
-
-import sg.edu.nus.iss.eleave.dao.LeaveApplicationDao;
-import sg.edu.nus.iss.eleave.dto.Employee;
-import sg.edu.nus.iss.eleave.dto.LeaveApplication;
-import sg.edu.nus.iss.eleave.exception.DAOException;
-import sg.edu.nus.iss.eleave.exception.ServiceException;
-import sg.edu.nus.iss.eleave.service.LeaveApplicationService;
 
 public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	
@@ -24,26 +24,21 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	private LeaveApplicationDao leaveApplicationDao;
 
 	@Override
-	public LeaveApplication findLeaveApplication(String companyId, String leaveApplicationId)  throws ServiceException {
-		try{
-			return leaveApplicationDao.findLeaveApplication(companyId, leaveApplicationId);
-		}catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
+	public LeaveApplication findLeaveApplicationById(String leaveApplicationId) {
+		return leaveApplicationDao.findLeaveApplicationById(leaveApplicationId);
 	}
 
 	@Override
-	public void insertLeaveApplication(
-			LeaveApplication leaveApplication)  throws ServiceException {
+	public void insertLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException {
 		 try {
-			leaveApplicationDao.insertLeaveApplication(leaveApplication);
-			addEmailTask(leaveApplication,"new");
+			 leaveApplication.setStatus(LeaveApplication.PENDING);
+			 leaveApplication.setApplyDate(new Date());
+			 leaveApplicationDao.insertLeaveApplication(leaveApplication);
+			 //addEmailTask(leaveApplication,"new");
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
-		 
 	}
 
 	@Override
@@ -73,40 +68,41 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	@Override
 	public void upadateLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException {
 		try {
+			leaveApplication.setModifyDate(new Date());
 			leaveApplicationDao.updateLeaveApplication(leaveApplication);
-			addEmailTask(leaveApplication,"update");
+			//addEmailTask(leaveApplication,"update");
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
-		
 	}
 
 	@Override
-	public void deleteLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException {
+	public void cancelLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException {
 		try {
-			leaveApplicationDao.deleteLeaveApplication(leaveApplication);
-			addEmailTask(leaveApplication,"delete");
-		} catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
-		
-		 
-	}
-
-	@Override
-	public List<LeaveApplication> findAllLeaveApplicationByEmployee(Employee employee) throws ServiceException {
-		try {
-			return leaveApplicationDao.findAllLeaveApplicationsByEmployee(employee);
+			leaveApplication.setModifyDate(new Date());
+			leaveApplication.setStatus(LeaveApplication.CANCELLED);
+			leaveApplicationDao.updateLeaveApplication(leaveApplication);
+			//addEmailTask(leaveApplication,"update");
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			throw new ServiceException();
 		}
 	}
 	
-	private void addEmailTask(LeaveApplication leaveApplication, String type) {
+	@Override
+	public void deleteLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException {
+		try {
+			leaveApplicationDao.deleteLeaveApplication(leaveApplication);
+			//addEmailTask(leaveApplication,"delete");
+		} catch (DAOException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			throw new ServiceException();
+		}
+	}
 
+	
+	private void addEmailTask(LeaveApplication leaveApplication, String type) {
 		 Queue queue = QueueFactory.getQueue("EmailQueue");
 		 TaskOptions taskOptions = TaskOptions.Builder.withUrl("/email")
 		                          .param("leaveApplicationId", leaveApplication.getApplicationId())
@@ -116,42 +112,43 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	}
 
 	@Override
-	public void approveApplication(LeaveApplication leaveApplication)  throws ServiceException {
-		//TODO refine
+	public void approveApplication(LeaveApplication leaveApplication) {
 		try {
+			leaveApplication.setStatus(LeaveApplication.APPROVED);
+			leaveApplication.setProcessDate(new Date());
 			leaveApplicationDao.updateLeaveApplication(leaveApplication);
-			addEmailTask(leaveApplication, "approve");
+			//addEmailTask(leaveApplication, "approve");
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
 		}
 		
 	}
 
 	@Override
-	public void rejectApplication(LeaveApplication leaveApplication)  throws ServiceException{
-		//TODO refine
+	public void rejectApplication(LeaveApplication leaveApplication) {
 		try {
+			leaveApplication.setStatus(LeaveApplication.REJECTED);
+			leaveApplication.setProcessDate(new Date());
 			leaveApplicationDao.updateLeaveApplication(leaveApplication);
-			addEmailTask(leaveApplication,"reject");
+			//addEmailTask(leaveApplication,"reject");
 		} catch (DAOException e) {
 			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
 		}
-		
-		
 	}
 
 	@Override
-	public List<LeaveApplication> findAllLeaveApplicationByEmployee(
-			Employee employee, int year) throws ServiceException {
-		try {
-			return leaveApplicationDao.findAllLeaveApplicationsByEmployee(employee, year);
-		} catch (DAOException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			throw new ServiceException();
-		}
+	public List<LeaveApplication> findAllLeaveApplicationsByCompany(String companyId) {
+		return leaveApplicationDao.findAllLeaveApplicationsByCompany(companyId);
 	}
 
+	@Override
+	public List<LeaveApplication> findAllLeaveApplicationsBySupervisor(String companyId, String supervisorId) {
+		return leaveApplicationDao.findAllLeaveApplicationsBySupervisor(companyId, supervisorId);
+	}
+
+	@Override
+	public List<LeaveApplication> findAllLeaveApplicationsByEmployee(String companyId, String employeeId) {
+		return leaveApplicationDao.findAllLeaveApplicationsByEmployee(companyId, employeeId);
+	}
 	
 }
