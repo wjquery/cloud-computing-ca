@@ -23,11 +23,11 @@ $(function() {
 	});	
 	
 	$("#pendingApp").click(function() {
-		window.location = "/supervisor/pendingList.jsp";
+		window.location = "/supervisor/findPendingBySupervisor";
 	});
 	
 	$("#subHistory").click(function() {
-		window.location = "/supervisor/subordinates.jsp";			
+		window.location = "/supervisor/findHistoryBySupervisor";			
 	});
 	
 	$("#dashboard").click(function() {
