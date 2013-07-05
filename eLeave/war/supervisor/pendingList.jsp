@@ -23,7 +23,7 @@
 							<c:choose>
 							    <c:when test="${empty pending}">
 							    <tr class="overview-item"><td>
-							        No Pending Application Found.
+							        No Pending Leave Application Found.
 							    </td></tr>
 							    </c:when>
 							    <c:otherwise>

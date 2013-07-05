@@ -117,7 +117,7 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	
 	public String findHistoryBySupervisor() throws Exception {
-		List<LeaveApplication> history = leaveApplicationService.findAllLeaveApplicationsBySupervisor(companyId, myId);
+		List<LeaveApplication> history = leaveApplicationService.findLeaveApplicationsHistoryBySupervisor(companyId, myId);
 		List<LeaveType> types = new ArrayList<LeaveType>();
 		List<Employee> employees = new ArrayList<Employee>();
 		for (LeaveApplication app : history) {
