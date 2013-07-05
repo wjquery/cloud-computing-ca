@@ -32,6 +32,7 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 		Entity e = new Entity(LeaveApplication.KIND, employeeKey);
 		
 		e.setProperty("applicationId", UUID.randomUUID().toString());
+		e.setProperty("leaveTypeId", leaveApplication.getLeaveTypeId());
 		e.setProperty("applicantId", leaveApplication.getApplicantId());
 		e.setProperty("fromDate", leaveApplication.getFromDate());
 		e.setProperty("toDate", leaveApplication.getToDate());

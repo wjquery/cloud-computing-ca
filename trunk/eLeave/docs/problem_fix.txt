@@ -18,4 +18,4 @@ check struts.xml, make sure namespace and action names are correct
 
 Problem: Error 500 java.io.NotSerializableException: sg.edu.nus.iss.eleave.dto.Employee
 Solution:
-to enable expression language to retrieve employee data on jsp, Employee must implement java.io.Serializable
+to enable the use of expression language to retrieve entity data on jsp, entity class must implement java.io.Serializable
