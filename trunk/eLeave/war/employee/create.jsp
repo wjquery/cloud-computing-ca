@@ -53,6 +53,10 @@
 										<img id="joinCal" src="/images/cal.png" height="18px;"></td>
 								</tr>
 								<tr class="overview-item">
+									<td>Department:</td>
+									<td><input name="department" type="text" /></td>
+								</tr>
+								<tr class="overview-item">
 									<td>Supervisor:</td>
 									<td><input name="supervisor" type="text" /></td>
 								</tr>
