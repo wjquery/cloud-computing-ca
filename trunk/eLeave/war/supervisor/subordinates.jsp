@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Approving Officer</title>
+<title>Subordinates Leave Application History</title>
 <%@include file="/shared/resources.html"%>
 </head>
 <body>
@@ -18,38 +20,35 @@
 					<%@include file="/shared/menu.jsp"%>
 					<table class="overview-eleave-items">
 						<tbody>
-							<tr class="overview-item">
-								<td>Employee Name</td>
-								<td style="font-weight: bold;">Leave Type</td>
-								<td style="font-weight: bold;">From Date</td>
-								<td style="font-weight: bold;">To Date</td>
-								<td style="font-weight: bold;">Leave Days</td>
-								<td style="font-weight: bold;">Action</td>
-							</tr>
-							<tr class="overview-item">
-								<td>Tan Ah Kow</td>
-								<td>Annual</td>
-								<td>15/07/2013</td>
-								<td>17/07/2013</td>
-								<td>3</td>
-								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=3">Details</a></td>
-							</tr>
-							<tr class="overview-item">
-								<td>Lim Ah Thet</td>
-								<td>Medical</td>
-								<td>01/07/2013</td>
-								<td>01/07/2013</td>
-								<td>1</td>
-								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=2">Details</a></td>
-							</tr>
-							<tr class="overview-item">
-								<td>Alvin Ng</td>
-								<td>No-pay</td>
-								<td>25/06/2013</td>
-								<td>26/06/2013</td>
-								<td>2</td>
-								<td class="drill"><a href="/supervisor/viewdetail.jsp?id=1">Details</a></td>
-							</tr>
+							<c:choose>
+							    <c:when test="${empty history}">
+							    <tr class="overview-item"><td>
+							        No Pending Application Found.
+							    </td></tr>
+							    </c:when>
+							    <c:otherwise>
+								<tr class="overview-item">
+									<td>Employee Name</td>
+									<td style="font-weight: bold;">Leave Type</td>
+									<td style="font-weight: bold;">From Date</td>
+									<td style="font-weight: bold;">To Date</td>
+									<td style="font-weight: bold;">Leave Days</td>
+									<td style="font-weight: bold;">Action</td>
+								</tr>
+								<c:forEach var="app" items="${history}" varStatus="status">
+								<tr class="overview-item">
+									<td>${app.applicantId}</td>
+									<td>${app.leaveTypeId}</td>
+									<td><fmt:formatDate value="${app.fromDate}" pattern="dd/MM/yyyy"/></td>
+									<td><fmt:formatDate value="${app.toDate}" pattern="dd/MM/yyyy"/></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${app.days}" /></td>
+									<td class="drill">
+										<a href="/supervisor/findById?type=${types[status.index].name}&id=${app.applicationId}">Details</a>
+									</td>
+								</tr>
+								</c:forEach>
+							    </c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>
