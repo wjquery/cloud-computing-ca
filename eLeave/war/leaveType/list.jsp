@@ -42,7 +42,7 @@
 								<c:forEach var="ltype" items="${leaveTypes}">
 									<tr class="overview-item">
 										<td>${ltype.name}</td>
-										<td>${ltype.defaultEntitlement}</td>
+										<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${ltype.defaultEntitlement}" /></td>
 										<td class="drill">
 											<a href="/leaveType/details.jsp?leaveTypeId=${ltype.leaveTypeId}">Details</a>&nbsp;
 											<a href="/leaveType/edit.jsp?leaveTypeId=${ltype.leaveTypeId}">Edit</a>
