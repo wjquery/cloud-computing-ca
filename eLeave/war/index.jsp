@@ -30,7 +30,7 @@
 						<td>
 							<div align="left">
 								<input id="companyId" style="width: 250px;" type="text"
-									name="companyId" size="32" maxlength="32" value="NTU" />
+									name="companyId" size="32" maxlength="32" value="ISS" />
 							</div>
 						</td>
 					</tr>

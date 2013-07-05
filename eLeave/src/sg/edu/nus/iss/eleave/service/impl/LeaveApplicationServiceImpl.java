@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.eleave.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -146,10 +147,34 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	public List<LeaveApplication> findAllLeaveApplicationsBySupervisor(String companyId, String supervisorId) {
 		return leaveApplicationDao.findAllLeaveApplicationsBySupervisor(companyId, supervisorId);
 	}
+	
+	@Override
+	public List<LeaveApplication> findPendingLeaveApplicationsBySupervisor(
+			String companyId, String supervisorId) {
+		List<LeaveApplication> all = findAllLeaveApplicationsBySupervisor(companyId, supervisorId);
+		List<LeaveApplication> pending = new ArrayList<LeaveApplication>();
+		for (LeaveApplication application : all) {
+			if (LeaveApplication.PENDING.equals(application.getStatus()))
+				pending.add(application);
+		}
+		return pending;
+	}
+
+	@Override
+	public List<LeaveApplication> findLeaveApplicationsHistoryBySupervisor(
+			String companyId, String supervisorId) {
+		List<LeaveApplication> all = findAllLeaveApplicationsBySupervisor(companyId, supervisorId);
+		List<LeaveApplication> history = new ArrayList<LeaveApplication>();
+		for (LeaveApplication application : all) {
+			if (!LeaveApplication.PENDING.equals(application.getStatus()))
+				history.add(application);
+		}
+		return history;
+	}
 
 	@Override
 	public List<LeaveApplication> findAllLeaveApplicationsByEmployee(String companyId, String employeeId) {
 		return leaveApplicationDao.findAllLeaveApplicationsByEmployee(companyId, employeeId);
 	}
-	
+
 }

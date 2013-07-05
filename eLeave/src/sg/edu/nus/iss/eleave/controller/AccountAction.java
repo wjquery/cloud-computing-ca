@@ -52,6 +52,7 @@ public class AccountAction extends ActionSupport {
 			HttpSession session = ServletActionContext.getRequest().getSession();
 			session.setAttribute("companyId", companyId);
 			session.setAttribute("myName", me.getName());
+			session.setAttribute("role", me.getUserrole());
 			session.setAttribute("myId", me.getEmployeeId());
 			return SUCCESS;
 		}

@@ -55,13 +55,14 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 			throws DAOException {
 		Entity e = Util.findFirstMatch(LeaveApplication.KIND, "applicationId", leaveApplication.getApplicationId());
 		
+//		e.setProperty("leaveTypeId", leaveApplication.getLeaveTypeId());// update of leave type not allowed
 		e.setProperty("fromDate", leaveApplication.getFromDate());
 		e.setProperty("toDate", leaveApplication.getToDate());
 		e.setProperty("applyDate", leaveApplication.getApplyDate());
 		e.setProperty("modifyDate", leaveApplication.getModifyDate());
 		e.setProperty("processDate", leaveApplication.getProcessDate());
 		e.setProperty("processComment", leaveApplication.getProcessComment());
-		e.setProperty("processedById", leaveApplication.getProcessedById());
+//		e.setProperty("processedById", leaveApplication.getProcessedById());
 		e.setProperty("days", leaveApplication.getDays());
 		e.setProperty("reason", leaveApplication.getReason());
 		e.setProperty("status", leaveApplication.getStatus());
