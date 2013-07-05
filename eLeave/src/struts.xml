@@ -76,7 +76,7 @@
 		</action>
 	</package>
 	
-	<package name="supervisor" namespace="supervisor" extends="struts-default">
+	<package name="supervisor" namespace="/supervisor" extends="struts-default">
 		<action name="approve" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="approve">
 			<result name="success" type="redirectAction">
 				<param name="actionName">findPendingBySupervisor</param>
