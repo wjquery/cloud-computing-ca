@@ -1,18 +1,15 @@
 package sg.edu.nus.iss.eleave.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import sg.edu.nus.iss.eleave.dao.EmployeeDAO;
 import sg.edu.nus.iss.eleave.dao.gaeds.EmployeeDAOImpl;
-import sg.edu.nus.iss.eleave.dto.Company;
-import sg.edu.nus.iss.eleave.dto.Department;
 import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.exception.DAOException;
 import sg.edu.nus.iss.eleave.exception.ServiceException;
-import sg.edu.nus.iss.eleave.service.CompanyService;
 import sg.edu.nus.iss.eleave.service.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService {
@@ -35,7 +32,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<Employee> findAllEmployeesByCompany(String companyId) throws ServiceException {
-		return employeeDao.findAllEmployeesByCompany(companyId);
+		List<Employee> all = employeeDao.findAllEmployeesByCompany(companyId);
+		List<Employee> filtered = new ArrayList<Employee>();
+		for (Employee e : all) {
+			if (e.getUserrole() != null && !e.getUserrole().equals(Employee.ADMIN))
+				filtered.add(e);
+		}
+		return filtered;
 	}
 
 	@Override

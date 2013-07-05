@@ -27,7 +27,7 @@
 									<td style="font-weight: bold;">Date Joined</td>
 									<td style="font-weight: bold;">Action</td>
 								</tr>
-								<tr class="overview-item">
+								<!--tr class="overview-item">
 									<td>Tan Ah Kow</td>
 									<td>Software Engineer</td>
 									<td>01/01/2013</td>
@@ -35,7 +35,7 @@
 										<a href="/employee/details.jsp?id=1">Details</a>&nbsp;
 										<a href="/employee/edit.jsp?id=1">Edit</a>
 									</td>
-								</tr>
+								</tr-->
 								<c:forEach var="emp" items="${employees}">
 									<tr class="overview-item">
 										<td>${emp.name}</td>
