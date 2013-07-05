@@ -20,6 +20,10 @@
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
+									<td>Employee Name:</td>
+									<td>${applicantName}</td>
+								</tr>
+								<tr class="overview-item">
 									<td>Leave Type:</td>
 									<td>${t}</td>
 								</tr>
@@ -34,10 +38,6 @@
 								<tr class="overview-item">
 									<td>Leave Days:</td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${appDetails.days}" /></td>
-								</tr>
-								<tr class="overview-item">
-									<td>Approving Officer:</td>
-									<td>${appDetails.processedById}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reason for Leave:</td>

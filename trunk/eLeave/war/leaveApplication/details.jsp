@@ -38,7 +38,7 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Approving Officer:</td>
-									<td>${appDetails.processedById}</td>
+									<td>${supervisorName}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reason for Leave:</td>
