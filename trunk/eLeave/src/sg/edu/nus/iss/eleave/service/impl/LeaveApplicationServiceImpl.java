@@ -71,6 +71,7 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService {
 	public void upadateLeaveApplication(LeaveApplication leaveApplication)  throws ServiceException {
 		try {
 			leaveApplication.setModifyDate(new Date());
+			leaveApplication.setStatus(LeaveApplication.PENDING);
 			leaveApplicationDao.updateLeaveApplication(leaveApplication);
 			//addEmailTask(leaveApplication,"update");
 		} catch (DAOException e) {
