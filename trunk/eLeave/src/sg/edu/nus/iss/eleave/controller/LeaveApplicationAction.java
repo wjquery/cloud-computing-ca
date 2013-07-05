@@ -101,22 +101,28 @@ public class LeaveApplicationAction extends ActionSupport {
 	public String findPendingBySupervisor() throws Exception {
 		List<LeaveApplication> pending = leaveApplicationService.findPendingLeaveApplicationsBySupervisor(companyId, myId);
 		List<LeaveType> types = new ArrayList<LeaveType>();
+		List<Employee> employees = new ArrayList<Employee>();
 		for (LeaveApplication app : pending) {
 			types.add(leaveTypeService.findLeaveTypeById(app.getLeaveTypeId()));
+			employees.add(employeeService.findEmployee(app.getApplicantId()));
 		}
 		session.setAttribute("pending", pending);
 		session.setAttribute("types", types);
+		session.setAttribute("employees", employees);
 		return SUCCESS;
 	}
 	
 	public String findHistoryBySupervisor() throws Exception {
 		List<LeaveApplication> history = leaveApplicationService.findAllLeaveApplicationsBySupervisor(companyId, myId);
 		List<LeaveType> types = new ArrayList<LeaveType>();
+		List<Employee> employees = new ArrayList<Employee>();
 		for (LeaveApplication app : history) {
 			types.add(leaveTypeService.findLeaveTypeById(app.getLeaveTypeId()));
+			employees.add(employeeService.findEmployee(app.getApplicantId()));
 		}
 		session.setAttribute("history", history);
 		session.setAttribute("types", types);
+		session.setAttribute("employees", employees);
 		return SUCCESS;
 	}
 	

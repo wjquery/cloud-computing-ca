@@ -63,7 +63,6 @@ $(function() {
 		</c:if>
 		
 		<c:if test='${role eq "admin" || empty role}'>
-			<li><a href="#tabs-2">Leave Entitlement</a></li>
 			<li><a href="#tabs-5">Admin</a></li>
 		</c:if>
 		
@@ -89,11 +88,6 @@ $(function() {
 	</c:if>
 
 	<c:if test='${role eq "admin" || empty role}'>
-		<div id="tabs-2" style="padding: 0px;">
-		<ul class="action-menu">
-			<li><span class="action" id="leaveEntitlement">Leave Entitlement</span></li>
-		</ul>
-		</div>	
 		<div id="tabs-5" style="padding: 0px;">
 		<ul class="action-menu">
 			<li><span class="action" id="employees">Employees</span></li>
