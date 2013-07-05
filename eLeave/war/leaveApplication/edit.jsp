@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,44 +53,41 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 				<%@include file="/shared/menu.jsp"%>
-					<form action="/leaveApplication/list.jsp" method="post">
+					<form class="new" action="/leaveApplication/update" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
 									<td>Leave Type:</td>
-									<td><select>
-											<option>Annual</option>
-											<option>Medical</option>
-											<option>No-pay</option>
-									</select></td>
+									<td><input  type="text" value="${t}" readonly="readonly" />
+									</td>
 								</tr>
 								<tr class="overview-item">
 									<td>From:</td>
-									<td><input id="fromDate" name="fromDate" type="text" value="${param.id}" />&nbsp;
+									<td><input id="fromDate" name="fromDate" type="text" value='<fmt:formatDate value="${appDetails.fromDate}" pattern="dd/MM/yyyy"/>' />&nbsp;
 										<img id="fromCal" src="/images/cal.png" height="18px;"></td>
 								</tr>
 								<tr class="overview-item">
 									<td>To:</td>
-									<td><input id="toDate" name="toDate" type="text" value="${param.id}" />&nbsp;
+									<td><input id="toDate" name="toDate" type="text" value='<fmt:formatDate value="${appDetails.toDate}" pattern="dd/MM/yyyy"/>' />&nbsp;
 										<img id="toCal" src="/images/cal.png" height="18px;"></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Leave Days:</td>
-									<td><input name="leaveDays" type="text" value="${param.id}" /></td>
+									<td><input name="leaveDays" type="text" value='<fmt:formatNumber type="number" maxFractionDigits="0" value="${appDetails.days}" />' /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Approving Officer:</td>
-									<td><input type="text" readonly="readonly" value="${param.id}" /></td>
+									<td><input type="text" readonly="readonly" value="${appDetails.processedById}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reason for Leave:</td>
-									<td><textarea name="reason" rows="3" cols="30">${param.id}</textarea></td>
+									<td><textarea name="reason" rows="3" cols="30">${appDetails.reason}</textarea></td>
 								</tr>
 								<tr class="overview-item">
 									<td />
 									<td><p>
 											<input type="submit" value="Save" class="sbutton" />
-											&nbsp; <input type="reset" value="Cancel" class="sbutton" />
+											&nbsp; <a href="/leaveApplication/findByEmployee" class="sbutton">Cancel</a>
 										</p></td>
 								</tr>
 							</tbody>

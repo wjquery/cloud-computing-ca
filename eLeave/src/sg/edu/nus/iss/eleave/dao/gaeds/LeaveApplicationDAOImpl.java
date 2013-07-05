@@ -54,6 +54,7 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 	public void updateLeaveApplication(LeaveApplication leaveApplication)
 			throws DAOException {
 		Entity e = Util.findFirstMatch(LeaveApplication.KIND, "applicationId", leaveApplication.getApplicationId());
+		
 		e.setProperty("fromDate", leaveApplication.getFromDate());
 		e.setProperty("toDate", leaveApplication.getToDate());
 		e.setProperty("applyDate", leaveApplication.getApplyDate());
@@ -144,7 +145,7 @@ public class LeaveApplicationDAOImpl implements LeaveApplicationDao {
 	
 	private LeaveApplication buildLeaveApplicationDTO(Entity entity){
 		LeaveApplication l = new LeaveApplication();
-		l.setApplicationId((String) entity.getProperty("leaveApplicationId"));
+		l.setApplicationId((String) entity.getProperty("applicationId"));
 		l.setApplicantId((String)entity.getProperty("applicantId"));
 		l.setDays((Double)entity.getProperty("days"));
 		l.setFromDate((Date)entity.getProperty("fromDate"));

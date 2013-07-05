@@ -40,7 +40,7 @@
 									<td><fmt:formatDate value="${app.fromDate}" pattern="dd/MM/yyyy"/></td>
 									<td><fmt:formatDate value="${app.toDate}" pattern="dd/MM/yyyy"/></td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${app.days}" /></td>
-									<td class="drill"><a href="/leaveApplication/edit.jsp?id=${app.applicationId}">${app.status}</a></td>
+									<td class="drill"><a href="/leaveApplication/findById?type=${types[status.index].name}&id=${app.applicationId}">${app.status}</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -20,7 +20,7 @@
 		$("#fromDate").datepicker(
 				{
 					defaultDate : 1,
-					minDate : 1,
+					minDate : 0,
 					numberOfMonths : 1,
 					dateFormat : dateformat,
 					onClose : function(selectedDate) {

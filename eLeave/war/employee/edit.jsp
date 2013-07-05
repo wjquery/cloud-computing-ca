@@ -89,7 +89,7 @@
 									<td />
 									<td><p>
 											<input type="submit" value="Save" class="sbutton" /> &nbsp;
-											<a href="/employee/findAll" class="sbutton">Back</a>
+											<a href="/employee/findAll" class="sbutton">Cancel</a>
 										</p></td>
 								</tr>
 							</tbody>

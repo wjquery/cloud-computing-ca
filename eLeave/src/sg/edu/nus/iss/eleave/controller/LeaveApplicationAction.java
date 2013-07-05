@@ -57,13 +57,22 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	
 	public String findById() throws Exception {
-		return SUCCESS;
+		String searchId = request.getParameter("id");
+		String type = request.getParameter("type");
+		LeaveApplication application = leaveApplicationService.findLeaveApplicationById(searchId);
+		session.setAttribute("appDetails", application);
+		session.setAttribute("t", type);
+		if (LeaveApplication.PENDING.equals(application.getStatus()))
+			return SUCCESS;
+		else
+			return NONE;
 	}
 	
 	public String findByEmployee() {
 		List<LeaveApplication> applications = leaveApplicationService.findAllLeaveApplicationsByEmployee(companyId, myId);
 		List<LeaveType> types = new ArrayList<LeaveType>();
 		for (LeaveApplication app : applications) {
+			log.log(Level.INFO, "Leave Application retrieved, Id: " + app.getApplicationId());
 			types.add(leaveTypeService.findLeaveTypeById(app.getLeaveTypeId()));
 		}
 		session.setAttribute("myApplications", applications);
