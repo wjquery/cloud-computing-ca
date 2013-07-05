@@ -62,7 +62,7 @@ $(function() {
 			<li><a href="#tabs-4">Approving Officer</a></li>
 		</c:if>
 		
-		<c:if test='${role eq "admin"}'>
+		<c:if test='${role eq "admin" || empty role}'>
 			<li><a href="#tabs-2">Leave Entitlement</a></li>
 			<li><a href="#tabs-5">Admin</a></li>
 		</c:if>
@@ -88,7 +88,7 @@ $(function() {
 		</div>
 	</c:if>
 
-	<c:if test='${role eq "admin"}'>
+	<c:if test='${role eq "admin" || empty role}'>
 		<div id="tabs-2" style="padding: 0px;">
 		<ul class="action-menu">
 			<li><span class="action" id="leaveEntitlement">Leave Entitlement</span></li>

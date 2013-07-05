@@ -11,10 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
+import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.dto.LeaveApplication;
 import sg.edu.nus.iss.eleave.dto.LeaveType;
+import sg.edu.nus.iss.eleave.service.EmployeeService;
 import sg.edu.nus.iss.eleave.service.LeaveApplicationService;
 import sg.edu.nus.iss.eleave.service.LeaveTypeService;
+import sg.edu.nus.iss.eleave.service.impl.EmployeeServiceImpl;
 import sg.edu.nus.iss.eleave.service.impl.LeaveApplicationServiceImpl;
 import sg.edu.nus.iss.eleave.service.impl.LeaveTypeServiceImpl;
 import sg.edu.nus.iss.eleave.util.DateUtil;
@@ -32,6 +35,8 @@ public class LeaveApplicationAction extends ActionSupport {
 	private String myId = (String) session.getAttribute("myId");
 	
 	public String insert() throws Exception {
+		String supervisorId = employeeService.findEmployee(myId).getSupervisorId();
+		
 		LeaveApplication application = new LeaveApplication();
 		application.setApplicantId(myId);
 		application.setLeaveTypeId(leaveTypeId);
@@ -39,6 +44,7 @@ public class LeaveApplicationAction extends ActionSupport {
 		application.setToDate(DateUtil.parse(toDate, "dd/MM/yyyy"));
 		application.setDays(days);
 		application.setReason(reason);
+		application.setProcessedById(supervisorId);
 		log.log(Level.INFO, application.toString());
 		leaveApplicationService.insertLeaveApplication(application);
 		return SUCCESS;
@@ -102,6 +108,7 @@ public class LeaveApplicationAction extends ActionSupport {
 	
 	private LeaveApplicationService leaveApplicationService = new LeaveApplicationServiceImpl();
 	private LeaveTypeService leaveTypeService = new LeaveTypeServiceImpl();
+	private EmployeeService employeeService = new EmployeeServiceImpl();
 	private String leaveTypeId;
 	private String fromDate;
 	private String toDate;
@@ -127,6 +134,12 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	public void setLeaveTypeService(LeaveTypeService leaveTypeService) {
 		this.leaveTypeService = leaveTypeService;
+	}
+	public EmployeeService getEmployeeService() {
+		return employeeService;
+	}
+	public void setEmployeeService(EmployeeService employeeService) {
+		this.employeeService = employeeService;
 	}
 
 	public String getLeaveTypeId() {
