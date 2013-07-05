@@ -108,8 +108,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeDAO getEmployeeDao() {
 		return employeeDao;
 	}
-
-	public void setEmployeeDao(EmployeeDAO employeeDao) throws ServiceException{
+	public void setEmployeeDao(EmployeeDAO employeeDao) {
 		this.employeeDao = employeeDao;
 	}
 

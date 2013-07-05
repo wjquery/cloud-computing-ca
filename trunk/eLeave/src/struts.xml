@@ -28,17 +28,34 @@
 			</result>
 			<result name="input">/employee/create.jsp</result>
 		</action>
-		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="findAll">
-			<result name="success" type="redirect">/employee/list.jsp</result>
-		</action>
 		<action name="update" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="update">
 			<result name="success" type="redirectAction">
 				<param name="actionName">findAll</param>
 			</result>
 		</action>
+		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.EmployeeAction" method="findAll">
+			<result name="success" type="redirect">/employee/list.jsp</result>
+		</action>
 	</package>
 	
-	<package name="leave" namespace="/leave" extends="struts-default">
+	<package name="leaveType" namespace="/leaveType" extends="struts-default">
+		<action name="insert" class="sg.edu.nus.iss.eleave.controller.LeaveTypeAction" method="insert">
+			<result name="success" type="redirectAction">
+				<param name="actionName">findAll</param>
+			</result>
+			<result name="input">/leaveType/create.jsp</result>
+		</action>
+		<action name="update" class="sg.edu.nus.iss.eleave.controller.LeaveTypeAction" method="update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">findAll</param>
+			</result>
+		</action>
+		<action name="findAll" class="sg.edu.nus.iss.eleave.controller.LeaveTypeAction" method="findAll">
+			<result name="success" type="redirect">/leaveType/list.jsp</result>
+		</action>
+	</package>
+	
+	<package name="leaveApplication" namespace="/leaveApplication" extends="struts-default">
 		<action name="insert" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="insert">
 			<result name="success" type="redirectAction">
 				<param name="actionName">findAll</param>

@@ -16,20 +16,20 @@
 			<td>
 				<div style="margin: 2px; padding: 5px; width: 960px;">
 					<%@include file="/shared/menu.jsp"%>
-					<form class="new" action="/shared/template.jsp" method="post">
+					<form class="new" action="/leaveType/insert" method="post">
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
-									<td>DepartmentId:</td>
-									<td><input name="name" type="text" /></td>
+									<td>LeaveTypeId:</td>
+									<td><input name="leaveTypeId" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
-									<td>Department Name:</td>
-									<td><input name="designation" type="text" /></td>
+									<td>Leave Type Name:</td>
+									<td><input name="leaveTypeName" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
-									<td>Department Head:</td>
-									<td><input id="joinDate" name="joinDate" type="text" /></td>
+									<td>Default Entitlement</td>
+									<td><input name="defaultEntitlement" type="text" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td />
@@ -52,7 +52,7 @@
 	$(function() {
 		var index = $('#menu a[href="#tabs-5"]').parent().index();
 		$("#menu").tabs("option", "active", index);
-		$("#departments").addClass("selected");
+		$("#leaveTypes").addClass("selected");
 	});
 	</script>
 </body>

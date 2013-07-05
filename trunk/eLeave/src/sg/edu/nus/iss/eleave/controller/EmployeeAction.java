@@ -9,8 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
-import sg.edu.nus.iss.eleave.dao.gaeds.EmployeeDAOImpl;
-import sg.edu.nus.iss.eleave.dto.Company;
 import sg.edu.nus.iss.eleave.dto.Employee;
 import sg.edu.nus.iss.eleave.service.EmployeeService;
 import sg.edu.nus.iss.eleave.service.impl.EmployeeServiceImpl;
@@ -20,7 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class EmployeeAction extends ActionSupport {
 	
-	private static Logger log = Logger.getLogger(EmployeeDAOImpl.class.getCanonicalName());
+	private static Logger log = Logger.getLogger(EmployeeAction.class.getCanonicalName());
 	
 	private HttpServletRequest request = ServletActionContext.getRequest();
 	private HttpSession session = request.getSession();
@@ -52,7 +50,7 @@ public class EmployeeAction extends ActionSupport {
 	
 	public String findById() throws Exception {
 		Employee employee = employeeService.findEmployee(employeeId);
-		session.setAttribute("emp", employee);
+		session.setAttribute("emp", employee);//TODO
 		return SUCCESS;
 	}
 	
