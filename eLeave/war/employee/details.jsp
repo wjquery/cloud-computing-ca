@@ -13,23 +13,6 @@
 	Employee emp = new EmployeeServiceImpl().findEmployee(request.getParameter("employeeId"));
 	request.setAttribute("emp", emp);
 %>
-<script type="text/javascript">
-	$(function() {
-		var dateformat = "dd/mm/yy";
-		$("#joinDate").datepicker(
-				{
-					defaultDate : 1,
-					minDate : 1,
-					numberOfMonths : 1,
-					dateFormat : dateformat
-				});
-
-		$('#joinCal').click(function() {
-			$('#joinDate').datepicker('show');
-		});
-		
-	});
-</script>
 </head>
 <body>
 	<table align="center" style="width: 100%;">
@@ -44,6 +27,10 @@
 						<table class="overview-eleave-items">
 							<tbody>
 								<tr class="overview-item">
+									<td>Employee ID:</td>
+									<td>${emp.employeeId}</td>
+								</tr>
+								<tr class="overview-item">
 									<td>Employee Name:</td>
 									<td>${emp.name}</td>
 								</tr>
@@ -57,11 +44,11 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Department:</td>
-									<td></td>
+									<td>${emp.departmentId}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Supervisor:</td>
-									<td></td>
+									<td>${emp.supervisorId}</td>
 								</tr>
 								<tr class="overview-item">
 									<td>Email Address:</td>

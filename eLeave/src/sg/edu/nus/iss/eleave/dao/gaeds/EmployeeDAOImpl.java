@@ -96,7 +96,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		
 		e.setProperty("name", employee.getName());
 		e.setProperty("designation", employee.getDesignation());
-		e.setProperty("departmentId", employee.getDeparmentId());
+		e.setProperty("departmentId", employee.getDepartmentId());
 		e.setProperty("supervisorId", employee.getSupervisorId());
 		e.setProperty("joinDate", employee.getJoinDate());
 		e.setProperty("resignDate", employee.getResignDate());
@@ -116,7 +116,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		
 		e.setProperty("name", employee.getName());
 		e.setProperty("designation", employee.getDesignation());
-		e.setProperty("departmentId", employee.getDeparmentId());
+		e.setProperty("departmentId", employee.getDepartmentId());
 		e.setProperty("supervisorId", employee.getSupervisorId());
 		e.setProperty("joinDate", employee.getJoinDate());
 		e.setProperty("resignDate", employee.getResignDate());
@@ -146,7 +146,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		p.setEmployeeId((String) entity.getProperty("employeeId"));
 		p.setName((String) entity.getProperty("name"));
 		p.setCompanyId((String) entity.getProperty("companyId"));
-		p.setDeparmentId((String) entity.getProperty("departmentId"));
+		p.setDepartmentId((String) entity.getProperty("departmentId"));
 		p.setDesignation((String) entity.getProperty("designation"));
 		p.setSupervisorId((String) entity.getProperty("supervisorId"));
 		p.setJoinDate((Date) entity.getProperty("joinDate"));

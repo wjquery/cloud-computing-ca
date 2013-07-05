@@ -61,11 +61,11 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Department:</td>
-									<td><input name="department" type="text" /></td>
+									<td><input name="department" type="text" value="${fn:escapeXml(emp.departmentId)}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Supervisor:</td>
-									<td><input name="supervisor" type="text" /></td>
+									<td><input name="supervisor" type="text" value="${fn:escapeXml(emp.supervisorId)}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Email Address:</td>
