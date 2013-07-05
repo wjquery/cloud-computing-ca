@@ -88,7 +88,8 @@
 			</result>
 		</action>
 		<action name="findById" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="findById">
-			<result name="success" type="redirect">/supervisor/leavedetails.jsp</result>
+			<result name="success" type="redirect">/supervisor/pendingLeaveDetails.jsp</result>
+			<result name="none" type="redirect">/supervisor/pastLeaveDetails.jsp</result>
 		</action>
 		<action name="findPendingBySupervisor" class="sg.edu.nus.iss.eleave.controller.LeaveApplicationAction" method="findPendingBySupervisor">
 			<result name="success" type="redirect">/supervisor/pendingList.jsp</result>
