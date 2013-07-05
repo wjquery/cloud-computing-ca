@@ -23,7 +23,7 @@
 							<c:choose>
 							    <c:when test="${empty history}">
 							    <tr class="overview-item"><td>
-							        No Pending Application Found.
+							        No Subordinate Leave Application History Found.
 							    </td></tr>
 							    </c:when>
 							    <c:otherwise>
