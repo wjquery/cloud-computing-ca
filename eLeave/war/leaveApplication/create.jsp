@@ -11,6 +11,9 @@
 <%
 	List<LeaveType> leaveTypes = new LeaveTypeServiceImpl().findAllLeaveTypesByCompany("NTU");
 	request.setAttribute("leaveTypes", leaveTypes);
+	Employee me = new EmployeeServiceImpl().findEmployee((String)session.getAttribute("myId"));
+	Employee supervisor = new EmployeeServiceImpl().findEmployee(me.getSupervisorId());
+	request.setAttribute("supervisorName", supervisor.getName());
 %>
 <script type="text/javascript">
 	$(function() {
@@ -84,7 +87,7 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Approving Officer:</td>
-									<td><input type="text" readonly="readonly" /></td>
+									<td><input type="text" readonly="readonly" value="${supervisorName}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reason for Leave:</td>

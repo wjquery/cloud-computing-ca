@@ -80,6 +80,10 @@ public class LeaveApplicationAction extends ActionSupport {
 		LeaveApplication application = leaveApplicationService.findLeaveApplicationById(searchId);
 		session.setAttribute("appDetails", application);
 		session.setAttribute("t", type);
+		Employee me = employeeService.findEmployee(application.getApplicantId());
+		session.setAttribute("applicantName", me.getName());
+		Employee supervisor = employeeService.findEmployee(me.getSupervisorId());
+		session.setAttribute("supervisorName", supervisor.getName());
 		if (LeaveApplication.PENDING.equals(application.getStatus()))
 			return SUCCESS;
 		else

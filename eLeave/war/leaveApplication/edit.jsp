@@ -77,7 +77,7 @@
 								</tr>
 								<tr class="overview-item">
 									<td>Approving Officer:</td>
-									<td><input type="text" readonly="readonly" value="${appDetails.processedById}" /></td>
+									<td><input type="text" readonly="readonly" value="${supervisorName}" /></td>
 								</tr>
 								<tr class="overview-item">
 									<td>Reason for Leave:</td>
