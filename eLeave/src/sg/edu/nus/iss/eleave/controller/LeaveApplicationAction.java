@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.eleave.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,8 +12,11 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import sg.edu.nus.iss.eleave.dto.LeaveApplication;
+import sg.edu.nus.iss.eleave.dto.LeaveType;
 import sg.edu.nus.iss.eleave.service.LeaveApplicationService;
+import sg.edu.nus.iss.eleave.service.LeaveTypeService;
 import sg.edu.nus.iss.eleave.service.impl.LeaveApplicationServiceImpl;
+import sg.edu.nus.iss.eleave.service.impl.LeaveTypeServiceImpl;
 import sg.edu.nus.iss.eleave.util.DateUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -24,10 +28,12 @@ public class LeaveApplicationAction extends ActionSupport {
 	
 	private HttpServletRequest request = ServletActionContext.getRequest();
 	private HttpSession session = request.getSession();
+	private String companyId = (String) session.getAttribute("companyId");
+	private String myId = (String) session.getAttribute("myId");
 	
 	public String insert() throws Exception {
 		LeaveApplication application = new LeaveApplication();
-		application.setApplicantId("A00006");
+		application.setApplicantId(myId);
 		application.setLeaveTypeId(leaveTypeId);
 		application.setFromDate(DateUtil.parse(fromDate, "dd/MM/yyyy"));
 		application.setToDate(DateUtil.parse(toDate, "dd/MM/yyyy"));
@@ -55,8 +61,13 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	
 	public String findByEmployee() {
-		List<LeaveApplication> applications = leaveApplicationService.findAllLeaveApplicationsByEmployee("NTU", "A00006");
+		List<LeaveApplication> applications = leaveApplicationService.findAllLeaveApplicationsByEmployee(companyId, myId);
+		List<LeaveType> types = new ArrayList<LeaveType>();
+		for (LeaveApplication app : applications) {
+			types.add(leaveTypeService.findLeaveTypeById(app.getLeaveTypeId()));
+		}
 		session.setAttribute("myApplications", applications);
+		session.setAttribute("types", types);
 		return SUCCESS;
 	}
 	
@@ -69,6 +80,7 @@ public class LeaveApplicationAction extends ActionSupport {
 	}
 	
 	private LeaveApplicationService leaveApplicationService = new LeaveApplicationServiceImpl();
+	private LeaveTypeService leaveTypeService = new LeaveTypeServiceImpl();
 	private String leaveTypeId;
 	private String fromDate;
 	private String toDate;
@@ -89,6 +101,13 @@ public class LeaveApplicationAction extends ActionSupport {
 			LeaveApplicationService leaveApplicationService) {
 		this.leaveApplicationService = leaveApplicationService;
 	}
+	public LeaveTypeService getLeaveTypeService() {
+		return leaveTypeService;
+	}
+	public void setLeaveTypeService(LeaveTypeService leaveTypeService) {
+		this.leaveTypeService = leaveTypeService;
+	}
+
 	public String getLeaveTypeId() {
 		return leaveTypeId;
 	}

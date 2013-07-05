@@ -10,7 +10,7 @@ $(function() {
 	});
 	
 	$("#leaveHistory").click(function() {
-		window.location = "/leaveApplication/list.jsp";			
+		window.location = "/leaveApplication/findByEmployee";			
 	});
 	
 	$("#leaveSummary").click(function() {

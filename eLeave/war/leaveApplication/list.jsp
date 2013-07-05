@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,27 +27,22 @@
 								<td style="font-weight: bold;">Leave Days</td>
 								<td style="font-weight: bold;">Status</td>
 							</tr>
-							<tr class="overview-item">
+							<!--tr class="overview-item">
 								<td>Annual</td>
 								<td>15/07/2013</td>
 								<td>17/07/2013</td>
 								<td>3</td>
 								<td class="drill"><a href="/leaveApplication/edit.jsp?id=3">Pending</a></td>
-							</tr>
-							<tr class="overview-item">
-								<td>Medical</td>
-								<td>01/07/2013</td>
-								<td>01/07/2013</td>
-								<td>1</td>
-								<td class="drill"><a href="/leaveApplication/details.jsp?id=2&status=approved">Approved</a></td>
-							</tr>
-							<tr class="overview-item">
-								<td>No-pay</td>
-								<td>25/06/2013</td>
-								<td>26/06/2013</td>
-								<td>2</td>
-								<td class="drill"><a href="/leaveApplication/details.jsp?id=1&status=cancelled">Cancelled</a></td>
-							</tr>
+							</tr-->
+							<c:forEach var="app" items="${myApplications}" varStatus="status">
+								<tr class="overview-item">
+									<td>${types[status.index].name}</td>
+									<td><fmt:formatDate value="${app.fromDate}" pattern="dd/MM/yyyy"/></td>
+									<td><fmt:formatDate value="${app.toDate}" pattern="dd/MM/yyyy"/></td>
+									<td><fmt:formatNumber type="number" maxFractionDigits="0" value="${app.days}" /></td>
+									<td class="drill"><a href="/leaveApplication/edit.jsp?id=${app.applicationId}">${app.status}</a></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
